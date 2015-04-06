@@ -19,6 +19,8 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<link href="css/dashboard.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 <div class="header_bg"><!-- start header -->
@@ -39,40 +41,102 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="menu nav navbar-nav ">
-		        <li class="active"><a href="index.html">home</a></li>
+		        <li><a href="index.html">home</a></li>
 		        <li><a href="entry.html">Entri Sampah</a></li>
-		        <li><a href="volumeTPS.html">Pengawasan Sampah</a></li>
+		        <li class="active"><a href="volumeTPS.html">Pengawasan Sampah</a></li>
 		        <li><a href="admin.html">Administrasi Sampah</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		</div>
-		<div class="row slider text-center">
-			<div class="col-md-8">
-					<div class="col-md-10 slider_text">
-						<h2>Welcome to WASTE</h2>
-						<h3>Waste Acquisition System Technological Enhancement</h3>
-						<br/>
-						<div class="container" style="width:80%;">
-						  <form class="form-signin">
-							<label for="inputEmail" class="sr-only">Username</label>
-							<input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-							<label for="inputPassword" class="sr-only">Password</label>
-							<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-							<br/>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-						  </form>
-						</div> <!-- /container -->
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="slider_img">
-						<img src="images/pic1.png" alt="" class="img-responsive"/>
-					</div>
-				</div>
-			</div>
+		<ol class="breadcrumb">
+		  <li><a href="index.html">Home</a></li>
+		  <li class="active">Pengawasan Sampah</li>
+		</ol>
 	</div>
+</div>
+<div class="main"><!-- start main -->
+<div class="container">
+	<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+		  <h2 class="sub-header">Pengawasan</h2>
+		  <h4>Disini anda bisa mengawasi volume sampah di TPS</h4>
+          <h2 class="sub-header">Menu</h2>
+		  <a href="volumeTPS.html"><button style="margin-top:10px;" class="btn_style">Volume TPS</button></a>
+		  <a href="volumeTPA.html"><button style="margin-top:10px;" class="btn_style">Volume TPA</button></a>
+        </div>
+        <div class="col-md-8">
+          <!--<h1 class="page-header">Dashboard</h1>-->
+          <h2 class="sub-header">Volume di TPS</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Volume</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Nulla</td>
+                  <td>quis</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>nibh</td>
+                  <td>elementum</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>augue</td>
+                  <td>semper</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 </div>
 <div class="footer_btm"><!-- start footer_btm -->
 	<div class="container">

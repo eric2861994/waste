@@ -39,8 +39,8 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="menu nav navbar-nav ">
-		        <li class="active"><a href="index.html">home</a></li>
-		        <li><a href="entry.html">Entri Sampah</a></li>
+		        <li><a href="index.html">home</a></li>
+		        <li class="active"><a href="entry.html">Entri Sampah</a></li>
 		        <li><a href="volumeTPS.html">Pengawasan Sampah</a></li>
 		        <li><a href="admin.html">Administrasi Sampah</a></li>
 		      </ul>
@@ -48,31 +48,56 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 		</div>
-		<div class="row slider text-center">
-			<div class="col-md-8">
-					<div class="col-md-10 slider_text">
-						<h2>Welcome to WASTE</h2>
-						<h3>Waste Acquisition System Technological Enhancement</h3>
-						<br/>
-						<div class="container" style="width:80%;">
-						  <form class="form-signin">
-							<label for="inputEmail" class="sr-only">Username</label>
-							<input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-							<label for="inputPassword" class="sr-only">Password</label>
-							<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-							<br/>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-						  </form>
-						</div> <!-- /container -->
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="slider_img">
-						<img src="images/pic1.png" alt="" class="img-responsive"/>
-					</div>
-				</div>
-			</div>
+		<ol class="breadcrumb">
+		  <li><a href="index.html">Home</a></li>
+		  <li class="active">Entri Sampah</li>
+		</ol>
 	</div>
+</div>
+<div class="main"><!-- start main -->
+<div class="container">
+			<div class="row contact"><!-- start contact -->				
+				<div class="col-md-4">
+					<div class="contact_info">
+			    	 	<h2>Tambah Volume Sampah</h2>
+						<img src="images/add.png" width="100%" alt="add"/>
+				   </div>
+				</div>				
+				<div class="col-md-8">
+				  <div class="contact-form">
+				  	<h3>Tambahkan volume sampah di form ini.</h3>
+					    <form method="post" action="contact-post.html">
+					    	<div>
+						    	<span>TPS/TPA</span>
+						    	<span> 
+									<select class="form-control" id="inputEmail3">
+									  <option value="TPS">Tempat Pembuangan Sampah</option>
+									  <option value="TPA">Tempat Pembuangan Akhir</option>
+									</select> 
+								</span>
+						    </div>
+						    <div>
+						    	<span>Nama Lokasi</span>
+						    	<span> 
+									<select class="form-control" id="inputEmail3"> <!--note: dynamically loaded with AJAX-->
+									  <option value="001">Bantar Gebang</option>
+									  <option value="002">BlaBlaBla</option>
+									</select> 
+								</span>
+						    </div>
+						    <div>
+						     	<span>Volume</span>
+						    	<span><input type="number" class="form-control" id="number"></span>
+						    </div>
+						   <div>
+						   		<span><input type="submit" value="submit"></span>
+						  </div>
+					    </form>
+				    </div>
+  				</div>		
+  				<div class="clearfix"></div>		
+		  </div> <!-- end contact -->
+</div>
 </div>
 <div class="footer_btm"><!-- start footer_btm -->
 	<div class="container">

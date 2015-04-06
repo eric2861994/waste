@@ -2,12 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Tpakhir extends Eloquent {
+class Tpsampah extends Eloquent {
 	
 	public $timestamps = false;
 	
 	/**
-	 * Fillable fields for a Tpakhir.
+	 * Fillable fields for a Tpsampah.
 	 * 
 	 * @var array
 	 */

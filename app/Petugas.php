@@ -2,16 +2,16 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Tpakhir extends Eloquent {
+class Petugas extends Eloquent {
 	
 	public $timestamps = false;
 	
 	/**
-	 * Fillable fields for a Tpakhir.
+	 * Fillable fields for a Petugas.
 	 * 
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'location'
+		'nip', 'name', 'role'
 	];
 }

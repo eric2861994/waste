@@ -2,16 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Tpakhir extends Eloquent {
-	
-	public $timestamps = false;
+class EntriSampah extends Eloquent {
 	
 	/**
-	 * Fillable fields for a Tpakhir.
+	 * Fillable fields for a song.
 	 * 
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'location'
+		'tps_id', 'volume'
 	];
 }

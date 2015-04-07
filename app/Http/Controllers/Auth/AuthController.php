@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+
+use App\User;
+
 class AuthController extends Controller {
 
 	/*
@@ -20,6 +23,8 @@ class AuthController extends Controller {
 	*/
 
 	use AuthenticatesAndRegistersUsers;
+	
+	private $user;
 
 	/**
 	 * Create a new authentication controller instance.
@@ -28,12 +33,14 @@ class AuthController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
 	 * @return void
 	 */
-	public function __construct(Guard $auth, Registrar $registrar)
+	public function __construct(Guard $auth, Registrar $registrar, User $user)
 	{
 		$this->auth = $auth;
 		$this->registrar = $registrar;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
+		
+		$this->user = $user;
 	}
 	
 	public function postLogin(Request $request) {
@@ -42,5 +49,15 @@ class AuthController extends Controller {
 			return view('home');
 		}
 		return view('auth.login');
+	}
+	
+	public function index() {
+		$users = $this->user->get();
+		
+		return view('auth.list', compact('users'));
+	}
+	
+	public function kael() {
+		return view('auth.kael');
 	}
 }

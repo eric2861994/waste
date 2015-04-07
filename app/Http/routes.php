@@ -13,8 +13,8 @@
 
 Route::model('petugas', 'App\Petugas');
 
-Route::get('/', 'WelcomeController@index');
-Route::get('home', 'HomeController@index');
+// Route::get('/', 'WelcomeController@index');
+// Route::get('home', 'HomeController@index');
 
 Route::get('dataTP', 'TpembuanganController@index');
 Route::get('dataTP/tambah-tps', 'TpembuanganController@create_tps');
@@ -33,7 +33,11 @@ Route::delete('dataPetugas/{petugas}', 'PetugasController@destroy');
 Route::get('entry', 'EntriController@create');
 Route::post('entry/store', 'EntriController@store');
 
-Route::get('dataAdmin', 'AdminController@index');
+//unimplemented
+Route::get('dataAdmin', 'Auth\AuthController@index');
+Route::get('volumeTPA', 'TpembuanganController@show_tpa');
+Route::get('index', 'Auth\AuthController@kael');
+Route::get('/', 'Auth\AuthController@kael');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -36,22 +36,22 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" class="img-responsive"/> </a>
+		      <a class="navbar-brand" href="index"><img src="images/logo.png" alt="" class="img-responsive"/> </a>
 		    </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="menu nav navbar-nav ">
-		        <li><a href="index.html">home</a></li>
-		        <li><a href="entry.html">Entri Sampah</a></li>
-		        <li class="active"><a href="volumeTPS.html">Pengawasan Sampah</a></li>
-		        <li><a href="dataTP.html">Administrasi Sampah</a></li>
+		        <li><a href="index">home</a></li>
+		        <li><a href="entry">Entri Sampah</a></li>
+		        <li class="active"><a href="volumeTPS">Pengawasan Sampah</a></li>
+		        <li><a href="dataTP">Administrasi Sampah</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		</div>
 		<ol class="breadcrumb">
-		  <li><a href="index.html">Home</a></li>
+		  <li><a href="index">Home</a></li>
 		  <li class="active">Pengawasan Sampah</li>
 		</ol>
 	</div>
@@ -62,8 +62,8 @@
       <div class="row">
         <div class="col-md-4">
 		  <h2 class="sub-header">Pengawasan</h2>
-		  <a href="volumeTPS.html"><button style="margin-top:10px;" class="btn_style">Volume TPS</button></a>
-		  <a href="volumeTPA.html"><button style="margin-top:10px;" class="btn_style">Volume TPA</button></a>
+		  <a href="volumeTPS"><button style="margin-top:10px;" class="btn_style">Volume TPS</button></a>
+		  <a href="volumeTPA"><button style="margin-top:10px;" class="btn_style">Volume TPA</button></a>
 		  <img src="images/magnify.png" width="100%" alt="view"/>
         </div>
         <div class="col-md-8">

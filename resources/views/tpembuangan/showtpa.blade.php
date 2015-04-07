@@ -19,6 +19,8 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<link href="css/dashboard.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 <div class="header_bg"><!-- start header -->
@@ -40,8 +42,8 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="menu nav navbar-nav ">
 		        <li><a href="index">home</a></li>
-		        <li class="active"><a href="entry">Entri Sampah</a></li>
-		        <li><a href="volumeTPS">Pengawasan Sampah</a></li>
+		        <li><a href="entry">Entri Sampah</a></li>
+		        <li class="active"><a href="volumeTPA">Pengawasan Sampah</a></li>
 		        <li><a href="dataTP">Administrasi Sampah</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -50,56 +52,52 @@
 		</div>
 		<ol class="breadcrumb">
 		  <li><a href="index">Home</a></li>
-		  <li class="active">Entri Sampah</li>
+		  <li class="active">Pengawasan Sampah</li>
 		</ol>
 	</div>
 </div>
 <div class="main"><!-- start main -->
 <div class="container">
-			<div class="row contact"><!-- start contact -->				
-				<div class="col-md-4">
-					<div class="contact_info">
-			    	 	<h2>Tambah Volume Sampah</h2>
-						<img src="images/add.png" width="100%" alt="add"/>
-				   </div>
-				</div>				
-				<div class="col-md-8">
-				  <div class="contact-form">
-				  	<h3>Tambahkan volume sampah di form ini.</h3>
-					    <form method="post" action="entry/store">
-						<input name="_token" type="hidden" value="{{ csrf_token() }}">
-					    	<div>
-						    	<span>TPS/TPA</span>
-						    	<span> 
-									<select class="form-control" id="TPtype">
-									  <option value="TPS">Tempat Pembuangan Sampah</option>
-									  <option value="TPA">Tempat Pembuangan Akhir</option>
-									</select> 
-								</span>
-						    </div>
-						    <div>
-						    	<span>Nama Lokasi</span>
-						    	<span> 
-									
-									<select class="form-control" name="tps_id" id="lokasi"> <!--note: dynamically loaded with AJAX-->
-									  @foreach ($tpsampahs as $tpsampah)
-										<option value="{{ $tpsampah->id }}">{{ $tpsampah->name }}</option>
-									  @endforeach
-									</select> 
-								</span>
-						    </div>
-						    <div>
-						     	<span>Volume</span>
-						    	<span><input name="volume" type="text" class="form-control" id="volume"></span>
-						    </div>
-						   <div>
-						   		<span><input type="submit" value="submit"></span>
-						  </div>
-					    </form>
-				    </div>
-  				</div>		
-  				<div class="clearfix"></div>		
-		  </div> <!-- end contact -->
+	<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+		  <h2 class="sub-header">Pengawasan</h2>
+		  <a href="volumeTPS"><button style="margin-top:10px;" class="btn_style">Volume TPS</button></a>
+		  <a href="volumeTPA"><button style="margin-top:10px;" class="btn_style">Volume TPA</button></a>
+		  <img src="images/magnify.png" width="100%" alt="view"/>
+        </div>
+        <div class="col-md-8">
+          <!--<h1 class="page-header">Dashboard</h1>-->
+          <h2 class="sub-header">Volume di TPA</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Volume</th>
+                </tr>
+              </thead>
+<?php $entry_num = 0; ?>
+              <tbody>
+				@foreach ($tpakhirs as $tpakhir)
+				<?php $entry_num += 1; ?>
+				<tr>
+                  <td>{{ $entry_num }}</td>
+                  <td>{{ $tpakhir->name }}</td>
+				  <?php $total_volume = 0; ?>
+				  @foreach ($tpakhir->entries as $entry)
+					<?php $total_volume += $entry->volume; ?>
+				  @endforeach
+				  <td>{{ $total_volume }}</td>
+                </tr>
+				@endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 </div>
 <div class="footer_btm"><!-- start footer_btm -->

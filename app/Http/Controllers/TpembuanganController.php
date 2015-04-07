@@ -36,6 +36,12 @@ class TpembuanganController extends Controller {
 		return view('tpembuangan.showtps', compact('tpsampahs'));
 	}
 	
+	public function show_tpa() {
+		$tpakhirs = $this->tpakhir->get();
+		
+		return view('tpembuangan.showtpa', compact('tpakhirs'));
+	}
+	
 	public function store(Request $request) {
 		if ($request->get('_poster') == 'tps') { // tambah tps
 			$tpsampah = new Tpsampah();

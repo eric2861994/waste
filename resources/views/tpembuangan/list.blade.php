@@ -37,22 +37,22 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="index.html"><img src="{{ url('images/logo.png') }}" alt="" class="img-responsive"/> </a>
+		      <a class="navbar-brand" href="index"><img src="{{ url('images/logo.png') }}" alt="" class="img-responsive"/> </a>
 		    </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="menu nav navbar-nav ">
-		        <li><a href="index.html">home</a></li>
-		        <li><a href="entry.html">Entri Sampah</a></li>
-		        <li><a href="volumeTPS.html">Pengawasan Sampah</a></li>
-		        <li class="active"><a href="dataTP.html">Administrasi Sampah</a></li>
+		        <li><a href="index">home</a></li>
+		        <li><a href="entry">Entri Sampah</a></li>
+		        <li><a href="volumeTPS">Pengawasan Sampah</a></li>
+		        <li class="active"><a href="dataTP">Administrasi Sampah</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		</div>
 		<ol class="breadcrumb">
-		  <li><a href="index.html">Home</a></li>
+		  <li><a href="index">Home</a></li>
 		  <li class="active">Pengawasan Sampah</li>
 		</ol>
 	</div>
@@ -67,11 +67,17 @@
           <h2 class="sub-header">Menu</h2>
 		  <a href="dataTP"><button style="margin-top:10px;" class="btn_style">TPS-TPA</button></a><br/>
 		  <a href="dataPetugas"><button style="margin-top:10px;" class="btn_style">Petugas</button></a><br/>
-		  <a href="dataAdmin.html"><button style="margin-top:10px;" class="btn_style">Admin</button></a><br/>
+		  <a href="dataAdmin"><button style="margin-top:10px;" class="btn_style">Admin</button></a><br/>
         </div>
         <div class="col-md-8">
           <!--<h1 class="page-header">Dashboard</h1>-->
           <h2 class="sub-header">Daftar TPS dan TPA</h2>
+		  <a href="dataTP/tambah-tps">
+		  <button style="margin-top:10px;" class="btn_style">Tambah TPS</button>
+		  </a>
+		  <a href="dataTP/tambah-tpa">
+		  <button style="margin-top:10px;" class="btn_style">Tambah TPA</button>
+		  </a>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>

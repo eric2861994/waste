@@ -6,7 +6,6 @@
 <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="csrf-token" content="{{ csrf_token() }}" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!--[if lt IE 9]>
      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -45,7 +44,7 @@
 		        <li><a href="index">home</a></li>
 		        <li><a href="entry">Entri Sampah</a></li>
 		        <li><a href="volumeTPS">Pengawasan Sampah</a></li>
-		        <li class="active"><a href="dataPetugas">Administrasi Sampah</a></li>
+		        <li class="active"><a href="dataAdmin">Administrasi Sampah</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -71,32 +70,29 @@
         </div>
         <div class="col-md-8">
           <!--<h1 class="page-header">Dashboard</h1>-->
-          <h2 class="sub-header">Daftar Petugas Lapangan</h2>
-		  <a href="dataPetugas/tambah">
-		  <button style="margin-top:10px;" class="btn_style">Tambah Petugas</button>
-		  </a>
+          <h2 class="sub-header">Daftar Administrator</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>NIP</th>
-                  <th>Nama</th>
+                  <th>Username</th>
+                  <th>Password</th>
                   <th>Peran</th>
                   <th>Manage...</th>
                 </tr>
               </thead>
 <?php $entry_num = 0; ?>
               <tbody>
-				@foreach ($petugass as $petugas)
+				@foreach ($users as $user)
 				<?php $entry_num += 1; ?>
 				<tr>
-					<td id="{{ 'real_id' . $entry_num }}" my_value="{{ $petugas->id }}">{{ $entry_num }}</td>
-					<td id="{{ 'nip' . $entry_num }}">{{ $petugas->nip }}</td>
-					<td id="{{ 'nama' . $entry_num }}">{{ $petugas->name }}</td>
-					<td id="{{ 'peran' . $entry_num }}">{{ $petugas->role }}</td>
+					<td>{{ $entry_num }}</td>
+					<td id="{{ 'user'.$entry_num }}">{{ $user->username }}</td>
+					<td id="{{ 'pass'.$entry_num }}">{{ $user->password }}</td>
+					<td id="{{ 'peran'.$entry_num }}">{{ $user->role }}</td>
 					<td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> | <a href="#" class="delButt" id="{{ $entry_num }}">delete</a></td>
-				</tr>
+                </tr>
 				@endforeach
               </tbody>
             </table>
@@ -114,18 +110,18 @@
 				  <div class="contact-form">
 				  	<h3>Edit Petugas</h3>
 					    <form method="post" action="contact-post.html" id="submissionform">
-							<input type="hidden" class="form-control" id="id" value="-diambil dynamically pake JS-" style="display:none;">
+						<input type="hidden" class="form-control" id="id" value="-diambil dynamically pake JS-" style="display:none;">
 							<div>
-						    	<span>NIP</span>
-						    	<span><input type="text" class="form-control" id="nip" value="-diambil dynamically pake JS-"></span>
+						    	<span>Username</span>
+						    	<span><input type="text" class="form-control" id="user" value="-diambil dynamically pake JS-"></span>
 						    </div>
 					    	<div>
-						    	<span>Nama</span>
-						    	<span><input type="text" class="form-control" id="nama" value="-diambil dynamically pake JS-"></span>
+						    	<span>Password</span>
+						    	<span><input type="text" class="form-control" id="pass" value="-diambil dynamically pake JS-"></span>
 						    </div>
 						    <div>
 						    	<span>Peran</span>
-						    	<span><input type="text" class="form-control" id="peran" value="-diambil dynamically pake JS-"></span>
+						    	<span><input type="text" class="form-control" id="peran"value="-diambil dynamically pake JS-"></span>
 						    </div>
 						   <div>
 						   		<span><input type="submit" value="submit" id="doSubmit"><input type="submit" value="cancel" id="cancelSubmit" style="margin-right: 20px;"></span>
@@ -159,12 +155,11 @@
 	</div>
 </div>
 <script>
-
 $(document).ready(function(){
     $(".editButt").click(function(){ //when edit button is pressed
-		$("input#id").attr("value",$("#real_id"+$(this).attr('id')).attr('my_value'));
-		$("input#nip").attr("value",$("#nip"+$(this).attr('id')).html());
-		$("input#nama").attr("value",$("#nama"+$(this).attr('id')).html());
+		$("input#id").attr("value",$(this).attr('id'));
+		$("input#user").attr("value",$("#user"+$(this).attr('id')).html());
+		$("input#pass").attr("value",$("#pass"+$(this).attr('id')).html());
 		$("input#peran").attr("value",$("#peran"+$(this).attr('id')).html());
         $(".popup").attr("style","display:block !important;"); // show popup
     });
@@ -176,18 +171,6 @@ $(document).ready(function(){
 		event.preventDefault();
 	
 		//DO AJAX SUBMIT HERE (form#submissionform) K THX. - dalva
-		$.ajax({
-			url: 'dataPetugas/'+$("input#id").val(),
-			type: 'PATCH',
-			data: {	_token:	$('meta[name="csrf-token"]').attr('content'),
-					nip:	$("input#nip").val(),
-					name:	$("input#nama").val(),
-					role:	$("input#peran").val()},
-			success: function(result) {
-				// Do something with the result
-				window.location.href = result;
-			}
-		});
 		
 		$(".floatEdit").attr("style","display:none !important;"); // then hide the popup
 	});
@@ -195,15 +178,6 @@ $(document).ready(function(){
 		event.preventDefault();
 		
 		//DO AJAX DELETE HERE (form#submissionform) K THX. - dalva
-		$.ajax({
-			url: 'dataPetugas/'+$("#real_id"+$(this).attr('id')).attr('my_value'),
-			type: 'DELETE',
-			data: { _token: $('meta[name="csrf-token"]').attr('content') },
-			success: function(result) {
-				// Do something with the result
-				window.location.href = result;
-			}
-		});
 		
 		alert("user ID " + $(this).attr('id') +" deleted.");
     });

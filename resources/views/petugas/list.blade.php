@@ -65,8 +65,8 @@
 		  <h2 class="sub-header">Administrasi</h2>
 		  <h4>Disini anda bisa mengubah data TPS dan TPA, Petugas dan Admin</h4>
           <h2 class="sub-header">Menu</h2>
-		  <a href="dataTP.html"><button style="margin-top:10px;" class="btn_style">TPS-TPA</button></a><br/>
-		  <a href="dataPetugas.html"><button style="margin-top:10px;" class="btn_style">Petugas</button></a><br/>
+		  <a href="dataTP"><button style="margin-top:10px;" class="btn_style">TPS-TPA</button></a><br/>
+		  <a href="dataPetugas"><button style="margin-top:10px;" class="btn_style">Petugas</button></a><br/>
 		  <a href="dataAdmin.html"><button style="margin-top:10px;" class="btn_style">Admin</button></a><br/>
         </div>
         <div class="col-md-8">
@@ -88,7 +88,7 @@
 				@foreach ($petugass as $petugas)
 				<?php $entry_num += 1; ?>
 				<tr>
-					<td>{{ $entry_num }}</td>
+					<td id="{{ 'real_id' . $entry_num }}" my_value="{{ $petugas->id }}">{{ $entry_num }}</td>
 					<td id="{{ 'nip' . $entry_num }}">{{ $petugas->nip }}</td>
 					<td id="{{ 'nama' . $entry_num }}">{{ $petugas->name }}</td>
 					<td id="{{ 'peran' . $entry_num }}">{{ $petugas->role }}</td>
@@ -159,7 +159,7 @@
 
 $(document).ready(function(){
     $(".editButt").click(function(){ //when edit button is pressed
-		$("input#id").attr("value",$(this).attr('id'));
+		$("input#id").attr("value",$("#real_id"+$(this).attr('id')).attr('my_value'));
 		$("input#nip").attr("value",$("#nip"+$(this).attr('id')).html());
 		$("input#nama").attr("value",$("#nama"+$(this).attr('id')).html());
 		$("input#peran").attr("value",$("#peran"+$(this).attr('id')).html());
@@ -174,7 +174,7 @@ $(document).ready(function(){
 	
 		//DO AJAX SUBMIT HERE (form#submissionform) K THX. - dalva
 		$.ajax({
-			url: 'dataPetugas/'+$("input#id").attr("value"),
+			url: 'dataPetugas/'+$("input#id").val(),
 			type: 'PATCH',
 			data: {	_token:	$('meta[name="csrf-token"]').attr('content'),
 					nip:	$("input#nip").val(),
@@ -193,10 +193,12 @@ $(document).ready(function(){
 		
 		//DO AJAX DELETE HERE (form#submissionform) K THX. - dalva
 		$.ajax({
-			url: 'dataPetugas/'+$("input#id").attr("value"),
+			url: 'dataPetugas/'+$("#real_id"+$(this).attr('id')).attr('my_value'),
 			type: 'DELETE',
+			data: { _token: $('meta[name="csrf-token"]').attr('content') },
 			success: function(result) {
 				// Do something with the result
+				window.location.href = result;
 			}
 		});
 		

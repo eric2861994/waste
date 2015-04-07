@@ -6,6 +6,7 @@
 <link href="{{ url('css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ url('css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!--[if lt IE 9]>
      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -36,7 +37,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="index.html"><img src="url('images/logo.png')" alt="" class="img-responsive"/> </a>
+		      <a class="navbar-brand" href="index.html"><img src="{{ url('images/logo.png') }}" alt="" class="img-responsive"/> </a>
 		    </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -64,8 +65,8 @@
 		  <h2 class="sub-header">Administrasi</h2>
 		  <h4>Disini anda bisa mengubah data TPS dan TPA, Petugas dan Admin</h4>
           <h2 class="sub-header">Menu</h2>
-		  <a href="dataTP.html"><button style="margin-top:10px;" class="btn_style">TPS-TPA</button></a><br/>
-		  <a href="dataPetugas.html"><button style="margin-top:10px;" class="btn_style">Petugas</button></a><br/>
+		  <a href="dataTP"><button style="margin-top:10px;" class="btn_style">TPS-TPA</button></a><br/>
+		  <a href="dataPetugas"><button style="margin-top:10px;" class="btn_style">Petugas</button></a><br/>
 		  <a href="dataAdmin.html"><button style="margin-top:10px;" class="btn_style">Admin</button></a><br/>
         </div>
         <div class="col-md-8">
@@ -87,7 +88,7 @@
 				@foreach ($tpsampahs as $tpsampah)
 				<?php $entry_num += 1; ?>
 				<tr>
-					<td>{{ $entry_num }}</td>
+					<td id="{{ 'real_id' . $entry_num }}" my_value="{{ $tpsampah->id }}">{{ $entry_num }}</td>
 					<td id="{{ 'tipe' . $entry_num }}">TPS</td>
 					<td id="{{ 'nama' . $entry_num }}">{{ $tpsampah->name }}</td>
 					<td id="{{ 'lokasi' . $entry_num }}">{{ $tpsampah->location }}</td>
@@ -126,8 +127,8 @@
 						    	<span>TPS/TPA</span>
 						    	<span> 
 									<select class="form-control" id="TPtype">
-									  <option value="TPS">Tempat Pembuangan Sampah</option>
-									  <option value="TPA">Tempat Pembuangan Akhir</option>
+									  <option value="tps">Tempat Pembuangan Sampah</option>
+									  <option value="tpa">Tempat Pembuangan Akhir</option>
 									</select> 
 								</span>
 						    </div>
@@ -173,11 +174,11 @@
 <script>
 $(document).ready(function(){
     $(".editButt").click(function(){ //when edit button is pressed
-		$("input#id").attr("value",$(this).attr('id'));
+		$("input#id").attr("value",$("#real_id"+$(this).attr('id')).attr('my_value'));
 		if ($("#tipe"+$(this).attr('id')).html() === "TPA") {
-			$("select#TPtype").val("TPA");
+			$("select#TPtype").val("tpa");
 		} else {
-			$("select#TPtype").val("TPS");
+			$("select#TPtype").val("tps");
 		}
 		$("input#lokasi").attr("value",$("#lokasi"+$(this).attr('id')).html());
 		$("input#nama").attr("value",$("#nama"+$(this).attr('id')).html());
@@ -191,6 +192,19 @@ $(document).ready(function(){
 		event.preventDefault();
 	
 		//DO AJAX SUBMIT HERE (form#submissionform) K THX. - dalva
+		$.ajax({
+			url: 'dataTP/update',
+			type: 'POST',
+			data: {	_token:		$('meta[name="csrf-token"]').attr('content'),
+					_poster:	$("select#TPtype").val(),
+					id:			$("input#id").val(),
+					name:		$("input#nama").val(),
+					location:	$("input#lokasi").val() },
+			success: function(result) {
+				// Do something with the result
+				window.location.href = result;
+			}
+		});
 		
 		$(".floatEdit").attr("style","display:none !important;"); // then hide the popup
 	});
@@ -198,6 +212,17 @@ $(document).ready(function(){
 		event.preventDefault();
 		
 		//DO AJAX DELETE HERE (form#submissionform) K THX. - dalva
+		$.ajax({
+			url: 'dataTP/destroy',
+			type: 'POST',
+			data: {	_token:		$('meta[name="csrf-token"]').attr('content'),
+					_poster:	$("#tipe"+$(this).attr('id')).html().toLowerCase(),
+					id:			$("#real_id"+$(this).attr('id')).attr('my_value') },
+			success: function(result) {
+				// Do something with the result
+				window.location.href = result;
+			}
+		});
 		
 		alert("user ID " + $(this).attr('id') +" deleted.");
     });

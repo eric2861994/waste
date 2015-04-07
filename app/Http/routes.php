@@ -13,20 +13,26 @@
 
 Route::model('petugas', 'App\Petugas');
 
-Route::resource('tpakhir', 'TpakhirsController@index');
-
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 Route::get('dataTP', 'TpembuanganController@index');
 Route::get('dataTP/tambah-tps', 'TpembuanganController@create_tps');
 Route::get('dataTP/tambah-tpa', 'TpembuanganController@create_tpa');
+Route::get('volumeTPS', 'TpembuanganController@show_tps');
 Route::post('dataTP/store', 'TpembuanganController@store');
+Route::post('dataTP/update', 'TpembuanganController@update');
+Route::post('dataTP/destroy', 'TpembuanganController@destroy');
 
 Route::get('dataPetugas', 'PetugasController@index');
 Route::get('dataPetugas/tambah', 'PetugasController@create');
 Route::post('dataPetugas/store', 'PetugasController@store');
 Route::patch('dataPetugas/{petugas}', 'PetugasController@update');
+Route::delete('dataPetugas/{petugas}', 'PetugasController@destroy');
+
+Route::get('entry', 'EntriController@create');
+Route::post('entry/store', 'EntriController@store');
+
 Route::get('dataAdmin', 'AdminController@index');
 
 Route::controllers([

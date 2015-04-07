@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class EntriSampah extends Eloquent {
+class EntriTpsampah extends Eloquent {
 	
 	/**
-	 * Fillable fields for a song.
+	 * Fillable fields for a EntriTpsampah.
 	 * 
 	 * @var array
 	 */

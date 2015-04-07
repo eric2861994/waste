@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEntrisampahsTable extends Migration {
+class CreateEntriTpsampahsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,14 @@ class CreateEntrisampahsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('entrisampahs', function(Blueprint $table)
+		Schema::create('entri_tpsampahs', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('tps_id')->unsigned();
+			$table->double('volume', 15, 8);
 			$table->timestamps();
+			
+			$table->foreign('tps_id')->references('id')->on('tpsampahs');
 		});
 	}
 
@@ -27,7 +30,7 @@ class CreateEntrisampahsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('entrisampahs');
+		Schema::drop('entri_tpsampahs');
 	}
 
 }

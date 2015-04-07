@@ -14,4 +14,9 @@ class Tpsampah extends Eloquent {
 	protected $fillable = [
 		'name', 'location'
 	];
+	
+	public function entries()
+    {
+        return $this->hasMany('App\EntriTpsampah', 'tps_id');
+    }
 }

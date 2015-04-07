@@ -30,6 +30,12 @@ class TpembuanganController extends Controller {
 		return view('tpembuangan.createtpa');
 	}
 	
+	public function show_tps() {
+		$tpsampahs = $this->tpsampah->get();
+		
+		return view('tpembuangan.showtps', compact('tpsampahs'));
+	}
+	
 	public function store(Request $request) {
 		if ($request->get('_poster') == 'tps') { // tambah tps
 			$tpsampah = new Tpsampah();
@@ -41,6 +47,38 @@ class TpembuanganController extends Controller {
 		}
 		
 		return redirect('dataTP');
+	}
+	
+	public function update(Request $request) {
+		if ($request->get('_poster') == 'tps') { // tambah tps
+			$tpsampah = $this->tpsampah->find($request->id);
+			$tpsampah->fill($request->input())->save();
+			
+		} else { // tambah tpa
+			$tpakhir = $this->tpakhir->find($request->id);
+			$tpakhir->fill($request->input())->save();
+		}
+		
+		if ($request->ajax())
+			return url('dataTP');
+		else
+			return redirect('dataTP');
+	}
+	
+	public function destroy(Request $request) {
+		if ($request->get('_poster') == 'tps') { // tambah tps
+			$tpsampah = $this->tpsampah->find($request->id);
+			$tpsampah->delete();
+			
+		} else { // tambah tpa
+			$tpakhir = $this->tpakhir->find($request->id);
+			$tpakhir->delete();
+		}
+		
+		if ($request->ajax())
+			return url('dataTP');
+		else
+			return redirect('dataTP');
 	}
 
 }

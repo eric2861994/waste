@@ -33,7 +33,19 @@ class PetugasController extends Controller {
 	public function update(Petugas $petugas, Request $request) {
 		$petugas->fill($request->input())->save();
 		
-		return url('dataPetugas');
+		if ($request->ajax()) // jika yang request ajax
+			return url('dataPetugas');
+		else
+			return redirect('dataPetugas');
+	}
+	
+	public function destroy(Petugas $petugas, Request $request) {
+		$petugas->delete();
+		
+		if ($request->ajax()) // jika yang request ajax
+			return url('dataPetugas');
+		else
+			return redirect('dataPetugas');
 	}
 
 }

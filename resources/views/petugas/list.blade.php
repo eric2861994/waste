@@ -3,7 +3,7 @@
 <head>
 <title>WASTE - Waste Acquisition System Technological Enhancement</title>
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="{{ url('/css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -45,7 +45,7 @@
 		        <li><a href="index">home</a></li>
 		        <li><a href="entry">Entri Sampah</a></li>
 		        <li><a href="volumeTPS">Pengawasan Sampah</a></li>
-		        <li class="active"><a href="dataPetugas">Administrasi Sampah</a></li>
+		        <li class="active"><a href="{{ url('.') }}">Administrasi Sampah</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->

@@ -8,14 +8,8 @@ use App\Petugas;
 
 class PetugasController extends Controller {
 	
-	private $petugas;
-	
-	public function __construct(Petugas $petugas) {
-		$this->petugas = $petugas;
-	}
-
 	public function index() {
-		$petugass = $this->petugas->get();
+		$petugass = Petugas::all();
 		return view('petugas.list', compact('petugass'));
 	}
 	
@@ -24,8 +18,7 @@ class PetugasController extends Controller {
 	}
 	
 	public function store(Request $request) {
-		$petugas = new Petugas();
-		$petugas->fill($request->input())->save();
+		Petugas::create($request->input());
 		
 		return redirect('dataPetugas');
 	}

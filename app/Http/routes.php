@@ -17,10 +17,10 @@
 Route::get('dataTP', 'TpembuanganController@index');
 Route::get('dataTP/tambah-tps', 'TpembuanganController@create_tps');
 Route::get('dataTP/tambah-tpa', 'TpembuanganController@create_tpa');
-Route::get('volumeTPS', 'TpembuanganController@show_tps');
 Route::post('dataTP/store', 'TpembuanganController@store');
 Route::post('dataTP/update', 'TpembuanganController@update');
 Route::post('dataTP/destroy', 'TpembuanganController@destroy');
+Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
 Route::get('dataPetugas', 'PetugasController@index');
 Route::get('dataPetugas/tambah', 'PetugasController@create');
@@ -36,6 +36,8 @@ Route::get('dataAdmin', 'Auth\AuthController@index');
 Route::get('volumeTPA', 'TpembuanganController@show_tpa');
 Route::get('index', 'Auth\AuthController@kael');
 Route::get('/', 'Auth\AuthController@kael');
+
+Route::resource('test', 'DummyController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

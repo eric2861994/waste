@@ -1,0 +1,41 @@
++--------+--------------------------------+-------------------------------------------------------+--------------+------------------------------------------------------------+------------+
+| Domain | Method                         | URI                                                   | Name         | Action                                                     | Middleware |
++--------+--------------------------------+-------------------------------------------------------+--------------+------------------------------------------------------------+------------+
+|        | GET|HEAD                       | dataTP                                                |              | App\Http\Controllers\TpembuanganController@index           |            |
+|        | GET|HEAD                       | dataTP/tambah-tps                                     |              | App\Http\Controllers\TpembuanganController@create_tps      |            |
+|        | GET|HEAD                       | dataTP/tambah-tpa                                     |              | App\Http\Controllers\TpembuanganController@create_tpa      |            |
+|        | POST                           | dataTP/store                                          |              | App\Http\Controllers\TpembuanganController@store           |            |
+|        | POST                           | dataTP/update                                         |              | App\Http\Controllers\TpembuanganController@update          |            |
+|        | POST                           | dataTP/destroy                                        |              | App\Http\Controllers\TpembuanganController@destroy         |            |
+|        | GET|HEAD                       | volumeTPS                                             |              | App\Http\Controllers\TpembuanganController@show_tps        |            |
+|        | GET|HEAD                       | dataPetugas                                           |              | App\Http\Controllers\PetugasController@index               |            |
+|        | GET|HEAD                       | dataPetugas/tambah                                    |              | App\Http\Controllers\PetugasController@create              |            |
+|        | POST                           | dataPetugas/store                                     |              | App\Http\Controllers\PetugasController@store               |            |
+|        | PATCH                          | dataPetugas/{petugas}                                 |              | App\Http\Controllers\PetugasController@update              |            |
+|        | DELETE                         | dataPetugas/{petugas}                                 |              | App\Http\Controllers\PetugasController@destroy             |            |
+|        | GET|HEAD                       | entry                                                 |              | App\Http\Controllers\EntriController@create                |            |
+|        | POST                           | entry/store                                           |              | App\Http\Controllers\EntriController@store                 |            |
+|        | GET|HEAD                       | dataAdmin                                             |              | App\Http\Controllers\Auth\AuthController@index             |            |
+|        | GET|HEAD                       | volumeTPA                                             |              | App\Http\Controllers\TpembuanganController@show_tpa        |            |
+|        | GET|HEAD                       | index                                                 |              | App\Http\Controllers\Auth\AuthController@kael              |            |
+|        | GET|HEAD                       | /                                                     |              | App\Http\Controllers\Auth\AuthController@kael              |            |
+|        | GET|HEAD                       | test                                                  | test.index   | App\Http\Controllers\DummyController@index                 |            |
+|        | GET|HEAD                       | test/create                                           | test.create  | App\Http\Controllers\DummyController@create                |            |
+|        | POST                           | test                                                  | test.store   | App\Http\Controllers\DummyController@store                 |            |
+|        | GET|HEAD                       | test/{test}                                           | test.show    | App\Http\Controllers\DummyController@show                  |            |
+|        | GET|HEAD                       | test/{test}/edit                                      | test.edit    | App\Http\Controllers\DummyController@edit                  |            |
+|        | PUT                            | test/{test}                                           | test.update  | App\Http\Controllers\DummyController@update                |            |
+|        | PATCH                          | test/{test}                                           |              | App\Http\Controllers\DummyController@update                |            |
+|        | DELETE                         | test/{test}                                           | test.destroy | App\Http\Controllers\DummyController@destroy               |            |
+|        | POST                           | auth/login/{one?}/{two?}/{three?}/{four?}/{five?}     |              | App\Http\Controllers\Auth\AuthController@postLogin         |            |
+|        | GET|HEAD                       | auth/register/{one?}/{two?}/{three?}/{four?}/{five?}  |              | App\Http\Controllers\Auth\AuthController@getRegister       |            |
+|        | POST                           | auth/register/{one?}/{two?}/{three?}/{four?}/{five?}  |              | App\Http\Controllers\Auth\AuthController@postRegister      |            |
+|        | GET|HEAD                       | auth/login/{one?}/{two?}/{three?}/{four?}/{five?}     |              | App\Http\Controllers\Auth\AuthController@getLogin          |            |
+|        | GET|HEAD                       | auth/logout/{one?}/{two?}/{three?}/{four?}/{five?}    |              | App\Http\Controllers\Auth\AuthController@getLogout         |            |
+|        | GET|HEAD|POST|PUT|PATCH|DELETE | auth/{_missing}                                       |              | App\Http\Controllers\Auth\AuthController@missingMethod     |            |
+|        | GET|HEAD                       | password/email/{one?}/{two?}/{three?}/{four?}/{five?} |              | App\Http\Controllers\Auth\PasswordController@getEmail      |            |
+|        | POST                           | password/email/{one?}/{two?}/{three?}/{four?}/{five?} |              | App\Http\Controllers\Auth\PasswordController@postEmail     |            |
+|        | GET|HEAD                       | password/reset/{one?}/{two?}/{three?}/{four?}/{five?} |              | App\Http\Controllers\Auth\PasswordController@getReset      |            |
+|        | POST                           | password/reset/{one?}/{two?}/{three?}/{four?}/{five?} |              | App\Http\Controllers\Auth\PasswordController@postReset     |            |
+|        | GET|HEAD|POST|PUT|PATCH|DELETE | password/{_missing}                                   |              | App\Http\Controllers\Auth\PasswordController@missingMethod |            |
++--------+--------------------------------+-------------------------------------------------------+--------------+------------------------------------------------------------+------------+

@@ -8,17 +8,12 @@ use App\Tpsampah;
 use App\Tpakhir;
 
 class TpembuanganController extends Controller {
-	private $tpsampah, $tpakhir;
-	
-	public function __construct(Tpsampah $tpsampah, Tpakhir $tpakhir) {
-		$this->tpsampah = $tpsampah;
-		$this->tpakhir = $tpakhir;
-	}
 
-	public function index() {
-		$tpsampahs = $this->tpsampah->get();
-		$tpakhirs = $this->tpakhir->get();
-		
+    /* resource: index, create, store, show, edit, update, destroy */
+    public function index() {
+        $tpsampahs = Tpsampah::all();
+        $tpakhirs = Tpakhir::all();
+
 		return view('tpembuangan.list', compact('tpsampahs', 'tpakhirs'));
 	}
 	
@@ -31,25 +26,23 @@ class TpembuanganController extends Controller {
 	}
 	
 	public function show_tps() {
-		$tpsampahs = $this->tpsampah->get();
+		$tpsampahs = Tpsampah::all();
 		
 		return view('tpembuangan.showtps', compact('tpsampahs'));
 	}
 	
 	public function show_tpa() {
-		$tpakhirs = $this->tpakhir->get();
+		$tpakhirs = Tpakhir::all();
 		
 		return view('tpembuangan.showtpa', compact('tpakhirs'));
 	}
 	
 	public function store(Request $request) {
 		if ($request->get('_poster') == 'tps') { // tambah tps
-			$tpsampah = new Tpsampah();
-			$tpsampah->fill($request->input())->save();
+            Tpsampah::create($request->input());
 			
 		} else { // tambah tpa
-			$tpakhir = new Tpakhir();
-			$tpakhir->fill($request->input())->save();
+            Tpakhir::create($request->input());
 		}
 		
 		return redirect('dataTP');
@@ -57,11 +50,11 @@ class TpembuanganController extends Controller {
 	
 	public function update(Request $request) {
 		if ($request->get('_poster') == 'tps') { // tambah tps
-			$tpsampah = $this->tpsampah->find($request->id);
+			$tpsampah = Tpsampah::find($request->id);
 			$tpsampah->fill($request->input())->save();
 			
 		} else { // tambah tpa
-			$tpakhir = $this->tpakhir->find($request->id);
+			$tpakhir = Tpakhir::find($request->id);
 			$tpakhir->fill($request->input())->save();
 		}
 		
@@ -73,11 +66,11 @@ class TpembuanganController extends Controller {
 	
 	public function destroy(Request $request) {
 		if ($request->get('_poster') == 'tps') { // tambah tps
-			$tpsampah = $this->tpsampah->find($request->id);
+			$tpsampah = Tpsampah::find($request->id);
 			$tpsampah->delete();
 			
 		} else { // tambah tpa
-			$tpakhir = $this->tpakhir->find($request->id);
+			$tpakhir = Tpakhir::find($request->id);
 			$tpakhir->delete();
 		}
 		

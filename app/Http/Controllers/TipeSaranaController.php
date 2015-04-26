@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\TipeSarana;
 
 class TipeSaranaController extends Controller {
 
@@ -14,7 +15,8 @@ class TipeSaranaController extends Controller {
 	 */
 	public function index()
 	{
-		return view('tipesarana.index');
+        $tipes = TipeSarana::all();
+		return view('tipesarana.index', compact('tipes'));
 	}
 
 	/**
@@ -24,7 +26,7 @@ class TipeSaranaController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('tipesarana.create');
 	}
 
 	/**

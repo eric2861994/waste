@@ -4,7 +4,7 @@
     <title>WASTE - Waste Acquisition System Technological Enhancement</title>
     <!-- Bootstrap -->
     <link href="{{ url('/css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="{{ url('/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -15,13 +15,13 @@
     <!--  webfonts  -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <!-- // webfonts  -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ url('/css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
     <!-- start plugins -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ url('/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('/js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ url('/js/bootstrap.min.js') }}"></script>
 
-    <link href="css/dashboard.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ url('/css/dashboard.css') }}" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 <div class="header_bg"><!-- start header -->
@@ -57,7 +57,18 @@
         </ol>
     </div>
 </div>
-@yield ('main-section')
+
+<div class="main"><!-- start main -->
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                @yield ('main-section')
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="floatEdit">
     <div class="container">
         <div class="container-fluid">

@@ -34,8 +34,9 @@ Route::delete('dataPetugas/{petugas}', 'PetugasController@destroy');
 Route::get('entry', 'EntriController@create');
 Route::post('entry/store', 'EntriController@store');
 
-//CRUD sarana pengangkut sampah
-Route::get('dataSarana', ['as' => 'dataSarana.index', 'SaranaController@index']);
+// CRUD sarana pengangkut sampah
+Route::get('dataSarana', ['as' => 'dataSarana.index', 'uses' => 'TipeSaranaController@index']);
+Route::get('dataSarana/tambah', ['as' => 'dataSarana.create', 'uses' => 'TipeSaranaController@create']);
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

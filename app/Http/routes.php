@@ -14,6 +14,7 @@
 // Route::get('/', 'WelcomeController@index');
 // Route::get('home', 'HomeController@index');
 
+//CRUD TPA dan TPS
 Route::get('dataTP', 'TpembuanganController@index');
 Route::get('dataTP/tambah-tps', 'TpembuanganController@create_tps');
 Route::get('dataTP/tambah-tpa', 'TpembuanganController@create_tpa');
@@ -22,14 +23,19 @@ Route::post('dataTP/update', 'TpembuanganController@update');
 Route::post('dataTP/destroy', 'TpembuanganController@destroy');
 Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
+//CRUD data petugas
 Route::get('dataPetugas', 'PetugasController@index');
 Route::get('dataPetugas/tambah', 'PetugasController@create');
 Route::post('dataPetugas/store', 'PetugasController@store');
 Route::patch('dataPetugas/{petugas}', 'PetugasController@update');
 Route::delete('dataPetugas/{petugas}', 'PetugasController@destroy');
 
+//tambah entri sampah
 Route::get('entry', 'EntriController@create');
 Route::post('entry/store', 'EntriController@store');
+
+//CRUD sarana pengangkut sampah
+Route::get('dataSarana', ['as' => 'dataSarana.index', 'SaranaController@index']);
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

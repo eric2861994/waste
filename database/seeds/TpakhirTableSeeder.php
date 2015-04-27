@@ -7,10 +7,15 @@ class TpakhirTableSeeder extends Seeder {
 
     public function run()
     {
-//        Tolong tambahkan daftar TPA disini, cari minimal 5, maksimal 10.
-        Tpakhir::create(['name' => 'TPA Bandung', 'location' => 'Bandung']);
-//        Yang TPA Bandung itu cuma contoh, diganti ya, kecuali emang itu namanya.
+        Tpakhir::create(['name' => 'TPA Bantar Gebang', 'location' => 'Bandung']);
+        Tpakhir::create(['name' => 'TPA Leuwi Gajah', 'location' => 'Cimahi']);
+        Tpakhir::create(['name' => 'TPA Sarimukti', 'location' => 'Kab. Bandung Barat, Kec. Cipatat']);
+        Tpakhir::create(['name' => 'TPA Nambo', 'location' => 'Nambo']);
+        Tpakhir::create(['name' => 'TPA Legok Nangka', 'location' => 'Legok Nangka']);
+        Tpakhir::create(['name' => 'TPA Babakan Jelekong', 'location' => 'Ciparay']);
 
     }
 
 }
+
+?>

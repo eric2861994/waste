@@ -22,8 +22,7 @@ class TipeSaranaRequest extends Request {
 	public function rules()
 	{
 		return [
-			'type' => 'required|string|min:1|max:255',
-            'count' => 'required|integer|min:0|max:999999'
+			'type' => 'required|string|unique|min:1|max:255'
 		];
 	}
 

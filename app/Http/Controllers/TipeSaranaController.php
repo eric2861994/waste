@@ -17,6 +17,7 @@ class TipeSaranaController extends Controller {
 	public function index()
 	{
         $tipes = TipeSarana::all();
+
 		return view('tipesarana.index', compact('tipes'));
 	}
 
@@ -46,12 +47,12 @@ class TipeSaranaController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  TipeSarana $tipesarana
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(TipeSarana $tipesarana)
 	{
-		//
+		return view('tipesarana.show', compact('tipesarana'));
 	}
 
 	/**
@@ -82,12 +83,14 @@ class TipeSaranaController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  TipeSarana $tipesarana
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(TipeSarana $tipesarana)
 	{
-		//
+		$tipesarana->delete();
+
+        return redirect()->route('dataSarana.index');
 	}
 
 }

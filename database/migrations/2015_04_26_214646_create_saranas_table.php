@@ -16,8 +16,8 @@ class CreateSaranasTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('type_id')->unsigned();
-            $table->integer('schedule_id')->unsigned();
-
+            $table->integer('schedule_id')->unsigned()->nullable();
+            $table->string('plate_number', 16);
             $table->foreign('type_id')->references('id')->on('tipe_saranas');
 		});
 	}

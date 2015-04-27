@@ -15,8 +15,8 @@ class CreateTipeSaranasTable extends Migration {
 		Schema::create('tipe_saranas', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('type');
-            $table->integer('count')->unsigned();
+            $table->string('type')->unique();
+            $table->integer('count')->unsigned()->default(0);
 		});
 	}
 

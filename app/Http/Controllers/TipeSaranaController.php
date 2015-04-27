@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\TipeSarana;
+use App\Http\Requests\TipeSaranaRequest;
 
 class TipeSaranaController extends Controller {
 
@@ -16,6 +17,7 @@ class TipeSaranaController extends Controller {
 	public function index()
 	{
         $tipes = TipeSarana::all();
+
 		return view('tipesarana.index', compact('tipes'));
 	}
 
@@ -32,55 +34,63 @@ class TipeSaranaController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param  TipeSaranaRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(TipeSaranaRequest $request)
 	{
-		//
+		TipeSarana::create($request->input());
+
+        return redirect()->route('dataSarana.index');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  TipeSarana $tipesarana
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(TipeSarana $tipesarana)
 	{
-		//
+		return view('tipesarana.show', compact('tipesarana'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  TipeSarana  $tipesarana
 	 * @return Response
 	 */
-	public function edit($id)
-	{
-		//
+	public function edit(TipeSarana $tipesarana)
+    {
+		return view('tipesarana.edit', compact('tipesarana'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+     * @param  TipeSarana $tipesarana
+	 * @param  TipeSaranaRequest $request
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(TipeSarana $tipesarana, TipeSaranaRequest $request)
 	{
-		//
+		$tipesarana->update($request->input());
+
+        return redirect()->route('dataSarana.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  TipeSarana $tipesarana
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(TipeSarana $tipesarana)
 	{
-		//
+		$tipesarana->delete();
+
+        return redirect()->route('dataSarana.index');
 	}
 
 }

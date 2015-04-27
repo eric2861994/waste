@@ -1,7 +1,14 @@
-# waste
-Tugas PPL 2, WASTE, Aplikasi Pengelolaan sampah kota Bandung
+# WASTE
+Tugas ke-2 mata kuliah IF3150 - Proyek Perangkat Lunak.
+Aplikasi Pengelolaan Sampah kota Bandung bernama WASTE.
+WASTE adalah singkatan dari Waste Acquisition System Technological Enhancement.
 
-# todo
+# Prioritized List
+- [x] CRUD TPS
+- [x] CRUD TPA
+- [x] CRUD petugas pengangkut sampah
+- [x] CRUD petugas penyapu jalan
+- [ ] CRUD sarana pengangkut sampah
 - [ ] entri volum sampah TPS
 - [ ] memantau volum sampah TPS
 - [ ] perhitungan sarana pengangkut sampah harian
@@ -9,13 +16,8 @@ Tugas PPL 2, WASTE, Aplikasi Pengelolaan sampah kota Bandung
 - [ ] perhitungan penyapu jalan di tiap lokasi
 - [ ] penjadwalan penyapu jalan di tiap lokasi
 - [ ] Menampilkan jadwal kerja petugas lapangan
-- [ ] CRUD sarana pengangkut sampah
-- [x] CRUD petugas penyapu jalan
-- [x] CRUD petugas pengangkut sampah
-- [x] CRUD TPA
-- [x] CRUD TPS
-- [ ] kelola admin & kelola petugas -> CRUD User
 - [ ] login
+- [ ] kelola admin & kelola petugas -> CRUD User
 - [ ] pantau petugas penyapu jalan
 - [ ] pantau petugas pengangkut sampah
 - [ ] pantau sarana pengangkut sampah

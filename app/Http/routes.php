@@ -36,7 +36,10 @@ Route::post('entry/store', 'EntriController@store');
 
 // CRUD sarana pengangkut sampah
 Route::get('dataSarana', ['as' => 'dataSarana.index', 'uses' => 'TipeSaranaController@index']);
+Route::post('dataSarana', ['as' => 'dataSarana.store', 'uses' => 'TipeSaranaController@store']);
 Route::get('dataSarana/tambah', ['as' => 'dataSarana.create', 'uses' => 'TipeSaranaController@create']);
+Route::get('dataSarana/{tipesarana}/ubah', ['as' => 'dataSarana.edit', 'uses' => 'TipeSaranaController@edit']);
+Route::put('dataSarana/{tipesarana}', ['as' => 'dataSarana.update', 'uses' => 'TipeSaranaController@udpate']);
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

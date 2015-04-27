@@ -15,13 +15,15 @@
 // Route::get('home', 'HomeController@index');
 
 //CRUD TPA dan TPS
-Route::get('dataTP', 'TpembuanganController@index');
-Route::get('dataTP/tambah-tps', 'TpembuanganController@create_tps');
-Route::get('dataTP/tambah-tpa', 'TpembuanganController@create_tpa');
-Route::post('dataTP/store', 'TpembuanganController@store');
+Route::get('dataTP', ['as' => 'dataTP.index', 'uses' => 'TpembuanganController@index']);
+Route::get('dataTP/tambah-tps', ['as' => 'dataTP.create_tps', 'uses' => 'TpembuanganController@create_tps']);
+Route::get('dataTP/tambah-tpa', ['as' => 'dataTP.create_tpa', 'uses' => 'TpembuanganController@create_tpa']);
+Route::post('dataTP/store-tps', ['as' => 'dataTP.store_tps', 'uses' => 'TpembuanganController@store_tps']);
+Route::post('dataTP/store-tpa', ['as' => 'dataTP.store_tpa', 'uses' => 'TpembuanganController@store_tpa']);
 Route::post('dataTP/update', 'TpembuanganController@update');
-Route::post('dataTP/destroy', 'TpembuanganController@destroy');
-Route::get('volumeTPS', 'TpembuanganController@show_tps');
+Route::delete('dataTP/tps/{modeltps}', ['as' => 'dataTP.destroy_tps', 'uses' => 'TpembuanganController@destroy_tps']);
+Route::delete('dataTP/tpa/{modeltpa}', ['as' => 'dataTP.destroy_tpa', 'uses' => 'TpembuanganController@destroy_tpa']);
+//Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
 //CRUD data petugas
 Route::get('dataPetugas', 'PetugasController@index');

@@ -23,6 +23,8 @@
 
     <link href="{{ url('/css/dashboard.css') }}" rel="stylesheet" type="text/css" media="all" />
 </head>
+
+
 <body>
 <div class="header_bg"><!-- start header -->
     <div class="container">
@@ -37,11 +39,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index"><img src="images/logo.png" alt="" class="img-responsive"/> </a>
+                        <a class="navbar-brand" href="index"><img src="{{ url('/images/logo.png') }}" alt="" class="img-responsive"/> </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="menu nav navbar-nav ">
+                        <ul class="menu nav navbar-nav "> <!-- NOTE: the active state changes depending on the page -->
                             <li><a href="index">home</a></li>
                             <li><a href="entry">Entri Sampah</a></li>
                             <li><a href="volumeTPS">Pengawasan Sampah</a></li>
@@ -51,7 +53,7 @@
                 </div><!-- /.container-fluid -->
             </nav>
         </div>
-        <ol class="breadcrumb">
+        <ol class="breadcrumb"> <!-- NOTE: this changes for each page -->
             <li><a href="index">Home</a></li>
             <li class="active">Pengawasan Sampah</li>
         </ol>
@@ -68,38 +70,8 @@
     </div>
 </div>
 
+@yield ('floating-section')
 
-<div class="floatEdit">
-    <div class="container">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-9 col-sm-offset-3 col-md-6 col-md-offset-3 popup">
-                    <div class="contact-form">
-                        <h3>Edit Petugas</h3>
-                        <form method="post" action="contact-post.html" id="submissionform">
-                            <input type="hidden" class="form-control" id="id" value="-diambil dynamically pake JS-" style="display:none;">
-                            <div>
-                                <span>NIP</span>
-                                <span><input type="text" class="form-control" id="nip" value="-diambil dynamically pake JS-"></span>
-                            </div>
-                            <div>
-                                <span>Nama</span>
-                                <span><input type="text" class="form-control" id="nama" value="-diambil dynamically pake JS-"></span>
-                            </div>
-                            <div>
-                                <span>Peran</span>
-                                <span><input type="text" class="form-control" id="peran" value="-diambil dynamically pake JS-"></span>
-                            </div>
-                            <div>
-                                <span><input type="submit" value="submit" id="doSubmit"><input type="submit" value="cancel" id="cancelSubmit" style="margin-right: 20px;"></span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="footer_btm"><!-- start footer_btm -->
     <div class="container">
         <div class="row  footer1">
@@ -121,56 +93,8 @@
         </div>
     </div>
 </div>
-<script>
 
-    $(document).ready(function(){
-        $(".editButt").click(function(){ //when edit button is pressed
-            $("input#id").attr("value",$("#real_id"+$(this).attr('id')).attr('my_value'));
-            $("input#nip").attr("value",$("#nip"+$(this).attr('id')).html());
-            $("input#nama").attr("value",$("#nama"+$(this).attr('id')).html());
-            $("input#peran").attr("value",$("#peran"+$(this).attr('id')).html());
-            $(".popup").attr("style","display:block !important;"); // show popup
-        });
-        $("#cancelSubmit").click(function(event) { //cancel button on popup pressed
-            event.preventDefault();
-            $(".popup").attr("style","display:none !important;");
-        });
-        $("#doSubmit").click(function(event) { //submit button pressed
-            event.preventDefault();
+@yield ('script-section')
 
-            //DO AJAX SUBMIT HERE (form#submissionform) K THX. - dalva
-            $.ajax({
-                url: 'dataPetugas/'+$("input#id").val(),
-                type: 'PATCH',
-                data: {	_token:	$('meta[name="csrf-token"]').attr('content'),
-                    nip:	$("input#nip").val(),
-                    name:	$("input#nama").val(),
-                    role:	$("input#peran").val()},
-                success: function(result) {
-                    // Do something with the result
-                    window.location.href = result;
-                }
-            });
-
-            $(".floatEdit").attr("style","display:none !important;"); // then hide the popup
-        });
-        $(".delButt").click(function(event){ //when delete button is pressed
-            event.preventDefault();
-
-            //DO AJAX DELETE HERE (form#submissionform) K THX. - dalva
-            $.ajax({
-                url: 'dataPetugas/'+$("#real_id"+$(this).attr('id')).attr('my_value'),
-                type: 'DELETE',
-                data: { _token: $('meta[name="csrf-token"]').attr('content') },
-                success: function(result) {
-                    // Do something with the result
-                    window.location.href = result;
-                }
-            });
-
-            alert("user ID " + $(this).attr('id') +" deleted.");
-        });
-    });
-</script>
 </body>
 </html>

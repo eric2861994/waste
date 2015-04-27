@@ -4,7 +4,7 @@ Aplikasi Pengelolaan Sampah kota Bandung bernama WASTE.
 WASTE adalah singkatan dari Waste Acquisition System Technological Enhancement.
 
 # Prioritized List
-- [x] CRUD TPS
+- [x] CRUD TPS, backend checked
 - [x] CRUD TPA
 - [x] CRUD petugas pengangkut sampah
 - [x] CRUD petugas penyapu jalan

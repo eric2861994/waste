@@ -92,7 +92,7 @@ class TpembuanganController extends Controller {
             Tpakhir::find($request->id)->delete();
 
         $jenis = $request->get('_poster');
-        if ($hapus) {
+        if ($hapus != '') {
             if ($jenis == 'tps')
                 $this->store_tps($request);
             else if ($jenis == 'tpa')

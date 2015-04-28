@@ -4,7 +4,7 @@
 
 	<h1>Menambahkan Tempat Pembuangan Akhir Baru</h1>
 	
-	{!! Form::open(['url' => url('dataTP/store_tpa')]) !!}
+	{!! Form::open(['route' => 'dataTP.store_tpa']) !!}
 	<div class="form-group">
 	<h3>Nama</h3>
 	{!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -16,7 +16,7 @@
 	</div>
 	
 	<div class="form-group">
-	{!! Form::submit('tambah', ['class' => 'btn btn-primary']) !!}
+	{!! Form::submit('Tambah', ['class' => 'btn btn-primary']) !!}
 	</div>
 	
 	{!! Form::close() !!}

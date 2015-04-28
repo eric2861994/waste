@@ -16,6 +16,8 @@ class CreatePetugasTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('nip')->unique();
+//            nik berasal dari ducapil
+            $table->string('nik');
 			$table->string('name');
 			$table->string('role');
 		});

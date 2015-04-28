@@ -16,25 +16,25 @@
 
 //CRUD TPA dan TPS
 Route::get('dataTP', ['as' => 'dataTP.index', 'uses' => 'TpembuanganController@index']);
-Route::get('dataTP/tambah-tps', ['as' => 'dataTP.create_tps', 'uses' => 'TpembuanganController@create_tps']);
-Route::get('dataTP/tambah-tpa', ['as' => 'dataTP.create_tpa', 'uses' => 'TpembuanganController@create_tpa']);
-Route::post('dataTP/store-tps', ['as' => 'dataTP.store_tps', 'uses' => 'TpembuanganController@store_tps']);
-Route::post('dataTP/store-tpa', ['as' => 'dataTP.store_tpa', 'uses' => 'TpembuanganController@store_tpa']);
-Route::post('dataTP/update', 'TpembuanganController@update');
+Route::get('dataTP/tps/tambah', ['as' => 'dataTP.create_tps', 'uses' => 'TpembuanganController@create_tps']);
+Route::get('dataTP/tpa/tambah', ['as' => 'dataTP.create_tpa', 'uses' => 'TpembuanganController@create_tpa']);
+Route::post('dataTP/tps', ['as' => 'dataTP.store_tps', 'uses' => 'TpembuanganController@store_tps']);
+Route::post('dataTP/tpa', ['as' => 'dataTP.store_tpa', 'uses' => 'TpembuanganController@store_tpa']);
+Route::post('dataTP/update', ['as' => 'dataTP.update', 'uses' => 'TpembuanganController@update']);
 Route::delete('dataTP/tps/{modeltps}', ['as' => 'dataTP.destroy_tps', 'uses' => 'TpembuanganController@destroy_tps']);
 Route::delete('dataTP/tpa/{modeltpa}', ['as' => 'dataTP.destroy_tpa', 'uses' => 'TpembuanganController@destroy_tpa']);
-//Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
 //CRUD data petugas
-Route::get('dataPetugas', 'PetugasController@index');
-Route::get('dataPetugas/tambah', 'PetugasController@create');
-Route::post('dataPetugas/store', 'PetugasController@store');
-Route::patch('dataPetugas/{petugas}', 'PetugasController@update');
-Route::delete('dataPetugas/{petugas}', 'PetugasController@destroy');
+Route::get('dataPetugas', ['as' => 'dataPetugas.index', 'uses' => 'PetugasController@index']);
+Route::get('dataPetugas/tambah', ['as' => 'dataPetugas.create', 'uses' => 'PetugasController@create']);
+Route::post('dataPetugas', ['as' => 'dataPetugas.store', 'uses' => 'PetugasController@store']);
+Route::put('dataPetugas/{petugas}', ['as' => 'dataPetugas.update', 'uses' => 'PetugasController@update']);
+Route::delete('dataPetugas/{petugas}', ['as' => 'dataPetugas.destroy', 'uses' => 'PetugasController@destroy']);
 
 //tambah entri sampah
-Route::get('entry', 'EntriController@create');
-Route::post('entry/store', 'EntriController@store');
+Route::get('entry', ['as' => 'entry.create_tps', 'uses' => 'EntriController@create_tps']);
+Route::post('entry', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
+Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
 // CRUD sarana pengangkut sampah
 Route::get('dataSarana', ['as' => 'dataSarana.index', 'uses' => 'TipeSaranaController@index']);

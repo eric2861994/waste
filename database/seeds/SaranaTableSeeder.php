@@ -10,7 +10,7 @@ class SaranaTableSeeder extends Seeder {
     {
 //        Tolong tambahkan daftar Sarana disini, minimal 1 untuk setiap tipe, maksimal 5 untuk setiap tipe.
 //        Ambil tipe sarana yang bernilai Truk A
-        $tipesarana = TipeSarana::where('type', '=', 'Truk A')->first();
+        $tipesarana = TipeSarana::where('type', '=', 'Mobil Kecil')->first();
 //        Bikin 2 sarana untuk tipe Truk A
         for ($i = 0; $i < 2; $i++)
             $tipesarana->saranas()->save(new Sarana(['plate_number' => 'D 100'.$i.' KCH']));

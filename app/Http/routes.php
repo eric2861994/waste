@@ -32,8 +32,10 @@ Route::put('dataPetugas/{petugas}', ['as' => 'dataPetugas.update', 'uses' => 'Pe
 Route::delete('dataPetugas/{petugas}', ['as' => 'dataPetugas.destroy', 'uses' => 'PetugasController@destroy']);
 
 //tambah entri sampah
-Route::get('entry', ['as' => 'entry.create_tps', 'uses' => 'EntriController@create_tps']);
-Route::post('entry', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
+Route::get('entry-tps', ['as' => 'entry.create_tps', 'uses' => 'EntriController@create_tps']);
+Route::post('entry-tps', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
+Route::get('entry-tpa', ['as' => 'entry.create_tpa', 'uses' => 'EntriController@create_tpa']);
+
 Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
 // CRUD sarana pengangkut sampah

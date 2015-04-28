@@ -7,6 +7,13 @@ class TipeSaranaTableSeeder extends Seeder {
 
     public function run()
     {
+      /*  TipeSarana::create(['type' => 'Truk Compactor Besar', 'count' => 5]);
+        TipeSarana::create(['type' => 'Truk Compactor Kecil', 'count' => 7]);
+        TipeSarana::create(['type' => 'Dump Truck Besar', 'count' => 17]);
+        TipeSarana::create(['type' => 'Dump Truck Kecil', 'count' => 12]);
+        TipeSarana::create(['type' => 'Arm Roll Besar', 'count' => 52]);
+        TipeSarana::create(['type' => 'Arm Roll Kecil', 'count' => 11]);
+        TipeSarana::create(['type' => 'Mobil Kecil', 'count' => 4]); */
 //        TipeSarana::create(['type' => 'Truk Compactor Besar', 'count' => 5]);
 //        TipeSarana::create(['type' => 'Truk Compactor Kecil', 'count' => 7]);
 //        TipeSarana::create(['type' => 'Dump Truck Besar', 'count' => 17]);

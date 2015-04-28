@@ -3,7 +3,7 @@
 @section('main-section')
     <div class="col-md-4">
         <div class="contact_info">
-            <h2>Tambah Volume Sampah TPS</h2>
+            <h2>Tambah Volume Sampah TPA</h2>
             <img src="{{ url('/images/add.png') }}" width="100%" alt="add"/>
         </div>
     </div>
@@ -12,7 +12,7 @@
             <h3>Tambahkan volume sampah di form ini.</h3>
 
             {{--entry/store--}}
-            {!! Form::open(['route' => 'entry.store_tps']) !!}
+            {!! Form::open(['route' => 'entry.store_tpa']) !!}
 
             <div>
                 <span>TPS</span>
@@ -24,6 +24,18 @@
                     </select>
                 </span>
             </div>
+
+            <div>
+                <span>TPA</span>
+                <span>
+                    <select class="form-control" name="tpa_id" id="tpa_id">
+                        @foreach ($tpakhirs as $tpakhir)
+                            <option value="{{ $tpakhir->id }}">{{ $tpakhir->name }}</option>
+                        @endforeach
+                    </select>
+                </span>
+            </div>
+
             <div>
                 <span>Volume (dalam meter kubik)</span>
                 <span><input name="volume" type="text" class="form-control" id="volume"></span>

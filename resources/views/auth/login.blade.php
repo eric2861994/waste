@@ -48,12 +48,12 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="menu nav navbar-nav ">
                             <!-- BACKEND TODO: set class="active" depending on current page. -->
-                            <li><a href="index">home</a></li>
-                            <li><a href="entry">Entri</a></li>
-                            <li><a href="volumeTPS">Pengawasan</a></li>
-                            <li><a href="dataTP">Administrasi</a></li>
-                            <li><a href="sarana">Sarana</a></li>
-                            <li class="active"><a href="Penjadwalan">Jadwal</a></li>
+                            <li><a href="{{ url('/') }}">home</a></li>
+                            <li><a href="{{ route('entry.create_tps') }}">Entri</a></li>
+                            <li><a href="{{ url('/volumeTPS') }}">Pengawasan</a></li>
+                            <li><a href="{{ route('dataTP.index') }}">Administrasi</a></li>
+                            <li><a href="{{ route('sarana.index') }}">Sarana</a></li>
+                            <li><a href="{{ route('jadwal.index') }}">Jadwal</a></li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

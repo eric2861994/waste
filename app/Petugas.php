@@ -12,6 +12,10 @@ class Petugas extends Eloquent {
 	 * @var array
 	 */
 	protected $fillable = [
-		'nip', 'user_id'
+		'nip'
 	];
+
+    public function user() {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

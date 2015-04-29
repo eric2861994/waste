@@ -63,7 +63,9 @@ Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 
 Route::get('dataAdmin', 'Auth\AuthController@index');
 Route::get('volumeTPA', 'TpembuanganController@show_tpa');
 Route::get('index', 'Auth\AuthController@kael');
-Route::get('/', 'Auth\AuthController@kael');
+Route::get('/', function () {
+    return redirect(url('/auth/login'));
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

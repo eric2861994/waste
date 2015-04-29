@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 60);
 			$table->rememberToken();
 			$table->timestamps();
+
+            $table->foreign('nik')->references('nik')->on('ppl_dukcapil_ktp');
 		});
 	}
 

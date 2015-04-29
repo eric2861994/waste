@@ -71,8 +71,4 @@ class AuthController extends Controller {
 		
 		return view('auth.list', compact('users'));
 	}
-	
-	public function kael() {
-		return view('auth.kael');
-	}
 }

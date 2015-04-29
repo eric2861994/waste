@@ -46,8 +46,10 @@ class PetugasController extends Controller {
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|string
      */
 	public function update(Petugas $petugas, PetugasRequest $request) {
-		$petugas->fill($request->input())->save();
-		
+        $user = $petugas->user;
+        $user->update($request->input());
+        $petugas->update($request->input());
+
 		if ($request->ajax()) // jika yang request ajax
 			return route('dataPetugas.index');
 		else
@@ -63,7 +65,8 @@ class PetugasController extends Controller {
      * @throws \Exception
      */
 	public function destroy(Petugas $petugas, Request $request) {
-		$petugas->delete();
+        $user = $petugas->user;
+        $user->delete();
 		
 		if ($request->ajax()) // jika yang request ajax
 			return route('dataPetugas.index');

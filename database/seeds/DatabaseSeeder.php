@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder {
 //        $this->call('PetugasTableSeeder');
 //        $this->call('TipeSaranaTableSeeder');
 //        $this->call('SaranaTableSeeder');
-//        $this->call('TpakhirTableSeeder');
-//        $this->call('TpsampahTableSeeder');
+        $this->call('TpakhirTableSeeder');
+        $this->call('TpsampahTableSeeder');
 	}
 
 }

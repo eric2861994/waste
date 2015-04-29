@@ -18,7 +18,10 @@ class CreatePetugasTable extends Migration {
 			$table->string('nip')->unique();
 //            nik berasal dari ducapil
             $table->integer('user_id')->unsigned();
-            $table->integer('jadwal_id')->unsigned();
+            $table->integer('jadwal_id')->unsigned()->nullable();
+
+            $table->foreign('jadwal_id')->references('id')->on('jadwals');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
 

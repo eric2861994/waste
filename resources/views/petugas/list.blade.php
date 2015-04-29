@@ -13,24 +13,25 @@
             <tr>
                 <th>#</th>
                 <th>NIP</th>
-                <th>Nama</th>
+                <th>NIK</th>
                 <th>Peran</th>
                 <th>Manage...</th>
             </tr>
             </thead>
-            
+
             <tbody>
             @foreach ($petugass as $idx => $petugas)
                 <tr>
                     <td id="{{ 'real_id' . ($idx+1) }}" my_value="{{ $petugas->id }}">{{ ($idx+1) }}</td>
                     <td id="{{ 'nip' . ($idx+1) }}">{{ $petugas->nip }}</td>
-                    <td id="{{ 'nama' . ($idx+1) }}">{{ $petugas->name }}</td>
-                    <td id="{{ 'peran' . ($idx+1) }}">{{ $petugas->role }}</td>
+                    <td id="{{ 'nik' . ($idx+1) }}">{{ $petugas->user->nik }}</td>
+                    <td id="{{ 'peran'. ($idx+1) }}">{{ $petugas->user->role }}</td>
                     <td><a href="#" class="editButt" id="{{ ($idx+1) }}">edit</a> | <a href="#" class="delButt"
-                                                                                         id="{{ ($idx+1) }}">delete</a>
+                                                                                       id="{{ ($idx+1) }}">delete</a>
                     </td>
                 </tr>
             @endforeach
+
             </tbody>
         </table>
     </div>
@@ -56,7 +57,7 @@
                                 </div>
                                 <div>
                                     <span>Nama</span>
-                                    <span><input type="text" class="form-control" id="nama"
+                                    <span><input type="text" class="form-control" id="nik"
                                                  value="-diambil dynamically pake JS-"></span>
                                 </div>
                                 <div>
@@ -86,7 +87,7 @@
             $(".editButt").click(function () { //when edit button is pressed
                 $("input#id").attr("value", $("#real_id" + $(this).attr('id')).attr('my_value'));
                 $("input#nip").attr("value", $("#nip" + $(this).attr('id')).html());
-                $("input#nama").attr("value", $("#nama" + $(this).attr('id')).html());
+                $("input#nik").attr("value", $("#nik" + $(this).attr('id')).html());
                 $("input#peran").attr("value", $("#peran" + $(this).attr('id')).html());
                 $(".popup").attr("style", "display:block !important;"); // show popup
             });
@@ -106,7 +107,7 @@
                     data: {
                         _token: $('meta[name="csrf-token"]').attr('content'),
                         nip: $("input#nip").val(),
-                        name: $("input#nama").val(),
+                        nik: $("input#nik").val(),
                         role: $("input#peran").val()
                     },
                     success: function (result) {

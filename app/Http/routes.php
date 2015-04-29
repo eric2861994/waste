@@ -64,7 +64,8 @@ Route::delete('dataDetailJadwal/{detailjadwal}', ['as' => 'dataDetailJadwal.dest
 Route::get('Penjadwalan', 'Penjadwalan@index');
 
 //Sarana
-Route::get('Sarana', 'Sarana@index');
+Route::get('sarana', 'Sarana@index');
+Route::get('saranaAll', 'Sarana@all');
 //CRUD JADWAL + DETILJADWAL
 
 //unimplemented

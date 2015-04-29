@@ -16,5 +16,9 @@ class Sarana extends Controller {
 		return view('sarana.list');
 	}
 	
+	 public function all() {
+
+		return view('sarana.list');
+	}
 
 }

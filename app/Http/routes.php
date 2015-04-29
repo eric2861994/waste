@@ -35,7 +35,7 @@ Route::delete('dataPetugas/{petugas}', ['as' => 'dataPetugas.destroy', 'uses' =>
 Route::get('entry-tps', ['as' => 'entry.create_tps', 'uses' => 'EntriController@create_tps']);
 Route::post('entry-tps', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
 Route::get('entry-tpa', ['as' => 'entry.create_tpa', 'uses' => 'EntriController@create_tpa']);
-
+Route::post('entry-tpa', ['as' => 'entry.store_tpa', 'uses' => 'EntriController@store_tpa']);
 Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
 // CRUD sarana pengangkut sampah

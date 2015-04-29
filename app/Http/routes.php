@@ -59,7 +59,7 @@ Route::get('dataDetailJadwal/tambah', ['as' => 'dataDetailJadwal.create', 'uses'
 Route::post('dataDetailJadwal', ['as' => 'dataDetailJadwal.store', 'uses' => 'DetailJadwalController@store']);
 Route::put('dataDetailJadwal/{detailjadwal}', ['as' => 'dataDetailJadwal.update', 'uses' => 'DetailJadwalController@update']);
 Route::delete('dataDetailJadwal/{detailjadwal}', ['as' => 'dataDetailJadwal.destroy', 'uses' => 'DetailJadwalController@destroy']);
-=======
+
 //penjadwalan
 Route::get('Penjadwalan', 'Penjadwalan@index');
 

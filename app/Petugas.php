@@ -12,6 +12,6 @@ class Petugas extends Eloquent {
 	 * @var array
 	 */
 	protected $fillable = [
-		'nip', 'name', 'role'
+		'nip', 'user_id'
 	];
 }

@@ -23,6 +23,8 @@ class AuthController extends Controller {
 	*/
 
 	use AuthenticatesAndRegistersUsers;
+
+    public $redirectTo = 'home';
 	
 	private $user;
 
@@ -39,16 +41,29 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
-		
+
 		$this->user = $user;
 	}
 	
 	public function postLogin(Request $request) {
-		$r = $request->all();
-		if (Auth::attempt(array('username' => $r['username'], 'password' => $r['password']))) {
-			return view('home');
-		}
-		return view('auth.login');
+//        $this->validate($request, [
+//            'nik' => 'required', 'password' => 'required',
+//        ]); //sudah pasti required di form
+
+        $credentials = $request->only('nik', 'password');
+
+        if ($this->auth->attempt($credentials, $request->has('remember')))
+        {
+//            return response('sadf');
+            // TODO Define Redirec path
+            return redirect()->intended($this->redirectPath());
+        }
+
+        return redirect('/auth/login')
+            ->withInput($request->only('username'))
+            ->withErrors([
+                'username' => 'Username/Password salah.',
+            ]);
 	}
 	
 	public function index() {

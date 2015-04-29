@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Petugas;
+use App\User;
 
 class PetugasController extends Controller {
 	
@@ -31,7 +32,8 @@ class PetugasController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
 	public function store(PetugasRequest $request) {
-		Petugas::create($request->input());
+        $user = User::create($request->input());
+        $user->petugas()->create($request->input());
 		
 		return redirect()->route('dataPetugas.index');
 	}

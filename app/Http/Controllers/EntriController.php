@@ -19,7 +19,7 @@ class EntriController extends Controller
      */
     public function create_tps()
     {
-        $tpsampahs = TPsampah::all();
+        $tpsampahs = Tpsampah::all();
 
         return view('entri.create_tps', compact('tpsampahs'));
     }
@@ -38,6 +38,13 @@ class EntriController extends Controller
     }
 
     public function create_tpa() {
+        $tpsampahs = Tpsampah::all();
+        $tpakhirs = Tpakhir::all();
 
+        return view('entri.create_tpa', compact('tpsampahs', 'tpakhirs'));
+    }
+
+    public function store_tpa() {
+        return 'tambah tpa';
     }
 }

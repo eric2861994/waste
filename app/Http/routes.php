@@ -35,7 +35,7 @@ Route::delete('dataPetugas/{petugas}', ['as' => 'dataPetugas.destroy', 'uses' =>
 Route::get('entry-tps', ['as' => 'entry.create_tps', 'uses' => 'EntriController@create_tps']);
 Route::post('entry-tps', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
 Route::get('entry-tpa', ['as' => 'entry.create_tpa', 'uses' => 'EntriController@create_tpa']);
-
+Route::post('entry-tpa', ['as' => 'entry.store_tpa', 'uses' => 'EntriController@store_tpa']);
 Route::get('volumeTPS', 'TpembuanganController@show_tps');
 
 // CRUD sarana pengangkut sampah
@@ -52,6 +52,7 @@ Route::get('Penjadwalan', 'Penjadwalan@index');
 
 //Sarana
 Route::get('Sarana', 'Sarana@index');
+//CRUD JADWAL + DETILJADWAL
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');
@@ -59,7 +60,9 @@ Route::get('volumeTPA', 'TpembuanganController@show_tpa');
 Route::get('index', 'Auth\AuthController@kael');
 Route::get('/', 'Auth\AuthController@kael');
 
-Route::resource('test', 'DummyController');
+
+Route::resource('jadwal', 'JadwalController');
+Route::resource('detailjadwal', 'DetailJadwalController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

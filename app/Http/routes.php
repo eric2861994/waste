@@ -47,13 +47,18 @@ Route::get('dataSarana/{tipesarana}', ['as' => 'dataSarana.show', 'uses' => 'Tip
 Route::put('dataSarana/{tipesarana}', ['as' => 'dataSarana.update', 'uses' => 'TipeSaranaController@update']);
 Route::delete('dataSarana/{tipesarana}', ['as' => 'dataSarana.destroy', 'uses' => 'TipeSaranaController@destroy']);
 
+//CRUD JADWAL + DETILJADWAL
+
+
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');
 Route::get('volumeTPA', 'TpembuanganController@show_tpa');
 Route::get('index', 'Auth\AuthController@kael');
 Route::get('/', 'Auth\AuthController@kael');
 
-Route::resource('test', 'DummyController');
+
+Route::resource('jadwal', 'JadwalController');
+Route::resource('detailjadwal', 'DetailJadwalController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

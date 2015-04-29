@@ -44,10 +44,13 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="menu nav navbar-nav "> <!-- NOTE: the active state changes depending on the page -->
+							<!-- BACKEND TODO: set class="active" depending on current page. -->
                             <li><a href="index">home</a></li>
-                            <li><a href="entry">Entri Sampah</a></li>
-                            <li><a href="volumeTPS">Pengawasan Sampah</a></li>
-                            <li class="active"><a href="{{ url('.') }}">Administrasi Sampah</a></li>
+                            <li><a href="entry">Entri</a></li>
+                            <li><a href="volumeTPS">Pengawasan</a></li>
+                            <li><a href="dataTP">Administrasi</a></li>
+							<li><a href="sarana">Sarana</a></li>
+							<li class="active"><a href="Penjadwalan">Jadwal</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

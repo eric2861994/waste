@@ -47,6 +47,12 @@ Route::get('dataSarana/{tipesarana}', ['as' => 'dataSarana.show', 'uses' => 'Tip
 Route::put('dataSarana/{tipesarana}', ['as' => 'dataSarana.update', 'uses' => 'TipeSaranaController@update']);
 Route::delete('dataSarana/{tipesarana}', ['as' => 'dataSarana.destroy', 'uses' => 'TipeSaranaController@destroy']);
 
+//penjadwalan
+Route::get('Penjadwalan', 'Penjadwalan@index');
+
+//Sarana
+Route::get('Sarana', 'Sarana@index');
+
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');
 Route::get('volumeTPA', 'TpembuanganController@show_tpa');

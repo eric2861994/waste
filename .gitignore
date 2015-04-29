@@ -4,3 +4,6 @@
 # laravel default
 /vendor
 .env
+
+# nbproject
+/nbproject/private/

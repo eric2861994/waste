@@ -15,8 +15,8 @@ class CreateDetailJadwalsTable extends Migration {
 		Schema::create('detail_jadwals', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('jadwal_id');
-			$table->foreign('jadwal_id')->references('id')->on('jadwal')->onDelete('cascade');
+			$table->integer('jadwal_id')->unsigned();
+			$table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
 			$table->string('start_time', 6);
 			$table->string('end_time', 6);
 			$table->string('description', 255);

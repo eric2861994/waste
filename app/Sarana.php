@@ -8,7 +8,7 @@ class Sarana extends Model {
 
     protected $fillable = ['type_id', 'schedule_id', 'plate_number'];
 
-    public function tipe() {
-        return $this->belongsTo('App\TipeSarana');
+    public function tipeSarana() {
+        return $this->belongsTo('App\TipeSarana', 'type_id');
     }
 }

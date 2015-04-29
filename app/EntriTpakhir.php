@@ -10,6 +10,6 @@ class EntriTpakhir extends Eloquent {
 	 * @var array
 	 */
 	protected $fillable = [
-		'tps_id', 'volume'
+		'tps_id', 'tpa_id', 'volume'
 	];
 }

@@ -22,7 +22,7 @@ class TipeSaranaRequest extends Request {
 	public function rules()
 	{
 		return [
-			'type' => 'required|string|unique|min:1|max:255'
+			'type' => 'required|string|unique:tipe_saranas|min:1|max:255'
 		];
 	}
 

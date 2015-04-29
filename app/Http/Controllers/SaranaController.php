@@ -4,6 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Sarana;
+use App\TipeSarana;
+use Illuminate\Queue\RedisQueue;
 
 class SaranaController extends Controller {
 
@@ -14,26 +17,34 @@ class SaranaController extends Controller {
 	 */
 	public function index()
 	{
+        $saranas = Sarana::all();
+
+        return view('sarana.list', compact('saranas'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Halaman Tambah Sarana.
+     *
+     * @return \Illuminate\View\View
+     */
 	public function create()
 	{
-		//
+        $tipesaranas = TipeSarana::all();
+
+		return view('sarana.create', compact('tipesaranas'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Tambah Sarana.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+	public function store(Request $request)
 	{
-		//
+		Sarana::create($request->input());
+
+        return redirect()->route('sarana.index');
 	}
 
 	/**
@@ -47,37 +58,44 @@ class SaranaController extends Controller {
 		//
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+    /**
+     * Halaman ubah Sarana.
+     *
+     * @param Sarana $sarana
+     * @return \Illuminate\View\View
+     */
+	public function edit(Sarana $sarana)
 	{
-		//
+        $tipesaranas = TipeSarana::all();
+
+		return view('sarana.edit', compact('sarana', 'tipesaranas'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Ubah Sarana.
+     *
+     * @param Sarana $sarana
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+	public function update(Sarana $sarana, Request $request)
 	{
-		//
+		$sarana->update($request->input());
+
+        return redirect()->route('sarana.index');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+    /**
+     * Hapus sarana.
+     * @param Sarana $sarana
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+	public function destroy(Sarana $sarana)
 	{
-		//
+		$sarana->delete();
+
+        return redirect()->route('sarana.index');
 	}
 
 }

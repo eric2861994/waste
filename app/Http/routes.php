@@ -47,6 +47,14 @@ Route::get('dataSarana/{tipesarana}', ['as' => 'dataSarana.show', 'uses' => 'Tip
 Route::put('dataSarana/{tipesarana}', ['as' => 'dataSarana.update', 'uses' => 'TipeSaranaController@update']);
 Route::delete('dataSarana/{tipesarana}', ['as' => 'dataSarana.destroy', 'uses' => 'TipeSaranaController@destroy']);
 
+//Sarana
+Route::get('sarana', ['as' => 'sarana.index', 'uses' => 'SaranaController@index']);
+Route::post('sarana', ['as' => 'sarana.store', 'uses' => 'SaranaController@store']);
+Route::get('sarana/tambah', ['as' => 'sarana.create', 'uses' => 'SaranaController@create']);
+Route::put('sarana/{sarana}', ['as' => 'sarana.update', 'uses' => 'SaranaController@update']);
+Route::delete('sarana/{sarana}', ['as' => 'sarana.destroy', 'uses' => 'SaranaController@destroy']);
+Route::get('sarana/{sarana}/ubah', ['as' => 'sarana.edit', 'uses' => 'SaranaController@edit']);
+
 //CRUD JADWAL + DETILJADWAL
 Route::get('dataJadwal', ['as' => 'dataJadwal.index', 'uses' => 'JadwalController@index']);
 Route::get('dataJadwal/tambah', ['as' => 'dataJadwal.create', 'uses' => 'JadwalController@create']);
@@ -63,10 +71,6 @@ Route::delete('dataDetailJadwal/{detailjadwal}', ['as' => 'dataDetailJadwal.dest
 //penjadwalan
 Route::get('Penjadwalan', 'Penjadwalan@index');
 
-//Sarana
-Route::get('sarana', 'Sarana@index');
-Route::get('saranaAll', 'Sarana@all');
-//CRUD JADWAL + DETILJADWAL
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

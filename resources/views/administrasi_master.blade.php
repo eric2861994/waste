@@ -9,7 +9,9 @@
         <a href="dataTP"><button style="margin-top:10px;" class="btn_style">TPS-TPA</button></a><br/>
         <a href="dataPetugas"><button style="margin-top:10px;" class="btn_style">Petugas</button></a><br/>
         <a href="dataAdmin"><button style="margin-top:10px;" class="btn_style">Admin</button></a><br/>
-    </div>
+        <a href="dataJadwal"><button style="margin-top:10px;" class="btn_style">Jadwal</button></a><br/>
+        <a href="dataDetailJadwal"><button style="margin-top:10px;" class="btn_style">Detail Jadwal</button></a><br/>
+        </div>
     <div class="col-md-8">
         @yield('main-section')
     </div>

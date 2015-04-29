@@ -48,6 +48,17 @@ Route::put('dataSarana/{tipesarana}', ['as' => 'dataSarana.update', 'uses' => 'T
 Route::delete('dataSarana/{tipesarana}', ['as' => 'dataSarana.destroy', 'uses' => 'TipeSaranaController@destroy']);
 
 //CRUD JADWAL + DETILJADWAL
+Route::get('dataJadwal', ['as' => 'dataJadwal.index', 'uses' => 'JadwalController@index']);
+Route::get('dataJadwal/tambah', ['as' => 'dataJadwal.create', 'uses' => 'JadwalController@create']);
+Route::post('dataJadwal', ['as' => 'dataJadwal.store', 'uses' => 'JadwalController@store']);
+Route::put('dataJadwal/{jadwal}', ['as' => 'dataJadwal.update', 'uses' => 'JadwalController@update']);
+Route::delete('dataJadwal/{jadwal}', ['as' => 'dataJadwal.destroy', 'uses' => 'JadwalController@destroy']);
+
+Route::get('dataDetailJadwal', ['as' => 'dataDetailJadwal.index', 'uses' => 'DetailJadwalController@index']);
+Route::get('dataDetailJadwal/tambah', ['as' => 'dataDetailJadwal.create', 'uses' => 'DetailJadwalController@create']);
+Route::post('dataDetailJadwal', ['as' => 'dataDetailJadwal.store', 'uses' => 'DetailJadwalController@store']);
+Route::put('dataDetailJadwal/{detailjadwal}', ['as' => 'dataDetailJadwal.update', 'uses' => 'DetailJadwalController@update']);
+Route::delete('dataDetailJadwal/{detailjadwal}', ['as' => 'dataDetailJadwal.destroy', 'uses' => 'DetailJadwalController@destroy']);
 
 
 //unimplemented

@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Jadwal.php;
+use App\Jadwal;
 
 use Illuminate\Http\Request;
 

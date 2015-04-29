@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\DetailJadwal.php;
+use App\DetailJadwal;
 
 use Illuminate\Http\Request;
 

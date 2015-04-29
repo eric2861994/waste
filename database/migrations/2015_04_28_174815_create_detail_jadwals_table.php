@@ -20,7 +20,6 @@ class CreateDetailJadwalsTable extends Migration {
 			$table->string('start_time', 6);
 			$table->string('end_time', 6);
 			$table->string('description', 255);
-			$table->timestamps();
 		});
 	}
 

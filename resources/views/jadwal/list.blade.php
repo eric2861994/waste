@@ -20,7 +20,7 @@
             </thead>
 
             <tbody>
-            @foreach ($jad as $idx => $jadwal)
+            @foreach ($jadwals as $idx => $jadwal)
                 <tr>
                   {{$jad}}
                     <td id="{{ 'real_id' . ($idx+1) }}" my_value="{{ $jadwal->id }}">{{ ($idx+1) }}</td>

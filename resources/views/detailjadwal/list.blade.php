@@ -12,10 +12,11 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>NIP</th>
-                <th>Nama</th>
-                <th>Peran</th>
+                <th>ID Detail</th>
+                <th>Mulai</th>
+                <th>Akhir</th>
                 <th>Manage...</th>
+                <th>Keterangan</th>
             </tr>
             </thead>
 
@@ -24,12 +25,12 @@
                 <tr>
                   {{$detiljad}}
                     <td id="{{ 'real_id' . ($idx+1) }}" my_value="{{ $detiljad->id }}">{{ ($idx+1) }}</td>
-                    <td id="{{ 'nip' . ($idx+1) }}">{{ $detiljad->jadwal_id }}</td>
-                    <td id="{{ 'nama' . ($idx+1) }}">{{ $detiljad->start_time }}</td>
-                    <td id="{{ 'peran' . ($idx+1) }}">{{ $detiljad->end_time }}</td>
-                    <td id="{{ 'peran' . ($idx+1) }}">{{ $detiljad->description }}</td>
+                    <td id="{{ 'idetjadwal' . ($idx+1) }}">{{ $detiljad->jadwal_id }}</td>
+                    <td id="{{ 'mulai' . ($idx+1) }}">{{ $detiljad->start_time }}</td>
+                    <td id="{{ 'akhir' . ($idx+1) }}">{{ $detiljad->end_time }}</td>
                     <td><a href="#" class="editButt" id="{{ ($idx+1) }}">edit</a> | <a href="#" class="delButt"
-                                                                                         id="{{ ($idx+1) }}">delete</a>
+                      <td id="{{ 'keterangan' . ($idx+1) }}">{{ $detiljad->description }}</td>
+                                                                                           id="{{ ($idx+1) }}">delete</a>
                     </td>
                 </tr>
             @endforeach

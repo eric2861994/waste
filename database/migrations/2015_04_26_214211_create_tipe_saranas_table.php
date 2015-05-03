@@ -16,6 +16,7 @@ class CreateTipeSaranasTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('type')->unique();
+            $table->double('volume', 15, 8);
             $table->integer('count')->unsigned()->default(0);
 		});
 	}

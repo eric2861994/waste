@@ -8,16 +8,20 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Nama</th>
+                  <th>Nomor Polisi</th>
                   <th>Jenis</th>
+                    <th>Jadwal</th>
                 </tr>
               </thead>
               <tbody>
+              @foreach($saranas as $idx => $sarana)
 				<tr>
-                  <td>TODO fill backend</td>
-                  <td>TODO fill backend</td>
-				  <td>TODO fill backend</td>
+                    <td>{{ $idx+1 }}</td>
+                  <td>{{ $sarana->plate_number }}</td>
+                  <td>{{ $sarana->tipeSarana->type }}</td>
+				  <td>click here..</td>
                 </tr>
+                  @endforeach
               </tbody>
             </table>
           </div>

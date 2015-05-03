@@ -11,7 +11,6 @@
         <div class="contact-form">
             <h3>Tambahkan volume sampah di form ini.</h3>
 
-            {{--entry/store--}}
             {!! Form::open(['route' => 'entry.store_tps']) !!}
 
             <div>

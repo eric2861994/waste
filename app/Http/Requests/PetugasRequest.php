@@ -21,20 +21,7 @@ class PetugasRequest extends Request {
 	 */
 	public function rules()
 	{
-        switch ($this->method()) {
-            case 'PUT':
-                return [
-                    'nip' => 'required|string|min:1|max:255',
-                    'name' => 'required|string|min:1|max:255',
-                    'role' => 'required|string|min:1|max:255'
-                ];
-            case 'POST':
-                return [
-                    'nip' => 'required|string|unique:petugas|min:1|max:255',
-                    'name' => 'required|string|min:1|max:255',
-                    'role' => 'required|string|min:1|max:255'
-                ];
-        }
+        return [];
     }
 
 }

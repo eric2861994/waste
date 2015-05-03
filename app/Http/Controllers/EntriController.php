@@ -37,6 +37,11 @@ class EntriController extends Controller
         return redirect()->route('entry.create_tps');
     }
 
+    /**
+     * Halaman tambah entri TPA.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create_tpa() {
         $tpsampahs = Tpsampah::all();
         $tpakhirs = Tpakhir::all();
@@ -44,7 +49,15 @@ class EntriController extends Controller
         return view('entri.create_tpa', compact('tpsampahs', 'tpakhirs'));
     }
 
-    public function store_tpa() {
-        return 'tambah tpa';
+    /**
+     * Menambah entri TPA.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store_tpa(Request $request) {
+        EntriTpakhir::create($request->input());
+
+        return redirect()->route('entry.create_tpa');
     }
 }

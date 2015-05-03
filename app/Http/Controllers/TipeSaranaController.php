@@ -21,22 +21,22 @@ class TipeSaranaController extends Controller {
 		return view('tipesarana.index', compact('tipes'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Halaman Tambah Tipe Sarana.
+     *
+     * @return \Illuminate\View\View
+     */
 	public function create()
 	{
 		return view('tipesarana.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-     * @param  TipeSaranaRequest $request
-	 * @return Response
-	 */
+    /**
+     * Tambah Tipe Sarana.
+     *
+     * @param TipeSaranaRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
 	public function store(TipeSaranaRequest $request)
 	{
 		TipeSarana::create($request->input());
@@ -55,24 +55,24 @@ class TipeSaranaController extends Controller {
 		return view('tipesarana.show', compact('tipesarana'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  TipeSarana  $tipesarana
-	 * @return Response
-	 */
+    /**
+     * Halaman ubah Tipe Sarana.
+     *
+     * @param TipeSarana $tipesarana
+     * @return \Illuminate\View\View
+     */
 	public function edit(TipeSarana $tipesarana)
     {
 		return view('tipesarana.edit', compact('tipesarana'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-     * @param  TipeSarana $tipesarana
-	 * @param  TipeSaranaRequest $request
-	 * @return Response
-	 */
+    /**
+     * Ubah Tipe Sarana.
+     *
+     * @param TipeSarana $tipesarana
+     * @param TipeSaranaRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
 	public function update(TipeSarana $tipesarana, TipeSaranaRequest $request)
 	{
 		$tipesarana->update($request->input());
@@ -80,12 +80,13 @@ class TipeSaranaController extends Controller {
         return redirect()->route('dataSarana.index');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  TipeSarana $tipesarana
-	 * @return Response
-	 */
+    /**
+     * Hapus Tipe Sarana.
+     *
+     * @param TipeSarana $tipesarana
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
 	public function destroy(TipeSarana $tipesarana)
 	{
 		$tipesarana->delete();

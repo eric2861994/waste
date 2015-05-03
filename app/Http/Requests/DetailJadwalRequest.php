@@ -22,10 +22,9 @@ class DetailJadwalRequest extends Request {
 	public function rules()
 	{
 		return [
-			'start_time' => 'required|string|min:1|max:6',
-  		'start_time' => 'required|string|min:1|max:6',
-    	'end_time' => 'required|string|min:1|max:6',
-  		'start_time' => 'string|max:255'
+            'start_time' => 'required|string|min:1|max:6',
+            'end_time' => 'required|string|min:1|max:6',
+            'description' => 'string|max:255'
 		];
 	}
 

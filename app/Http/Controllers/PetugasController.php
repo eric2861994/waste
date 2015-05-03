@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Petugas;
+use App\User;
 
 class PetugasController extends Controller {
 	
@@ -31,7 +32,8 @@ class PetugasController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
 	public function store(PetugasRequest $request) {
-		Petugas::create($request->input());
+        $user = User::create($request->input());
+        $user->petugas()->create($request->input());
 		
 		return redirect()->route('dataPetugas.index');
 	}
@@ -44,8 +46,10 @@ class PetugasController extends Controller {
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|string
      */
 	public function update(Petugas $petugas, PetugasRequest $request) {
-		$petugas->fill($request->input())->save();
-		
+        $user = $petugas->user;
+        $user->update($request->input());
+        $petugas->update($request->input());
+
 		if ($request->ajax()) // jika yang request ajax
 			return route('dataPetugas.index');
 		else
@@ -61,7 +65,8 @@ class PetugasController extends Controller {
      * @throws \Exception
      */
 	public function destroy(Petugas $petugas, Request $request) {
-		$petugas->delete();
+        $user = $petugas->user;
+        $user->delete();
 		
 		if ($request->ajax()) // jika yang request ajax
 			return route('dataPetugas.index');

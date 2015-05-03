@@ -6,7 +6,7 @@ class TipeSarana extends Model {
 
 	public $timestamps = false;
 
-    protected $fillable = ['type'];
+    protected $fillable = ['type', 'volume'];
 
     public function saranas() {
         return $this->hasMany('App\Sarana', 'type_id');

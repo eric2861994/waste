@@ -24,7 +24,7 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
-    public $redirectTo = 'home';
+    public $redirectTo = '/dataTP';
 	
 	private $user;
 

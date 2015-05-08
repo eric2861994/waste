@@ -58,6 +58,9 @@
                             <li><a href="{{ route('dataTP.index') }}">Administrasi</a></li>
                             <li><a href="{{ route('sarana.index') }}">Sarana</a></li>
                             <li><a href="{{ route('jadwal.index') }}">Jadwal</a></li>
+                            @if (Auth::check())
+                                <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                            @endif
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

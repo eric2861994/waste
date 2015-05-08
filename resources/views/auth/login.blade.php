@@ -76,7 +76,7 @@
                                    autofocus>
                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                             <label for="inputPassword" class="sr-only">Password</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
                                    required>
                             <br/>
                             <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>

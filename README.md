@@ -7,7 +7,7 @@ WASTE adalah singkatan dari Waste Acquisition System Technological Enhancement.
 -[x] Implementasi Penjadwalan <Eric>
 -[ ] Perbaiki link antar halaman
 -[ ] Masukkan user privilege (ada 3 jenis pengguna yaitu pemantau sampah, petugas lapangan, dan petugas TPS)
--[ ] Perbaiki navigation bar (buat supaya selected di halaman yang sesuai, dan tambahkan tombol logout ketika user login)
+-[x] Perbaiki navigation bar (buat supaya selected di halaman yang sesuai, dan tambahkan tombol logout ketika user login) <Feli>
 -[ ] Buat About Page
 -[ ] 
 

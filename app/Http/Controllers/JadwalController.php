@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Jadwal;
 use App\Tpsampah;
+use App\Sarana;
 use Carbon\Carbon;
 
 class JadwalController extends Controller
@@ -54,11 +55,13 @@ class JadwalController extends Controller
             $vTPS[] = ['id' => $tpsampah->id, 'v' => $vAvg, 'flag' => false];
         }
 
+        $bTPS = $vTPS;
+
 //        dapatkan volume dari setiap sarana pengangkut sampah
         $dSarana = [];
         $saranas = Sarana::all();
         foreach ($saranas as $sarana) {
-            $dSarana[] = ['id' => $sarana->id, 'v' => $sarana->tipeSarana->volume];
+            $dSarana[] = ['id' => $sarana->id, 'v' => $sarana->tipeSarana->volume, 'tps' => -1];
         }
 
         $vTPS = array_values(array_sort($vTPS, function ($value) {
@@ -125,7 +128,7 @@ class JadwalController extends Controller
          */
         $j = $lSarana-1;
         while ($j > 0) {
-            if ($dSarana['tps'] != -1)
+            if ($dSarana[$j]['tps'] != -1)
 //                sudah terpilih
                 $j--;
 
@@ -133,16 +136,18 @@ class JadwalController extends Controller
                 $last = count($rTPS)-1;
                 if ($last != -1) {
 //                    masih ada elemen
-                    $dSarana['tps'] = $last;
+                    $dSarana[$j]['tps'] = $last;
                     $sisa = $rTPS[$last]['v'] - $dSarana[$j]['v'];
                     if ($sisa > 0) {
                         /* insert ke tempat yang tepat */
-                        $dSarana[$j]['v'] = $sisa;
-                        $toMove = $dSarana[$j];
-                        while ($i > 0 && $vTPS[$i-1]['v'] > $sisa) {
-                            $vTPS[$i] = $vTPS[$i-1];
+                        $rTPS[$last]['v'] = $sisa;
+                        $toMove = $rTPS[$last];
+                        $i = $last;
+                        while ($i > 0 && $rTPS[$i-1]['v'] > $sisa) {
+                            $rTPS[$i] = $rTPS[$i-1];
+                            $i--;
                         }
-                        $vTPS[$i] = $toMove;
+                        $rTPS[$i] = $toMove;
                     }
                     else {
                         /* hilangkan dari rTPS */
@@ -162,7 +167,8 @@ class JadwalController extends Controller
          */
 
 //        bikin jadwal sarana dengan diketahuinya dSarana
-
+        dump($bTPS);
+        dump($vTPS);
     }
 
 }

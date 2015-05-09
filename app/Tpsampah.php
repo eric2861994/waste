@@ -19,4 +19,8 @@ class Tpsampah extends Eloquent {
     {
         return $this->hasMany('App\EntriTpsampah', 'tps_id');
     }
+
+    public function entrytpas() {
+        return $this->hasMany('App\EntriTpakhir', 'tps_id');
+    }
 }

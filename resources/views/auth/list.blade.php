@@ -76,7 +76,7 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Username</th>
+                  <th>NIK</th>
                   <th>Password</th>
                   <th>Peran</th>
                   <th>Manage...</th>
@@ -88,7 +88,7 @@
 				<?php $entry_num += 1; ?>
 				<tr>
 					<td>{{ $entry_num }}</td>
-					<td id="{{ 'user'.$entry_num }}">{{ $user->username }}</td>
+					<td id="{{ 'user'.$entry_num }}">{{ $user->nik }}</td>
 					<td id="{{ 'pass'.$entry_num }}">{{ $user->password }}</td>
 					<td id="{{ 'peran'.$entry_num }}">{{ $user->role }}</td>
 					<td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> | <a href="#" class="delButt" id="{{ $entry_num }}">delete</a></td>

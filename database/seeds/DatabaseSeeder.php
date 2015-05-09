@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('SaranaTableSeeder');
         $this->call('TpakhirTableSeeder');
         $this->call('TpsampahTableSeeder');
-
+        $this->call('EntriTpsampahTableSeeder');
 	}
 
 }

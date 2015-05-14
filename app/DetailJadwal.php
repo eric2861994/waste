@@ -12,4 +12,8 @@ class DetailJadwal extends Model
     public function getStartTimeAttribute($value) {
         return Carbon::createFromFormat('H:i:s', $value);
     }
+
+    public function jadwal() {
+        return $this->belongsTo('App\Jadwal', 'jadwal_id');
+    }
 }

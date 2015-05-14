@@ -60,6 +60,7 @@ Route::get('sarana/{sarana}/ubah', ['as' => 'sarana.edit', 'uses' => 'SaranaCont
 //CRUD JADWAL + DETILJADWAL
 Route::get('jadwal', ['as' => 'jadwal.index', 'uses' => 'JadwalController@index']);
 Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 'JadwalController@jadwalSarana']);
+Route::get('jadwal/sarana/hitung', ['as' => 'jadwal.hitungSarana', 'uses' => 'JadwalController@hitungSarana']);
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

@@ -11,4 +11,8 @@ class Sarana extends Model {
     public function tipeSarana() {
         return $this->belongsTo('App\TipeSarana', 'type_id');
     }
+
+    public function jadwal() {
+        return $this->belongsTo('App\Jadwal', 'schedule_id');
+    }
 }

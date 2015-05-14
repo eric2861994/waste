@@ -2,12 +2,15 @@
 
 use App\Http\Requests;
 use App\Jadwal;
+use App\DetailJadwal;
 use App\Tpsampah;
 use App\Sarana;
 use Carbon\Carbon;
 
 class JadwalController extends Controller
 {
+
+    private $EPSILON = 0.000001;
 
     /**
      * Display a listing of the resource.
@@ -31,8 +34,7 @@ class JadwalController extends Controller
         return view('jadwal.show', compact('jadwal'));
     }
 
-    public function jadwalSarana()
-    {
+    public function totalRecallSarana() {
 //        hitung volume sampah rata - rata selama seminggu untuk setiap TPS
         $cNow = Carbon::now();
 
@@ -85,7 +87,7 @@ class JadwalController extends Controller
         $greedy = false;
         $i = 0; $lTPS = count($vTPS);
         $j = 0; $lSarana = count($dSarana);
-            while ($i < $lTPS && $j < $lSarana) {
+        while ($i < $lTPS && $j < $lSarana) {
             if ($vTPS[$i]['v'] < $lSarana[$j]['v']) {
                 /* coba ambil lebih */
                 $i++;
@@ -95,7 +97,7 @@ class JadwalController extends Controller
             else if ($vTPS[$i]['v'] == $dSarana[$j]['v']) {
                 /* biasanya tidak boleh, tapi kali ini langsung ambil aja */
                 $vTPS[$i]['flag'] = true;
-                $dSarana[$j]['tps'] = $i;
+                $dSarana[$j]['tps'] = $vTPS[$i]['id'];
                 $i++;
                 $j++;
                 $greedy = false;
@@ -105,7 +107,7 @@ class JadwalController extends Controller
                 if ($greedy) {
                     /* ambil yangs sebelumnya */
                     $vTPS[$i-1]['flag'] = true;
-                    $dSarana[$j]['tps'] = $i;
+                    $dSarana[$j]['tps'] = $vTPS[$i]['id'];
                     $i++;
                     $j++;
                     $greedy = false;
@@ -127,7 +129,7 @@ class JadwalController extends Controller
          * lansgung menggunakannya untuk TPS dengan sisa sampah terbanyak.
          */
         $j = $lSarana-1;
-        while ($j > 0) {
+        while ($j >= 0) {
             if ($dSarana[$j]['tps'] != -1)
 //                sudah terpilih
                 $j--;
@@ -136,7 +138,7 @@ class JadwalController extends Controller
                 $last = count($rTPS)-1;
                 if ($last != -1) {
 //                    masih ada elemen
-                    $dSarana[$j]['tps'] = $last;
+                    $dSarana[$j]['tps'] = $rTPS[$last]['id'];
                     $sisa = $rTPS[$last]['v'] - $dSarana[$j]['v'];
                     if ($sisa > 0) {
                         /* insert ke tempat yang tepat */
@@ -167,8 +169,172 @@ class JadwalController extends Controller
          */
 
 //        bikin jadwal sarana dengan diketahuinya dSarana
-        dump($bTPS);
-        dump($vTPS);
+//        we only care about tps which has transport
+        $cIDTPS = [];
+        foreach ($dSarana as $sarana) {
+            $a = $sarana['tps'];
+            if (!in_array($a, $cIDTPS))
+                $cIDTPS[] = $a;
+        }
+
+        $cTPS = [];
+        foreach ($bTPS as $tps) {
+            if (in_array($tps['id'], $cIDTPS))
+                $cTPS[] = $tps;
+        }
+
+//        degree berisi derajat dari kendaraan
+        $degree = [];
+        $carryOn = true;
+        $iteration = 0;
+        while ($carryOn) {
+            foreach ($dSarana as $sarana) {
+                $idTPS = $sarana['tps'];
+                $idSarana = $sarana['id'];
+
+                if ($idTPS != -1) {
+                    $idx = $this->findIndex($idTPS, $cTPS);
+
+                    $volumeAwal = $cTPS[$idx]['v'];
+                    if ($volumeAwal < $this->EPSILON)
+                        continue;
+
+                    $sisaVolume = $volumeAwal - $sarana['v'];
+                    $cTPS[$idx]['v'] = $sisaVolume;
+
+                    if (array_key_exists($idSarana, $degree))
+                        $degree[$idSarana]++;
+                    else
+                        $degree[$idSarana] = 1;
+                }
+            }
+
+//            if ($iteration == 5)
+//                dd($cTPS);
+
+            $carryOn = false;
+            foreach($cTPS as $tps) {
+                if ($tps['v'] > $this->EPSILON) {
+                    $carryOn = true;
+                    break;
+                }
+            }
+            $iteration++;
+        }
+
+//        tpsDegree (idTPS, degree) => jumlah berisi informasi brp banyak kendaraan yang memiliki derajat degree pada
+//        TPS dengan id idTPS
+        $tpsDegree = [];
+        foreach ($degree as $idSaranaa => $derajat) {
+            $idx = $this->findIndex($idSaranaa, $dSarana);
+            $key = $dSarana[$idx]['tps'] * 1000 + $derajat;
+            if (array_key_exists($key, $tpsDegree))
+                $tpsDegree[$key]++;
+            else
+                $tpsDegree[$key] = 1;
+        }
+
+        return [
+            'tpsDegree' => $tpsDegree,
+            'dSarana' => $dSarana,
+            'degree' => $degree,
+            'bTPS' => $bTPS
+        ];
+    }
+
+
+    public function jadwalSarana()
+    {
+        $totalRecall = $this->totalRecallSarana();
+        $tpsDegree = $totalRecall['tpsDegree'];
+        $dSarana = $totalRecall['dSarana'];
+        $degree = $totalRecall['degree'];
+
+        foreach ($tpsDegree as $key => $val) {
+            $summary = 'jadwal untuk kendaraan dengan di TPS ';
+            $idTPS = floor($key / 1000);
+            $namaTPS = Tpsampah::find($idTPS)->name;
+            $summary .= $namaTPS;
+            $derajatJadwal = $key - $idTPS*1000;
+
+            $jadwal = Jadwal::create(['summary' => $summary]);
+            for ($i = 0; $i < $derajatJadwal; $i++) {
+                $mulai = $i*4;
+                $akhir = $mulai + 4;
+
+                if ($mulai < 10)
+                    $smulai = '0' . $mulai . '0000';
+                else
+                    $smulai = $mulai . '0000';
+
+                if ($akhir < 10)
+                    $sakhir = '0'. $akhir . '0000';
+                else
+                    $sakhir = $akhir . '0000';
+
+                $description = 'Mengangkut sampah dari ' . $namaTPS . ' ke TPA';
+
+
+                $detailJadwal = new DetailJadwal(['start_time' => $smulai, 'end_time' => $sakhir,
+                    'description' => $description]);
+
+                $jadwal->details()->save($detailJadwal);
+            }
+
+            foreach ($dSarana as $sarana) {
+                $idSarana = $sarana['id'];
+                if ($sarana['tps'] == $idTPS) {
+                    $derajat = $degree[$idSarana];
+                    if ($derajat == $derajatJadwal) {
+                        $daSarana = Sarana::find($idSarana);
+                        $daSarana->update(['schedule_id' => $jadwal->id]);
+                    }
+                }
+            }
+        }
+    }
+
+    public function hitungSarana() {
+        $totalRecall = $this->totalRecallSarana();
+        $bTPS = $totalRecall['bTPS'];
+        $dSarana = $totalRecall['dSarana'];
+        $degree = $totalRecall['degree'];
+
+
+        foreach ($dSarana as $sarana) {
+            $idTPS = $sarana['tps'];
+            $derajat = $degree[$sarana['id']];
+            $sisa = $bTPS[$idTPS]['v'] - $derajat * $sarana['v'];
+            $bTPS[$idTPS]['v'] = $sisa;
+        }
+
+        $totalSisa = 0;
+        foreach ($bTPS as $tps) {
+            $totalSisa += $tps['v'];
+        }
+
+        dd($totalSisa);
+    }
+
+    public function jadwalPetugas() {
+        
+
+    }
+
+    /**
+     * Return the index of an array where the id matches.
+     *
+     * @param $id: the id to find
+     * @param $list: the array which entry contains 'id' as key
+     * @return int|string
+     */
+    private function findIndex($id, $list) {
+        foreach ($list as $idx => $entry) {
+            if ($entry['id'] == $id) {
+                return $idx;
+            }
+        }
+        return -1;
     }
 
 }

@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Petugas extends Eloquent {
 	
 	public $timestamps = false;
+
+    protected $table = 'ppl_waste_petugas';
 	
 	/**
 	 * Fillable fields for a Petugas.

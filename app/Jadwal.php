@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jadwal extends Model {
 
 	//
+    protected $table = 'ppl_waste_jadwals';
 	public $timestamps = false;
 	protected $fillable = ['summary'];
 

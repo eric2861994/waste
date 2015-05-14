@@ -6,6 +6,8 @@ class TipeSarana extends Model {
 
 	public $timestamps = false;
 
+    protected $table = 'ppl_waste_tipe_saranas';
+
     protected $fillable = ['type', 'volume'];
 
     public function saranas() {

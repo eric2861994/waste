@@ -12,7 +12,7 @@ class CreateEntriTpakhirsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('entri_tpakhirs', function(Blueprint $table)
+		Schema::create('ppl_waste_entri_tpakhirs', function(Blueprint $table)
 		{
             $table->increments('id');
             $table->integer('tps_id')->unsigned();
@@ -20,8 +20,8 @@ class CreateEntriTpakhirsTable extends Migration {
             $table->double('volume', 15, 8);
             $table->timestamps();
 
-            $table->foreign('tps_id')->references('id')->on('tpsampahs');
-            $table->foreign('tpa_id')->references('id')->on('tpakhirs');
+            $table->foreign('tps_id')->references('id')->on('ppl_waste_tpsampahs');
+            $table->foreign('tpa_id')->references('id')->on('ppl_waste_tpakhirs');
 		});
 	}
 
@@ -32,7 +32,7 @@ class CreateEntriTpakhirsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('entri_tpakhirs');
+		Schema::drop('ppl_waste_entri_tpakhirs');
 	}
 
 }

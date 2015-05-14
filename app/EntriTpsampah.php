@@ -12,4 +12,6 @@ class EntriTpsampah extends Eloquent {
 	protected $fillable = [
 		'tps_id', 'volume'
 	];
+
+    protected $table = 'ppl_waste_entri_tpsampahs';
 }

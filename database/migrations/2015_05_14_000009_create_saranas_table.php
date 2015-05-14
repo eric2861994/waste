@@ -12,14 +12,14 @@ class CreateSaranasTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('saranas', function(Blueprint $table)
+		Schema::create('ppl_waste_saranas', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('type_id')->unsigned();
             $table->integer('schedule_id')->unsigned()->nullable();
             $table->string('plate_number', 16);
 
-            $table->foreign('type_id')->references('id')->on('tipe_saranas');
+            $table->foreign('type_id')->references('id')->on('ppl_waste_tipe_saranas');
 		});
 	}
 
@@ -30,7 +30,7 @@ class CreateSaranasTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('saranas');
+		Schema::drop('ppl_waste_saranas');
 	}
 
 }

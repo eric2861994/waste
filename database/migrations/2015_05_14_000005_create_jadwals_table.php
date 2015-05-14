@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipeSaranasTable extends Migration {
+class CreateJadwalsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class CreateTipeSaranasTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tipe_saranas', function(Blueprint $table)
+		Schema::create('ppl_waste_jadwals', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('type')->unique();
-            $table->double('volume', 15, 8);
-            $table->integer('count')->unsigned()->default(0);
+			$table->string('summary', 255);
+			$table->timestamps();
 		});
 	}
 
@@ -28,7 +27,7 @@ class CreateTipeSaranasTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tipe_saranas');
+		Schema::drop('ppl_waste_jadwals');
 	}
 
 }

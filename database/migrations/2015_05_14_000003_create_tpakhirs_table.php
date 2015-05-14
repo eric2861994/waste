@@ -12,7 +12,7 @@ class CreateTpakhirsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tpakhirs', function(Blueprint $table)
+		Schema::create('ppl_waste_tpakhirs', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name');
@@ -27,7 +27,7 @@ class CreateTpakhirsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tpakhirs');
+		Schema::drop('ppl_waste_tpakhirs');
 	}
 
 }

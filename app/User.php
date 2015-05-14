@@ -15,14 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = ['nik', 'role', 'password'];
+	protected $table = 'ppl_waste_users';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -30,8 +23,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
-
-    public function petugas() {
-        return $this->hasOne('App\Petugas', 'user_id');
-    }
 }

@@ -12,7 +12,7 @@ class CreatePetugasTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('petugas', function(Blueprint $table)
+		Schema::create('ppl_waste_petugas', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('nip')->unique();
@@ -20,8 +20,8 @@ class CreatePetugasTable extends Migration {
             $table->integer('user_id')->unsigned();
             $table->integer('jadwal_id')->unsigned()->nullable();
 
-            $table->foreign('jadwal_id')->references('id')->on('jadwals');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('jadwal_id')->references('id')->on('ppl_waste_jadwals');
+            $table->foreign('user_id')->references('id')->on('ppl_waste_users')->onDelete('cascade');
 		});
 	}
 
@@ -32,7 +32,7 @@ class CreatePetugasTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('petugas');
+		Schema::drop('ppl_waste_petugas');
 	}
 
 }

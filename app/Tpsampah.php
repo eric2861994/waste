@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Tpsampah extends Eloquent {
 	
 	public $timestamps = false;
+
+    protected $table = 'ppl_waste_tpsampahs';
 	
 	/**
 	 * Fillable fields for a Tpsampah.

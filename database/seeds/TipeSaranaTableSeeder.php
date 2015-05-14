@@ -25,7 +25,7 @@ class TipeSaranaTableSeeder extends Seeder {
           ['type' => 'Mobil Kecil', 'volume' => 1, 'count' => 4]
         );
 
-        DB::table('tipe_saranas') -> insert($sarana);
+        DB::table('ppl_waste_tipe_saranas') -> insert($sarana);
     }
 
 }

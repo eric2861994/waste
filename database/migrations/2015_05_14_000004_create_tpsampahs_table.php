@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJadwalsTable extends Migration {
+class CreateTpsampahsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateJadwalsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('jadwals', function(Blueprint $table)
+		Schema::create('ppl_waste_tpsampahs', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('summary', 255);
-			$table->timestamps();
+			$table->string('name');
+			$table->string('location');
 		});
 	}
 
@@ -27,7 +27,7 @@ class CreateJadwalsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('jadwals');
+		Schema::drop('ppl_waste_tpsampahs');
 	}
 
 }

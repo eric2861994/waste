@@ -12,4 +12,6 @@ class EntriTpakhir extends Eloquent {
 	protected $fillable = [
 		'tps_id', 'tpa_id', 'volume'
 	];
+
+    protected $table = 'ppl_waste_tpakhirs';
 }

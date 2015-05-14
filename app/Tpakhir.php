@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Tpakhir extends Eloquent {
 	
 	public $timestamps = false;
+
+    protected $table = 'ppl_waste_tpakhirs';
 	
 	/**
 	 * Fillable fields for a Tpakhir.

@@ -6,6 +6,8 @@ use Carbon\Carbon;
 class DetailJadwal extends Model
 {
 
+    protected $table = 'ppl_waste_detail_jadwals';
+
     public $timestamps = false;
     protected $fillable = ['jadwal_id', 'start_time', 'end_time', 'description'];
 

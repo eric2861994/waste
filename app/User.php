@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var string
 	 */
-	protected $table = 'ppl_waste_users';
+	protected $table = 'ppl_dukcapil_ktp';
 
 	/**
 	 * The attributes excluded from the model's JSON form.

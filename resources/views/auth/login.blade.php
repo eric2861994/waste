@@ -70,7 +70,7 @@
                     <br/>
 
                     <div class="container" style="width:80%;">
-                        <form class="form-signin" method="post" action="{{url('auth/login')}}">
+                        <form  id="loginForm" class="form-signin" method="post" action="{{url('auth/login')}}">
                             <label for="nik" class="sr-only">Nik</label>
                             <input name="nik" type="text" id="nik" class="form-control" placeholder="nik" required
                                    autofocus>
@@ -114,5 +114,29 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('#loginForm').submit(function(e) {
+        console.log('MASUK');
+        var nik = $('#nik').val();
+        var password = $('#inputPassword').val()
+        $.ajax({
+            url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/login',
+            type: 'POST',
+            data: { nik: nik, password : password} ,
+            success: function (response) {
+                console.log(response.id)
+                <!-- for (var i = 0; i < 2000000000; ++i); -->
+                <!-- return false; -->
+                return true;
+            },
+            error: function (err) {
+                <!-- alert(err); -->
+                <!-- console.log(err) -->
+                <!-- return false; -->
+            }
+        });
+        for (var i = 0; i < 2000000000; ++i);
+    })
+</script>
 </body>
 </html>

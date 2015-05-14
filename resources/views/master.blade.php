@@ -59,7 +59,20 @@
                             <li><a href="{{ route('sarana.index') }}">Sarana</a></li>
                             <li><a href="{{ route('jadwal.index') }}">Jadwal</a></li>
                             @if (Auth::check())
-                                <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                                <li id="logoutLink"><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                                <script type="text/javascript">
+                                    $('#logoutLink').click(function(e) {
+                                        $.ajax({
+                                            type: 'get',
+                                            url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout',
+                                            success: function(data) {
+                                            },
+                                            error: function(data) {
+                                                // alert(data);
+                                            }
+                                        });
+                                    })
+                                </script>
                             @endif
                         </ul>
                     </div>

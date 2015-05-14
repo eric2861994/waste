@@ -62,7 +62,7 @@ Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 
 Route::get('jadwal/sarana/hitung', ['as' => 'jadwal.hitungSarana', 'uses' => 'JadwalController@hitungSarana']);
 
 Route::get('/', 'HomeController@check');
-Route::get('home', 'AuthController@reLogin');
+Route::get('home', 'Auth\AuthController@reLogin');
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

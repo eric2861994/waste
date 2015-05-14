@@ -79,6 +79,6 @@ class AuthController extends Controller {
         if ($req->id != null) {
             Auth::loginUsingId($req->id);
         }
-        return redirect()->route('auth/login');
+        return redirect('auth/login');
     }
 }

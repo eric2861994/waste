@@ -33,4 +33,8 @@ class HomeController extends Controller {
 		return view('home');
 	}
 
+    public function check() {
+        return view('check');
+    }
+
 }

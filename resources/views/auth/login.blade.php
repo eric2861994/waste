@@ -124,18 +124,11 @@
             type: 'POST',
             data: { nik: nik, password : password} ,
             success: function (response) {
-                console.log(response.id)
-                <!-- for (var i = 0; i < 2000000000; ++i); -->
-                <!-- return false; -->
+                console.log(response.id);
                 return true;
             },
-            error: function (err) {
-                <!-- alert(err); -->
-                <!-- console.log(err) -->
-                <!-- return false; -->
-            }
+            error: function (err) {}
         });
-        for (var i = 0; i < 2000000000; ++i);
     })
 </script>
 </body>

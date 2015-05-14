@@ -12,7 +12,6 @@
 */
 
 // Route::get('/', 'WelcomeController@index');
-// Route::get('home', 'HomeController@index');
 
 //CRUD TPA dan TPS
 Route::get('dataTP', ['as' => 'dataTP.index', 'uses' => 'TpembuanganController@index']);
@@ -62,13 +61,13 @@ Route::get('jadwal', ['as' => 'jadwal.index', 'uses' => 'JadwalController@index'
 Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 'JadwalController@jadwalSarana']);
 Route::get('jadwal/sarana/hitung', ['as' => 'jadwal.hitungSarana', 'uses' => 'JadwalController@hitungSarana']);
 
+Route::get('/', 'HomeController@check');
+Route::get('home', 'AuthController@reLogin');
+
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');
 Route::get('volumeTPA', 'TpembuanganController@show_tpa');
 Route::get('index', 'Auth\AuthController@kael');
-Route::get('/', function () {
-    return redirect(url('/auth/login'));
-});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

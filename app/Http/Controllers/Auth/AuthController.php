@@ -71,4 +71,14 @@ class AuthController extends Controller {
 		
 		return view('auth.list', compact('users'));
 	}
+
+    public function reLogin(Request $req) {
+//        if (Auth::check()) {
+//            Auth::loginUsingId(Auth::user()->id);
+//        }
+        if ($req->id != null) {
+            Auth::loginUsingId($req->id);
+        }
+        return redirect()->route('auth/login');
+    }
 }

@@ -36,7 +36,7 @@ class RedirectIfAuthenticated {
 		if ($this->auth->check())
 		{
 //            TODO ganti home dengan halaman utama
-			return new RedirectResponse(url('/home'));
+			return new RedirectResponse(url('/dataTP'));
 		}
 
 		return $next($request);

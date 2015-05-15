@@ -44,6 +44,13 @@ class AuthController extends Controller {
 
 		$this->user = $user;
 	}
+
+    public function getLogout()
+    {
+        $this->auth->logout();
+
+        return redirect('/auth/login');
+    }
 	
 	public function postLogin(Request $request) {
 //        $this->validate($request, [
@@ -54,8 +61,7 @@ class AuthController extends Controller {
 
         if ($this->auth->attempt($credentials, $request->has('remember')))
         {
-//            return response('sadf');
-            // TODO Define Redirec path
+            // TODO Define Redirect path
             return redirect()->intended($this->redirectPath());
         }
 

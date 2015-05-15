@@ -16,4 +16,8 @@ class Tpakhir extends Eloquent {
 	protected $fillable = [
 		'name', 'location'
 	];
+
+    public function entry() {
+        return $this->hasMany('App\EntriTpakhir', 'tpa_id');
+    }
 }

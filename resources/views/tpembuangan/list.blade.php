@@ -34,7 +34,7 @@
                     <td id="{{ 'lokasi' . $entry_num }}">{{ $tpsampah->location }}</td>
                     <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> |
                         <a href="#" id="{{ $entry_num }}" class="delButt">delete</a> |
-                        <a href="lihat">lihat</a></td>
+                        <a href="{{ route('dataTP.show_tps', $tpsampah->id) }}">lihat</a></td>
                 </tr>
             @endforeach
 
@@ -47,7 +47,7 @@
                     <td id="{{ 'lokasi' . $entry_num }}">{{ $tpakhir->location }}</td>
                     <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> |
                         <a href="#" id="{{ $entry_num }}" class="delButt">delete</a> |
-                        <a href="lihat">lihat</a></td>
+                        <a href="">lihat</a></td>
                 </tr>
             @endforeach
             </tbody>

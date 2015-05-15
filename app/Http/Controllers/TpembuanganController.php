@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use App\EntriTpsampah;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Tpsampah;
 use App\Tpakhir;
+use Carbon\Carbon;
 use App\Http\Requests\TpembuanganRequest;
 
 class TpembuanganController extends Controller {
@@ -60,8 +62,18 @@ class TpembuanganController extends Controller {
         return redirect()->route('dataTP.index');
     }
 
-    public function show_tps() {
+    /**
+     * Menampilkan detail entri untuk tps.
+     *
+     * @param Tpsampah $tpsampah
+     * @return \Illuminate\View\View
+     */
+    public function show_tps(Tpsampah $tpsampah) {
+        $cLastWeek = Carbon::now()->subDays(7);
+        $entry_tps = $tpsampah->entries()->latest()->where('created_at', '>', $cLastWeek)->get();
+        $entry_tpa = $tpsampah->entrytpas()->latest()->where('created_at', '>', $cLastWeek)->get();
 
+        return view('tpembuangan.show_tps', compact('tpsampah', 'entry_tps', 'entry_tpa'));
     }
 
     /**

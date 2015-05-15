@@ -13,5 +13,9 @@ class EntriTpakhir extends Eloquent {
 		'tps_id', 'tpa_id', 'volume'
 	];
 
-    protected $table = 'ppl_waste_tpakhirs';
+    protected $table = 'ppl_waste_entri_tpakhirs';
+
+    public function tpa() {
+        return $this->belongsTo('App\Tpakhir', 'tpa_id');
+    }
 }

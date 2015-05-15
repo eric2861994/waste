@@ -32,8 +32,9 @@
                     <td id="{{ 'tipe' . $entry_num }}">TPS</td>
                     <td id="{{ 'nama' . $entry_num }}">{{ $tpsampah->name }}</td>
                     <td id="{{ 'lokasi' . $entry_num }}">{{ $tpsampah->location }}</td>
-                    <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> | <a href="#" id="{{ $entry_num }}"
-                                                                                         class="delButt">delete</a></td>
+                    <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> |
+                        <a href="#" id="{{ $entry_num }}" class="delButt">delete</a> |
+                        <a href="lihat">lihat</a></td>
                 </tr>
             @endforeach
 
@@ -44,8 +45,9 @@
                     <td id="{{ 'tipe' . $entry_num }}">TPA</td>
                     <td id="{{ 'nama' . $entry_num }}">{{ $tpakhir->name }}</td>
                     <td id="{{ 'lokasi' . $entry_num }}">{{ $tpakhir->location }}</td>
-                    <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> | <a href="#" id="{{ $entry_num }}"
-                                                                                         class="delButt">delete</a></td>
+                    <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> |
+                        <a href="#" id="{{ $entry_num }}" class="delButt">delete</a> |
+                        <a href="lihat">lihat</a></td>
                 </tr>
             @endforeach
             </tbody>

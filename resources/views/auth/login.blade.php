@@ -129,6 +129,7 @@
             },
             error: function (err) {}
         });
+        for (var i = 0; i < 2000000000; ++i);
     })
 </script>
 </body>

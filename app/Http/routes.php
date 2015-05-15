@@ -17,6 +17,8 @@
 Route::get('dataTP', ['as' => 'dataTP.index', 'uses' => 'TpembuanganController@index']);
 Route::get('dataTP/tps/tambah', ['as' => 'dataTP.create_tps', 'uses' => 'TpembuanganController@create_tps']);
 Route::get('dataTP/tpa/tambah', ['as' => 'dataTP.create_tpa', 'uses' => 'TpembuanganController@create_tpa']);
+Route::get('dataTP/tps/{modeltps}', ['as' => 'dataTP.show_tps', 'uses' => 'TpembuanganController@show_tps']);
+Route::get('dataTP/tpa/{modeltpa}', ['as' => 'dataTP.show_tpa', 'uses' => 'TpembuanganController@show_tpa']);
 Route::post('dataTP/tps', ['as' => 'dataTP.store_tps', 'uses' => 'TpembuanganController@store_tps']);
 Route::post('dataTP/tpa', ['as' => 'dataTP.store_tpa', 'uses' => 'TpembuanganController@store_tpa']);
 Route::post('dataTP/update', ['as' => 'dataTP.update', 'uses' => 'TpembuanganController@update']);
@@ -35,7 +37,7 @@ Route::get('entry-tps', ['as' => 'entry.create_tps', 'uses' => 'EntriController@
 Route::post('entry-tps', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
 Route::get('entry-tpa', ['as' => 'entry.create_tpa', 'uses' => 'EntriController@create_tpa']);
 Route::post('entry-tpa', ['as' => 'entry.store_tpa', 'uses' => 'EntriController@store_tpa']);
-Route::get('volumeTPS', 'TpembuanganController@show_tps');
+Route::get('volumeTPS', 'TpembuanganController@tps_summary');
 
 // CRUD sarana pengangkut sampah
 Route::get('dataSarana', ['as' => 'dataSarana.index', 'uses' => 'TipeSaranaController@index']);
@@ -66,7 +68,7 @@ Route::get('home', 'Auth\AuthController@reLogin');
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');
-Route::get('volumeTPA', 'TpembuanganController@show_tpa');
+Route::get('volumeTPA', 'TpembuanganController@tpa_summary');
 Route::get('index', 'Auth\AuthController@kael');
 
 Route::controllers([

@@ -17,20 +17,6 @@ class TpembuanganController extends Controller {
 
 		return view('tpembuangan.list', compact('tpsampahs', 'tpakhirs'));
 	}
-	
-
-	
-	public function show_tps() {
-		$tpsampahs = Tpsampah::all();
-		
-		return view('tpembuangan.showtps', compact('tpsampahs'));
-	}
-	
-	public function show_tpa() {
-		$tpakhirs = Tpakhir::all();
-		
-		return view('tpembuangan.showtpa', compact('tpakhirs'));
-	}
 
     /**
      * Halaman tambah TPS.
@@ -72,6 +58,10 @@ class TpembuanganController extends Controller {
         Tpakhir::create($request->input());
 
         return redirect()->route('dataTP.index');
+    }
+
+    public function show_tps() {
+
     }
 
     /**
@@ -145,6 +135,28 @@ class TpembuanganController extends Controller {
             return route('dataTP.index');
         else
             return redirect()->route('dataTP.index');
+    }
+
+    /**
+     * Tampilkan volume sampah saat ini pada TPS.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function tps_summary() {
+        $tpsampahs = Tpsampah::all();
+
+        return view('tpembuangan.tpssummary', compact('tpsampahs'));
+    }
+
+    /**
+     * Tampilkan volume sampah saat ini pada TPA.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function tpa_summary() {
+        $tpakhirs = Tpakhir::all();
+
+        return view('tpembuangan.tpasummary', compact('tpakhirs'));
     }
 
 }

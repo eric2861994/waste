@@ -19,7 +19,8 @@ class CreateSaranasTable extends Migration {
             $table->integer('schedule_id')->unsigned()->nullable();
             $table->string('plate_number', 16);
 
-            $table->foreign('type_id')->references('id')->on('ppl_waste_tipe_saranas');
+            $table->foreign('type_id')->references('id')->on('ppl_waste_tipe_saranas')->onDelete('cascade');
+            $table->foreign('schedule_id')->references('id')->on('ppl_waste_jadwals')->onDelete('set null');
 		});
 	}
 

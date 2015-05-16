@@ -10,6 +10,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	use Authenticatable, CanResetPassword;
 
+    protected $fillable = ['role'];
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -23,4 +25,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+    public function penghubung() {
+    }
 }

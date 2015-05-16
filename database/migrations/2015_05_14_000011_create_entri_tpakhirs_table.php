@@ -20,8 +20,8 @@ class CreateEntriTpakhirsTable extends Migration {
             $table->double('volume', 15, 8);
             $table->timestamps();
 
-            $table->foreign('tps_id')->references('id')->on('ppl_waste_tpsampahs');
-            $table->foreign('tpa_id')->references('id')->on('ppl_waste_tpakhirs');
+            $table->foreign('tps_id')->references('id')->on('ppl_waste_tpsampahs')->onDelete('cascade');
+            $table->foreign('tpa_id')->references('id')->on('ppl_waste_tpakhirs')->onDelete('cascade');
 		});
 	}
 

@@ -16,7 +16,6 @@ class CreateJadwalsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('summary', 255);
-			$table->timestamps();
 		});
 	}
 

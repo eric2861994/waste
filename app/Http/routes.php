@@ -66,7 +66,9 @@ Route::get('/', 'HomeController@check');
 Route::get('home', 'Auth\AuthController@reLogin');
 
 // REVISI
-Route::get('pengguna', ['as' => 'pengguna.index', 'uses' => 'PenggunaController@index']);
+Route::get('pengguna', ['as' => 'user.index', 'uses' => 'UserController@index']);
+Route::get('pengguna/tambah', ['as' => 'user.create', 'uses' => 'UserController@create']);
+Route::get('pengguna/{modeluser}/ubah', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

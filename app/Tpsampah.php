@@ -7,15 +7,7 @@ class Tpsampah extends Eloquent {
 	public $timestamps = false;
 
     protected $table = 'ppl_waste_tpsampahs';
-	
-	/**
-	 * Fillable fields for a Tpsampah.
-	 * 
-	 * @var array
-	 */
-	protected $fillable = [
-		'name', 'location'
-	];
+	protected $fillable = ['name', 'location'];
 	
 	public function entries()
     {

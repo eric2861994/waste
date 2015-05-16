@@ -48,8 +48,6 @@ Route::get('dataSarana/{tipesarana}', ['as' => 'dataSarana.show', 'uses' => 'Tip
 Route::put('dataSarana/{tipesarana}', ['as' => 'dataSarana.update', 'uses' => 'TipeSaranaController@update']);
 Route::delete('dataSarana/{tipesarana}', ['as' => 'dataSarana.destroy', 'uses' => 'TipeSaranaController@destroy']);
 
-//penjadwalan
-Route::get('Penjadwalan', 'Penjadwalan@index');
 //Sarana
 Route::get('sarana', ['as' => 'sarana.index', 'uses' => 'SaranaController@index']);
 Route::post('sarana', ['as' => 'sarana.store', 'uses' => 'SaranaController@store']);
@@ -60,11 +58,15 @@ Route::get('sarana/{sarana}/ubah', ['as' => 'sarana.edit', 'uses' => 'SaranaCont
 
 //CRUD JADWAL + DETILJADWAL
 Route::get('jadwal', ['as' => 'jadwal.index', 'uses' => 'JadwalController@index']);
+Route::get('jadwal/{modeljadwal}', ['as' => 'jadwal.show', 'uses' => 'JadwalController@show']);
 Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 'JadwalController@jadwalSarana']);
 Route::get('jadwal/sarana/hitung', ['as' => 'jadwal.hitungSarana', 'uses' => 'JadwalController@hitungSarana']);
 
 Route::get('/', 'HomeController@check');
 Route::get('home', 'Auth\AuthController@reLogin');
+
+// REVISI
+Route::get('pengguna', ['as' => 'pengguna.index', 'uses' => 'PenggunaController@index']);
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');

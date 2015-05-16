@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider {
         $router->model('modeltps', 'App\Tpsampah');
         $router->model('modeltpa', 'App\Tpakhir');
         $router->model('sarana', 'App\Sarana');
+        $router->model('modeljadwal', 'App\Jadwal');
 	}
 
 	/**

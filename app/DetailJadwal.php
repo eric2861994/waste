@@ -12,7 +12,11 @@ class DetailJadwal extends Model
     protected $fillable = ['jadwal_id', 'start_time', 'end_time', 'description'];
 
     public function getStartTimeAttribute($value) {
-        return Carbon::createFromFormat('H:i:s', $value);
+        return Carbon::createFromFormat('His', $value);
+    }
+
+    public function getEndTimeAttribute($value) {
+        return Carbon::createFromFormat('His', $value);
     }
 
     public function jadwal() {

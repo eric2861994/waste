@@ -24,10 +24,10 @@ class JadwalController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Tampilkan jadwal
      *
-     * @param  int $id
-     * @return Response
+     * @param Jadwal $jadwal
+     * @return \Illuminate\View\View
      */
     public function show(Jadwal $jadwal)
     {
@@ -251,7 +251,7 @@ class JadwalController extends Controller
         $degree = $totalRecall['degree'];
 
         foreach ($tpsDegree as $key => $val) {
-            $summary = 'jadwal untuk kendaraan dengan di TPS ';
+            $summary = 'jadwal untuk kendaraan di ';
             $idTPS = floor($key / 1000);
             $namaTPS = Tpsampah::find($idTPS)->name;
             $summary .= $namaTPS;

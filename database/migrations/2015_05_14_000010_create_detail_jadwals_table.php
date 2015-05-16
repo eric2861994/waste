@@ -16,11 +16,12 @@ class CreateDetailJadwalsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('jadwal_id')->unsigned();
-			$table->foreign('jadwal_id')->references('id')->on('ppl_waste_jadwals')->onDelete('cascade');
 			$table->string('start_time', 6);
 			$table->string('end_time', 6);
 			$table->string('description', 255);
-		});
+
+            $table->foreign('jadwal_id')->references('id')->on('ppl_waste_jadwals')->onDelete('cascade');
+        });
 	}
 
 	/**

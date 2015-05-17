@@ -52,12 +52,31 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="menu nav navbar-nav "> <!-- NOTE: the active state changes depending on the page -->
                             <!-- BACKEND TODO: set class="active" depending on current page. -->
-                            <li><a href="{{ url('/') }}">home</a></li>
-                            <li><a href="{{ route('entry.create_tps') }}">Entri</a></li>
-                            <li><a href="{{ url('/volumeTPS') }}">Pengawasan</a></li>
-                            <li><a href="{{ route('dataTP.index') }}">Administrasi</a></li>
-                            <li><a href="{{ route('sarana.index') }}">Sarana</a></li>
-                            <li><a href="{{ route('jadwal.index') }}">Jadwal</a></li>
+
+                            <script>
+                                var locationstring = window.location.pathname;
+                                console.log(locationstring);
+                                if (locationstring.indexOf('entri-tps') != -1){
+                                    document.getElementbyId("entrilist").className("active");
+                                } else if (locationstring.indexOf('volumeTPS') != -1){
+                                    document.getElementbyId("awaslist").className("active");
+                                } else if (locationstring.indexOf('dataTP') != -1){
+                                    document.getElementbyId("adminlist").className("active");
+                                } else if (locationstring.indexOf('public/sarana') != -1){
+                                    document.getElementbyId("saranalist").className("active");
+                                } else if (locationstring.indexOf('jadwal') != -1){
+                                    document.getElementbyId("jadwallist").className("active");
+                                } else {
+                                    document.getElementbyId("homelist").className("active");
+                                }
+                            </script>
+
+                            <li id="homelist"><a href="{{ url('/') }}">home</a></li>
+                            <li id="entrilist"><a href="{{ route('entry.create_tps') }}">Entri</a></li>
+                            <li id="awaslist"><a href="{{ url('/volumeTPS') }}">Pengawasan</a></li>
+                            <li id="adminlist"><a href="{{ route('dataTP.index') }}">Administrasi</a></li>
+                            <li id="saranalist"><a href="{{ route('sarana.index') }}">Sarana</a></li>
+                            <li id="jadwallist"><a href="{{ route('jadwal.index') }}">Jadwal</a></li>
                             @if (Auth::check())
                                 <li id="logoutLink"><a href="{{ url('/auth/logout') }}">Logout</a></li>
                                 <script type="text/javascript">

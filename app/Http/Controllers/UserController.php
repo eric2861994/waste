@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -15,6 +16,28 @@ class UserController extends Controller {
 
     public function jadwal() {
         return view('users.jadwal');
+    }
+
+    public function redirect() {
+        if (Auth::check())
+            switch (Auth::user()->level()) {
+                case 0:
+                    return redirect()->route('user.notice');
+                    break;
+                case 1:
+                    return redirect()->route('user.jadwal');
+                    break;
+                case 2:
+                    return redirect()->route('entry.create_tps');
+                    break;
+                case 3:
+                    return redirect()->route('dataTP.summary');
+                    break;
+                default:
+                    break;
+            }
+        else
+            return redirect('auth/login');
     }
 
 	/**

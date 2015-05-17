@@ -24,7 +24,7 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
-    public $redirectTo = '/dataTP';
+    public $redirectTo = '/redirector';
 	
 	private $user;
 
@@ -36,14 +36,14 @@ class AuthController extends Controller {
 	 * @return void
 	 */
 	public function __construct(Guard $auth, Registrar $registrar, User $user)
-	{
-		$this->auth = $auth;
-		$this->registrar = $registrar;
+{
+    $this->auth = $auth;
+    $this->registrar = $registrar;
 
-		$this->middleware('guest', ['except' => 'getLogout']);
+    $this->middleware('guest', ['except' => 'getLogout']);
 
-		$this->user = $user;
-	}
+    $this->user = $user;
+}
 
     public function getLogout()
     {
@@ -85,6 +85,6 @@ class AuthController extends Controller {
         if ($req->id != null) {
             Auth::loginUsingId($req->id);
         }
-        return redirect('auth/login');
+        return redirect('/redirector');
     }
 }

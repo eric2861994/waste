@@ -13,6 +13,11 @@ use App\Tpakhir;
 class EntriController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('three');
+    }
+
     /**
      * Halaman tambah Entri TPS.
      *

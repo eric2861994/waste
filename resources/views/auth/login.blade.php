@@ -103,16 +103,14 @@
         var nik = $('#nik').val();
         var password = $('#inputPassword').val();
 
-        var wait = true;
         $.ajax({
             url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/login',
             type: 'POST',
             data: { nik: nik, password : password}
         }).done(function (e) {
-            wait = false;
+            return true;
         });
-        while (wait);
-        return true;
+        while (true);
     }
 </script>
 </body>

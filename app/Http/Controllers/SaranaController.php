@@ -42,20 +42,14 @@ class SaranaController extends Controller {
      */
 	public function store(Request $request)
 	{
+        $this->validate($request, [
+            'type_id' => 'required|integer|exists:ppl_waste_tipe_saranas,id',
+            'plate_number' => 'required|string|unique:ppl_waste_saranas,plate_number|max:16'
+        ]);
+
 		Sarana::create($request->input());
 
         return redirect()->route('sarana.index');
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
 	}
 
     /**
@@ -80,6 +74,11 @@ class SaranaController extends Controller {
      */
 	public function update(Sarana $sarana, Request $request)
 	{
+        $this->validate($request, [
+            'type_id' => 'required|integer|exists:ppl_waste_tipe_saranas,id',
+            'plate_number' => 'required|string|unique:ppl_waste_saranas,plate_number,'.$sarana->id.'|max:16'
+        ]);
+
 		$sarana->update($request->input());
 
         return redirect()->route('sarana.index');

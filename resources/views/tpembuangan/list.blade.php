@@ -33,8 +33,7 @@
                     <td id="{{ 'nama' . $entry_num }}">{{ $tpsampah->name }}</td>
                     <td id="{{ 'lokasi' . $entry_num }}">{{ $tpsampah->location }}</td>
                     <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> |
-                        <a href="#" id="{{ $entry_num }}" class="delButt">delete</a> |
-                        <a href="{{ route('dataTP.show_tps', $tpsampah->id) }}">lihat</a></td>
+                        <a href="#" id="{{ $entry_num }}" class="delButt">delete</a></td>
                 </tr>
             @endforeach
 
@@ -46,8 +45,7 @@
                     <td id="{{ 'nama' . $entry_num }}">{{ $tpakhir->name }}</td>
                     <td id="{{ 'lokasi' . $entry_num }}">{{ $tpakhir->location }}</td>
                     <td><a href="#" class="editButt" id="{{ $entry_num }}">edit</a> |
-                        <a href="#" id="{{ $entry_num }}" class="delButt">delete</a> |
-                        <a href="">lihat</a></td>
+                        <a href="#" id="{{ $entry_num }}" class="delButt">delete</a></td>
                 </tr>
             @endforeach
             </tbody>
@@ -173,7 +171,6 @@
                         },
                         success: function (result) {
                             // Do something with the result
-                            alert("TPS ID " + id + " deleted.");
                             window.location.href = result;
                         }
                     });
@@ -186,7 +183,6 @@
                         },
                         success: function (result) {
                             // Do something with the result
-                            alert("TPA ID " + id + " deleted.");
                             window.location.href = result;
                         }
                     });

@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\TipeSarana;
-use App\Http\Requests\TipeSaranaRequest;
 
 class TipeSaranaController extends Controller {
 
@@ -37,8 +36,13 @@ class TipeSaranaController extends Controller {
      * @param TipeSaranaRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function store(TipeSaranaRequest $request)
+	public function store(Request $request)
 	{
+        $this->validate($request, [
+            'type' => 'required|string|unique:ppl_waste_tipe_saranas,type|min:1|max:255',
+            'volume' => 'required|numeric|min:0|max:1000'
+        ]);
+
 		TipeSarana::create($request->input());
 
         return redirect()->route('dataSarana.index');
@@ -73,8 +77,13 @@ class TipeSaranaController extends Controller {
      * @param TipeSaranaRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function update(TipeSarana $tipesarana, TipeSaranaRequest $request)
+	public function update(TipeSarana $tipesarana, Request $request)
 	{
+        $this->validate($request, [
+            'type' => 'required|string|unique:ppl_waste_tipe_saranas,type,'.$tipesarana->id.'|min:1|max:255',
+            'volume' => 'required|numeric|min:0|max:1000'
+        ]);
+
 		$tipesarana->update($request->input());
 
         return redirect()->route('dataSarana.index');

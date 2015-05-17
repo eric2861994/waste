@@ -14,4 +14,8 @@ class EntriTpsampah extends Eloquent {
 	];
 
     protected $table = 'ppl_waste_entri_tpsampahs';
+
+    public function tps() {
+        return $this->belongsTo('App\Tpsampah', 'tps_id');
+    }
 }

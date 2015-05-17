@@ -1,4 +1,4 @@
-@extends ('master')
+@extends ('sarana_master')
 
 @section ('main-section')
     <h1>Ubah Tipe Sarana</h1>
@@ -8,4 +8,6 @@
     @include ('tipesarana._form')
 
     {!! Form::close() !!}
+
+    @include ('errors.list')
 @stop

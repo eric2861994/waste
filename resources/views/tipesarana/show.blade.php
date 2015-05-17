@@ -1,4 +1,4 @@
-@extends('master')
+@extends('sarana_master')
 
 @section('main-section')
 

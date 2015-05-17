@@ -9,6 +9,7 @@ use App\Tpsampah;
 use App\Tpakhir;
 use Carbon\Carbon;
 use App\Http\Requests\TpembuanganRequest;
+use App\EntriTpakhir;
 
 class TpembuanganController extends Controller {
 
@@ -60,20 +61,6 @@ class TpembuanganController extends Controller {
         Tpakhir::create($request->input());
 
         return redirect()->route('dataTP.index');
-    }
-
-    /**
-     * Menampilkan detail entri untuk tps.
-     *
-     * @param Tpsampah $tpsampah
-     * @return \Illuminate\View\View
-     */
-    public function show_tps(Tpsampah $tpsampah) {
-        $cLastWeek = Carbon::now()->subDays(7);
-        $entry_tps = $tpsampah->entries()->latest()->where('created_at', '>', $cLastWeek)->get();
-        $entry_tpa = $tpsampah->entrytpas()->latest()->where('created_at', '>', $cLastWeek)->get();
-
-        return view('tpembuangan.show_tps', compact('tpsampah', 'entry_tps', 'entry_tpa'));
     }
 
     /**
@@ -154,21 +141,42 @@ class TpembuanganController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function tps_summary() {
+    public function summary() {
         $tpsampahs = Tpsampah::all();
+        $tpakhirs = Tpakhir::all();
 
-        return view('tpembuangan.tpssummary', compact('tpsampahs'));
+        return view('tpembuangan.summary', compact('tpsampahs', 'tpakhirs'));
+    }
+
+    public function detailed() {
+        $cLastWeek = Carbon::now()->subDays(7);
+        $entry_tps = EntriTpsampah::latest()->where('created_at', '>', $cLastWeek)->get();
+        $entry_tpa = EntriTpakhir::latest()->where('created_at', '>', $cLastWeek)->get();
+
+        return view('tpembuangan.detailed', compact('entry_tps', 'entry_tpa'));
     }
 
     /**
-     * Tampilkan volume sampah saat ini pada TPA.
+     * Menampilkan detail entri untuk tps.
      *
+     * @param Tpsampah $tpsampah
      * @return \Illuminate\View\View
      */
-    public function tpa_summary() {
-        $tpakhirs = Tpakhir::all();
+    public function show_tps(Tpsampah $tpsampah) {
+        $cLastWeek = Carbon::now()->subDays(7);
 
-        return view('tpembuangan.tpasummary', compact('tpakhirs'));
+        $entry_tps = $tpsampah->entries()->latest()->where('created_at', '>', $cLastWeek)->get();
+        $entry_tpa = $tpsampah->entrytpas()->latest()->where('created_at', '>', $cLastWeek)->get();
+
+        return view('tpembuangan.show_tps', compact('tpsampah', 'entry_tps', 'entry_tpa'));
+    }
+
+    public function show_tpa(Tpakhir $tpakhir) {
+        $cLastWeek = Carbon::now()->subDays(7);
+
+        $entry_tpa = $tpakhir->entry()->latest()->where('created_at', '>', $cLastWeek)->get();
+
+        return view('tpembuangan.show_tpa', compact('tpakhir', 'entry_tpa'));
     }
 
 }

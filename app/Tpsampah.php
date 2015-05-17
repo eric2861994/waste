@@ -17,4 +17,13 @@ class Tpsampah extends Eloquent {
     public function entrytpas() {
         return $this->hasMany('App\EntriTpakhir', 'tps_id');
     }
+
+    public function volume() {
+        $total = 0;
+        foreach ($this->entries as $entry)
+            $total += $entry->volume;
+        foreach ($this->entrytpas as $entry)
+            $total -= $entry->volume;
+        return $total;
+    }
 }

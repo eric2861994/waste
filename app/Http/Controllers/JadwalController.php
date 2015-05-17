@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Jadwal;
 use App\DetailJadwal;
+use App\TipeSarana;
 use App\Tpsampah;
 use App\Sarana;
 use App\User;
@@ -21,7 +22,6 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        $jadwals = Jadwal::all();
         return view('jadwal.list', compact('jadwals'));
     }
 
@@ -34,6 +34,12 @@ class JadwalController extends Controller
     public function show(Jadwal $jadwal)
     {
         return view('jadwal.show', compact('jadwal'));
+    }
+
+    public function success() {
+        $apa = 'Testing';
+
+        return view('jadwal.success', compact('apa'));
     }
 
     public function totalRecallSarana() {
@@ -315,6 +321,10 @@ class JadwalController extends Controller
                 }
             }
         }
+
+        $apa = 'Sarana';
+
+        return view('jadwal.success', compact('apa'));
     }
 
     public function hitungSarana() {
@@ -323,20 +333,28 @@ class JadwalController extends Controller
         $dSarana = $totalRecall['dSarana'];
         $degree = $totalRecall['degree'];
 
-
         foreach ($dSarana as $sarana) {
             $idTPS = $sarana['tps'];
             $derajat = $degree[$sarana['id']];
-            $sisa = $bTPS[$idTPS]['v'] - $derajat * $sarana['v'];
-            $bTPS[$idTPS]['v'] = $sisa;
+            if ($derajat > 6)
+                $derajat = 6;
+            $idxTPS = $this->findIndex($idTPS, $bTPS);
+            $sisa = $bTPS[$idxTPS]['v'] - $derajat * $sarana['v'];
+            $bTPS[$idxTPS]['v'] = $sisa;
         }
 
-        $totalSisa = 0;
-        foreach ($bTPS as $tps) {
-            $totalSisa += $tps['v'];
+        $analisa = [];
+
+        foreach($bTPS as $entry) {
+            if ($entry['v'] > $this->EPSILON) {
+                $tps = Tpsampah::find($entry['id']);
+                $analisa[] = ['tps' => $tps, 'sisa' => $entry['v']];
+            }
         }
 
-        dd($totalSisa);
+        $tipeSaranas = TipeSarana::all();
+
+        return view('jadwal.count_sarana', compact('analisa', 'tipeSaranas'));
     }
 
     public function jadwalPetugas() {
@@ -409,6 +427,9 @@ class JadwalController extends Controller
                         $beres++;
                 }
             }
+
+        $apa = 'Petugas';
+        return view('jadwal.success', compact('apa'));
     }
 
     public function hitungPetugas() {
@@ -431,7 +452,10 @@ class JadwalController extends Controller
                 $butuhSupir += ceil($num_trip/2);
         }
 
-        return view('jadwal.count_worker', compact('bTPS', 'butuhPenyapu', 'butuhSupir'));
+        $skrgSupir = count(User::where('role', 'waste_pengangkut')->get());
+        $skrgPenyapu = count(User::where('role', 'waste_penyapu')->get());
+
+        return view('jadwal.count_worker', compact('skrgPenyapu', 'skrgSupir', 'butuhPenyapu', 'butuhSupir'));
     }
 
     /**

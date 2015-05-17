@@ -4,8 +4,8 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('count', 'Jumlah Sarana:') !!}
-    {!! Form::text('count', null, ['class' => 'form-control']) !!}
+    <label for="volume">Kapasitas Sarana (m<sup>3</sup>):</label>
+    {!! Form::text('volume', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

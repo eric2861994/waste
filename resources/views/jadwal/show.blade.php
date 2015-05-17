@@ -1,7 +1,7 @@
 @extends('administrasi_master')
 
 @section('main-section')
-    <h2 class="sub-header">Detail jadwal {{ $jadwal->id }}: {{ $jadwal->summary }}</h2>
+    <h2 class="sub-header">{{ $jadwal->summary }}</h2>
 
     <div class="table-responsive">
         <table class="table table-striped">

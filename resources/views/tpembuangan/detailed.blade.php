@@ -1,9 +1,9 @@
-@extends ('pengawasan_master')
+@extends('pengawasan_master')
 
 @section('main-section')
-    <h2 class="sub-header">Entri untuk {{ $tpsampah->name }}</h2>
+    <h2 class="sub-header">Entri untuk seminggu terakhir</h2>
 
-    <h3 class="sub-header">Masukan</h3>
+    <h3 class="sub-header">Entri TPS</h3>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -11,6 +11,7 @@
             <tr>
                 <th>#</th>
                 <th>Waktu</th>
+                <th>TPS</th>
                 <th>Volume (m<sup>3</sup>)</th>
             </tr>
             </thead>
@@ -19,6 +20,7 @@
                 <tr>
                     <td>{{ $idx+1 }}</td>
                     <td>{{ $entry->created_at }}</td>
+                    <td>{{ $entry->tps->name }}</td>
                     <td>{{ $entry->volume }}</td>
                 </tr>
             @endforeach
@@ -26,7 +28,7 @@
         </table>
     </div>
 
-    <h3 class="sub-header">Keluaran</h3>
+    <h3 class="sub-header">Entri TPA</h3>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -34,16 +36,18 @@
             <tr>
                 <th>#</th>
                 <th>Waktu</th>
-                <th>Volume</th>
+                <th>Asal</th>
                 <th>Tujuan</th>
+                <th>Volume</th>
             </tr>
             </thead>
             @foreach ($entry_tpa as $idx => $entry)
                 <tr>
                     <td>{{ $idx+1 }}</td>
                     <td>{{ $entry->created_at }}</td>
-                    <td>{{ $entry->volume }}</td>
+                    <td>{{ $entry->tps->name }}</td>
                     <td>{{ $entry->tpa->name }}</td>
+                    <td>{{ $entry->volume }}</td>
                 </tr>
             @endforeach
         </table>

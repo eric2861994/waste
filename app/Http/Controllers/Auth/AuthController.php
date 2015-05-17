@@ -53,9 +53,9 @@ class AuthController extends Controller {
     }
 	
 	public function postLogin(Request $request) {
-//        $this->validate($request, [
-//            'nik' => 'required', 'password' => 'required',
-//        ]); //sudah pasti required di form
+        $this->validate($request, [
+            'nik' => 'required', 'password' => 'required',
+        ]);
 
         $credentials = $request->only('nik', 'password');
 

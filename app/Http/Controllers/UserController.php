@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller {
+    public $DEFAULT_ROLE = 'masyarakat';
 
 	/**
 	 * Display a listing of the resource.
@@ -17,7 +18,6 @@ class UserController extends Controller {
 	{
 		$users = User::where('role', 'waste_pemantau')->orWhere('role', 'waste_tps')->orWhere('role', 'waste_penyapu')
             ->orWhere('role', 'waste_pengangkut')->get();
-//        $users = User::all();
 
         return view('users.index', compact('users'));
 	}
@@ -39,10 +39,11 @@ class UserController extends Controller {
 	 */
 	public function store(Request $req)
 	{
-        // TODO tambahkan validasi
         $user = User::where('nik', $req->nik)->first();
-        $user->update($req->input());
+        if (is_null($user) || $user->role != $this->DEFAULT_ROLE)
+            return redirect()->back()->withErrors(['error' => 'user tidak ada atau bukan merupakan masyarkat biasa']);
 
+        $user->update($req->input());
         return redirect()->route('user.index');
 	}
 
@@ -54,8 +55,10 @@ class UserController extends Controller {
 	 */
 	public function edit(User $user)
 	{
-        // TODO tambahkan validasi
-		return view('users.edit', compact('user'));
+        if (!in_array($user->role, ['waste_pemantau', 'waste_penyapu', 'waste_pengangkut', 'waste_tps']))
+            return redirect()->route('user.index');
+
+        return view('users.edit', compact('user'));
 	}
 
 	/**
@@ -66,8 +69,10 @@ class UserController extends Controller {
 	 */
 	public function update(User $user, Request $req)
 	{
-        // TODO tambahkan validasi
-		$user->update($req->input());
+        if (!in_array($user->role, ['waste_pemantau', 'waste_penyapu', 'waste_pengangkut', 'waste_tps']))
+            return redirect()->back()->withErrors(['error' => 'user bukan anggota waste']);
+
+        $user->update($req->input());
 
         return redirect()->route('user.index');
 	}
@@ -80,7 +85,9 @@ class UserController extends Controller {
 	 */
 	public function destroy(User $user)
 	{
-        // TODO tambahkan validasi
+        if (!in_array($user->role, ['waste_pemantau', 'waste_penyapu', 'waste_pengangkut', 'waste_tps']))
+            return redirect()->back()->withErrors(['error' => 'user bukan anggota waste']);
+
 		$user->update(['role' => 'masyarakat']);
 
         return redirect()->route('user.index');

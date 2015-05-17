@@ -3,6 +3,8 @@
 @section('main-section')
     <h2 class="sub-header">Daftar Pengguna</h2>
 
+    <a href="{{ route('user.create') }}"><button class="btn btn-style">Tambah Pengguna</button></a>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -11,6 +13,7 @@
                 <th>NIK</th>
                 <th>Peran</th>
                 <th>Jadwal</th>
+                <th>Operasi</th>
             </tr>
             </thead>
 
@@ -25,6 +28,8 @@
                     @else
                         <td>Tidak ada Jadwal</td>
                     @endif
+                    <td><a href="{{ route('user.edit', $user->id) }}">Ubah</a> |
+                        <a href="{{ route('user.destroy', $user->id) }}">Hapus</a></td>
                 </tr>
             @endforeach
 

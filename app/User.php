@@ -39,6 +39,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             return $this->role;
     }
 
+    public function level() {
+        if ($this->role == 'waste_penyapu')
+            return 1;
+        elseif ($this->role == 'waste_pengangkut')
+            return 1;
+        elseif ($this->role == 'waste_tps')
+            return 2;
+        elseif ($this->role == 'waste_pemantau')
+            return 3;
+        else
+            return 0;
+    }
+
     public function penghubung() {
         return $this->hasOne('App\UserJadwal', 'id_user');
     }

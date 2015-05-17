@@ -49,53 +49,18 @@
                                                                   class="img-responsive"/> </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="menu nav navbar-nav "> <!-- NOTE: the active state changes depending on the page -->
-                            <!-- BACKEND TODO: set class="active" depending on current page. -->
+                    @if (Auth::check())
+                        @if (Auth::user()->level() == 0)
+                            @include('_navbar_outsider')
+                        @elseif (Auth::user()->level() == 1)
+                            @include('_navbar_lapangan')
+                        @elseif (Auth::user()->level() == 2)
+                            @include('_navbar_tps')
+                        @elseif (Auth::user()->level() == 3)
+                            @include('_navbar_admin')
+                        @endif
+                    @endif
 
-                            
-
-                            <li id="homelist"><a href="{{ url('/') }}">home</a></li>
-                            <li id="entrilist"><a href="{{ route('entry.create_tps') }}">Entri</a></li>
-                            <li id="awaslist"><a href="{{ url('/volumeTPS') }}">Pengawasan</a></li>
-                            <li id="adminlist"><a href="{{ route('dataTP.index') }}">Administrasi</a></li>
-                            <li id="saranalist"><a href="{{ route('sarana.index') }}">Sarana</a></li>
-                            <li id="jadwallist"><a href="{{ route('jadwal.index') }}">Jadwal</a></li>
-                            @if (Auth::check())
-                                <li id="logoutLink"><a href="{{ url('/auth/logout') }}">Logout</a></li>
-                                <script type="text/javascript">
-                                    $('#logoutLink').click(function(e) {
-                                        console.log('LOGOUT JALAN KOK!');
-                                        $.ajax({
-                                            type: 'get',
-                                            url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout',
-                                            success: function(data) {
-                                            },
-                                            error: function(data) {
-                                                // alert(data);
-                                            }
-                                        });
-                                    })
-                                </script>
-                            @endif
-                        </ul>
-                        <script>
-                            var locationstring = window.location.pathname;
-                            console.log(locationstring);
-                            if (locationstring.indexOf('public/entry') != -1){
-                                document.getElementById("entrilist").className = "active";
-                            } else if (locationstring.indexOf('public/volume') != -1){
-                                document.getElementById("awaslist").className = "active";
-                            } else if (locationstring.indexOf('public/dataTP') != -1){
-                                document.getElementById("adminlist").className = "active";
-                            } else if (locationstring.indexOf('public/sarana') != -1){
-                                document.getElementById("saranalist").className = "active";
-                            } else if (locationstring.indexOf('public/jadwal') != -1){
-                                document.getElementById("jadwallist").className = "active";
-                            } 
-                        </script>
-                    </div>
-                    <!-- /.navbar-collapse -->
                 </div>
                 <!-- /.container-fluid -->
             </nav>

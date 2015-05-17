@@ -76,3 +76,5 @@ Route::get('jadwal/petugas/jadwalkan', ['as' => 'jadwal.jadwalPetugas', 'uses' =
 
 Route::get('/', 'HomeController@check');
 Route::get('home', 'Auth\AuthController@reLogin');
+Route::get('notice', ['as' => 'user.notice', 'uses' => 'UserController@notice']);
+Route::get('jadwalkerja', ['as' => 'user.jadwal', 'uses' => 'UserController@jadwal']);

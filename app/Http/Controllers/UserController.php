@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class UserController extends Controller {
     public $DEFAULT_ROLE = 'masyarakat';
 
+    public function notice() {
+        return view('users.notice');
+    }
+
+    public function jadwal() {
+        return view('users.jadwal');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

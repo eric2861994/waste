@@ -11,6 +11,24 @@
 |
 */
 
+// use case entri sampah
+Route::get('entry-tps', ['as' => 'entry.create_tps', 'uses' => 'EntriController@create_tps']);
+Route::get('entry-tpa', ['as' => 'entry.create_tpa', 'uses' => 'EntriController@create_tpa']);
+Route::post('entry-tps', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
+Route::post('entry-tpa', ['as' => 'entry.store_tpa', 'uses' => 'EntriController@store_tpa']);
+
+Route::controllers([
+    'auth' => 'Auth\AuthController'
+]);
+
+// CRUD users
+Route::get('pengguna', ['as' => 'user.index', 'uses' => 'UserController@index']);
+Route::get('pengguna/tambah', ['as' => 'user.create', 'uses' => 'UserController@create']);
+Route::get('pengguna/{modeluser}/ubah', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
+Route::get('pengguna/{modeluser}/hapus', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
+Route::post('pengguna', ['as' => 'user.store', 'uses' => 'UserController@store']);
+Route::put('pengguna/{modeluser}', ['as' => 'user.update', 'uses' => 'UserController@update']);
+
 // Route::get('/', 'WelcomeController@index');
 
 //CRUD TPA dan TPS
@@ -25,18 +43,7 @@ Route::post('dataTP/update', ['as' => 'dataTP.update', 'uses' => 'TpembuanganCon
 Route::delete('dataTP/tps/{modeltps}', ['as' => 'dataTP.destroy_tps', 'uses' => 'TpembuanganController@destroy_tps']);
 Route::delete('dataTP/tpa/{modeltpa}', ['as' => 'dataTP.destroy_tpa', 'uses' => 'TpembuanganController@destroy_tpa']);
 
-//CRUD data petugas
-Route::get('dataPetugas', ['as' => 'dataPetugas.index', 'uses' => 'PetugasController@index']);
-Route::get('dataPetugas/tambah', ['as' => 'dataPetugas.create', 'uses' => 'PetugasController@create']);
-Route::post('dataPetugas', ['as' => 'dataPetugas.store', 'uses' => 'PetugasController@store']);
-Route::put('dataPetugas/{petugas}', ['as' => 'dataPetugas.update', 'uses' => 'PetugasController@update']);
-Route::delete('dataPetugas/{petugas}', ['as' => 'dataPetugas.destroy', 'uses' => 'PetugasController@destroy']);
 
-//tambah entri sampah
-Route::get('entry-tps', ['as' => 'entry.create_tps', 'uses' => 'EntriController@create_tps']);
-Route::post('entry-tps', ['as' => 'entry.store_tps', 'uses' => 'EntriController@store_tps']);
-Route::get('entry-tpa', ['as' => 'entry.create_tpa', 'uses' => 'EntriController@create_tpa']);
-Route::post('entry-tpa', ['as' => 'entry.store_tpa', 'uses' => 'EntriController@store_tpa']);
 Route::get('volumeTPS', 'TpembuanganController@tps_summary');
 
 // CRUD sarana pengangkut sampah
@@ -61,22 +68,20 @@ Route::get('jadwal', ['as' => 'jadwal.index', 'uses' => 'JadwalController@index'
 Route::get('jadwal/{modeljadwal}', ['as' => 'jadwal.show', 'uses' => 'JadwalController@show']);
 Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 'JadwalController@jadwalSarana']);
 Route::get('jadwal/sarana/hitung', ['as' => 'jadwal.hitungSarana', 'uses' => 'JadwalController@hitungSarana']);
+Route::get('jadwal/petugas/hitung', ['as' => 'jadwal.hitungPetugas', 'uses' => 'JadwalController@hitungPetugas']);
+Route::get('jadwal/petugas/jadwalkan', ['as' => 'jadwal.jadwalPetugas', 'uses' => 'JadwalController@jadwalPetugas']);
 
 Route::get('/', 'HomeController@check');
 Route::get('home', 'Auth\AuthController@reLogin');
 
-// REVISI
-Route::get('pengguna', ['as' => 'pengguna.index', 'uses' => 'PenggunaController@index']);
+
 
 //unimplemented
 Route::get('dataAdmin', 'Auth\AuthController@index');
 Route::get('volumeTPA', 'TpembuanganController@tpa_summary');
 Route::get('index', 'Auth\AuthController@kael');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+
 
 //debugging purposes
 Route::get('debug/detailJadwal', 'DebugController@detailJadwal');

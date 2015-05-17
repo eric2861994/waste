@@ -71,16 +71,18 @@
 
                     <div class="container" style="width:80%;">
                         <form  id="loginForm" class="form-signin" method="post" action="{{url('auth/login')}}">
-                            <label for="nik" class="sr-only">Nik</label>
-                            <input name="nik" type="text" id="nik" class="form-control" placeholder="nik" required
-                                   autofocus>
                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+
+                            <label for="nik" class="sr-only">NIK</label>
+                            <input name="nik" type="text" id="nik" class="form-control" placeholder="NIK" required
+                                   autofocus>
                             <label for="inputPassword" class="sr-only">Password</label>
                             <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
                                    required>
                             <br/>
                             <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
                         </form>
+                        @include ('errors.list')
                     </div>
                     <!-- /container -->
                 </div>
@@ -115,7 +117,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#loginForm').submit(function(e) {
+    $('#loginForma').submit(function(e) {
         console.log('MASUK');
         var nik = $('#nik').val();
         var password = $('#inputPassword').val()

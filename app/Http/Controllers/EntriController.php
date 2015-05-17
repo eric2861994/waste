@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VolumeRequest;
 
 use Illuminate\Http\Request;
 use App\EntriTpsampah;
@@ -30,7 +31,7 @@ class EntriController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store_tps(Request $request)
+    public function store_tps(VolumeRequest $request)
     {
         EntriTpsampah::create($request->input());
 
@@ -55,7 +56,11 @@ class EntriController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store_tpa(Request $request) {
+    public function store_tpa(VolumeRequest $request) {
+        $this->validate($request, [
+            'tpa_id' => 'required|integer|exists:ppl_waste_tpakhirs,id',
+        ]);
+
         EntriTpakhir::create($request->input());
 
         return redirect()->route('entry.create_tpa');

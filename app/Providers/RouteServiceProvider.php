@@ -24,12 +24,12 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-        $router->model('petugas', 'App\Petugas');
         $router->model('tipesarana', 'App\TipeSarana');
         $router->model('modeltps', 'App\Tpsampah');
         $router->model('modeltpa', 'App\Tpakhir');
         $router->model('sarana', 'App\Sarana');
         $router->model('modeljadwal', 'App\Jadwal');
+        $router->model('modeluser', 'App\User');
 	}
 
 	/**

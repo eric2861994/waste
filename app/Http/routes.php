@@ -63,30 +63,16 @@ Route::get('sarana/{sarana}', ['as' => 'sarana.destroy', 'uses' => 'SaranaContro
 Route::post('sarana', ['as' => 'sarana.store', 'uses' => 'SaranaController@store']);
 Route::put('sarana/{sarana}', ['as' => 'sarana.update', 'uses' => 'SaranaController@update']);
 
-// Route::get('/', 'WelcomeController@index');
-
 //CRUD JADWAL + DETILJADWAL
 Route::get('jadwal', ['as' => 'jadwal.index', 'uses' => 'JadwalController@index']);
-Route::get('jadwal/berhasil', ['as' => 'jadwal.success', 'uses' => 'JadwalController@success']);
 Route::get('jadwal/{modeljadwal}', ['as' => 'jadwal.show', 'uses' => 'JadwalController@show']);
 Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 'JadwalController@jadwalSarana']);
 Route::get('jadwal/sarana/hitung', ['as' => 'jadwal.hitungSarana', 'uses' => 'JadwalController@hitungSarana']);
 Route::get('jadwal/petugas/hitung', ['as' => 'jadwal.hitungPetugas', 'uses' => 'JadwalController@hitungPetugas']);
 Route::get('jadwal/petugas/jadwalkan', ['as' => 'jadwal.jadwalPetugas', 'uses' => 'JadwalController@jadwalPetugas']);
 
+
+// Route::get('/', 'WelcomeController@index');
+
 Route::get('/', 'HomeController@check');
 Route::get('home', 'Auth\AuthController@reLogin');
-
-
-
-//unimplemented
-Route::get('dataAdmin', 'Auth\AuthController@index');
-Route::get('index', 'Auth\AuthController@kael');
-
-
-
-//debugging purposes
-Route::get('debug/detailJadwal', 'DebugController@detailJadwal');
-
-//useless
-Route::post('detailJadwal', ['as' => 'detailJadwal.store', 'uses' => 'DetailJadwalController@store']);

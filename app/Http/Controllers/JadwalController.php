@@ -36,12 +36,6 @@ class JadwalController extends Controller
         return view('jadwal.show', compact('jadwal'));
     }
 
-    public function success() {
-        $apa = 'Testing';
-
-        return view('jadwal.success', compact('apa'));
-    }
-
     public function totalRecallSarana() {
 //        hitung volume sampah rata - rata selama seminggu untuk setiap TPS
         $cNow = Carbon::now();

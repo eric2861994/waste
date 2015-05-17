@@ -100,10 +100,6 @@
                 <!-- /.container-fluid -->
             </nav>
         </div>
-        <ol class="breadcrumb"> <!-- TODO: this changes for each page -->
-            <li><a href="index">Home</a></li>
-            <li class="active">Pengawasan Sampah</li>
-        </ol>
     </div>
 </div>
 
@@ -122,17 +118,9 @@
 <div class="footer_btm"><!-- start footer_btm -->
     <div class="container">
         <div class="row  footer1">
-            <div class="col-md-5">
-                <div class="soc_icons">
-                    <ul class="list-unstyled">
-                        <li><a class="icon1" href="#"></a></li>
-                        <li><a class="icon2" href="#"></a></li>
-                        <li><a class="icon3" href="#"></a></li>
-                        <li><a class="icon4" href="#"></a></li>
-                        <li><a class="icon5" href="#"></a></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
+            <div class="col-md-5 copy">
+                <img src="{{ url('/images/bandung.svg') }}" width="170" height="150" alt="logo"/>
+                <p class="link">Dinas Kebersihan Kota Bandung<br/>Jalan Ganesa 10</p>
             </div>
             <div class="col-md-7 copy">
                 <p class="link text-right"><span>&#169; WASTE - All rights reserved</span></p>

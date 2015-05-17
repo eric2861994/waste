@@ -16,7 +16,11 @@
             <tr>
                 <td>{{ $idx+1 }}</td>
                 <td>{{ $sarana->plate_number }}</td>
-                <td>Lihat</td>
+                @if ($sarana->jadwal)
+                    <td><a href="{{ route('jadwal.show', $sarana->jadwal->id) }}">Lihat</a></td>
+                @else
+                    <td>Tidak ada Jawal</td>
+                @endif
             </tr>
         @endforeach
     </table>

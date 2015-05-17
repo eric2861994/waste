@@ -12,4 +12,8 @@ class TipeSarana extends Model {
     public function saranas() {
         return $this->hasMany('App\Sarana', 'type_id');
     }
+
+    public function jumlah() {
+        return count($this->saranas);
+    }
 }

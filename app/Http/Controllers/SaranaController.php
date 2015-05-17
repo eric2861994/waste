@@ -47,7 +47,7 @@ class SaranaController extends Controller {
             'plate_number' => 'required|string|unique:ppl_waste_saranas,plate_number|max:16'
         ]);
 
-		Sarana::create($request->input());
+		$sarana = Sarana::create($request->input());
 
         return redirect()->route('sarana.index');
 	}

@@ -29,11 +29,21 @@
                         <td>Tidak ada Jadwal</td>
                     @endif
                     <td><a href="{{ route('user.edit', $user->id) }}">Ubah</a> |
-                        <a href="{{ route('user.destroy', $user->id) }}">Hapus</a></td>
+                        <a onclick="return verify();" href="{{ route('user.destroy', $user->id) }}">Hapus</a>
+
+                    </td>
                 </tr>
             @endforeach
 
             </tbody>
         </table>
     </div>
+@stop
+
+@section('script-section')
+<script type="text/javascript">
+    function verify() {
+        return confirm("Apakah anda yakin ingin menghapus?");
+    }
+</script>
 @stop

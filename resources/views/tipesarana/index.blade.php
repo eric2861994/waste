@@ -21,14 +21,22 @@
                 <td>{{ $tipe->id }}</td>
                 <td>{{ $tipe->type }}</td>
                 <td>{{ $tipe->volume }}</td>
-                <td>{{ $tipe->count }}</td>
+                <td>{{ $tipe->jumlah() }}</td>
                 <td>
                     <a href="{{ route('dataSarana.edit', $tipe->id) }}">Ubah</a> |
-                    <a href="{{ route('dataSarana.destroy', $tipe->id) }}">Hapus</a> |
+                    <a onclick="return verify();" href="{{ route('dataSarana.destroy', $tipe->id) }}">Hapus</a> |
                     <a href="{{ route('dataSarana.show', $tipe->id) }}">Lihat</a>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
+@stop
+
+@section ('script-section')
+<script type="text/javascript">
+    function verify() {
+        return confirm("Apakah anda yakin ingin menghapus?");
+    }
+</script>
 @stop

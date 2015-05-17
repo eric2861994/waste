@@ -59,8 +59,7 @@
                     <br/>
 
                     <div class="container" style="width:80%;">
-                        <form  onsubmit="return kirim();" class="form-signin" method="post" action="{{url('auth/login')}}">
-                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        {!! Form::open(['url' => 'auth/login', 'class' => 'form-signin', 'onsubmit' => 'return kirim();']) !!}
 
                             <label for="nik" class="sr-only">NIK</label>
                             <input name="nik" type="text" id="nik" class="form-control" placeholder="NIK" required
@@ -70,7 +69,7 @@
                                    required>
                             <br/>
                             <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-                        </form>
+                        {!! Form::close() !!}
                         @include ('errors.list')
                     </div>
                     <!-- /container -->

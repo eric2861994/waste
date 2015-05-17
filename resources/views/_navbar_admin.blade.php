@@ -5,20 +5,19 @@
         <li id="saranalist"><a href="{{ route('sarana.index') }}">Sarana</a></li>
         <li id="adminlist"><a href="{{ route('dataTP.index') }}">Administrasi</a></li>
 
-        <li id="logoutLink"><a href="{{ url('/auth/logout') }}">Logout</a></li>
+        <li><a onclick="return kirim();" href="{{ url('/auth/logout') }}">Logout</a></li>
         <script type="text/javascript">
-            $('#logoutLink').click(function (e) {
-                console.log('LOGOUT JALAN KOK!');
+            function kirim() {
                 $.ajax({
                     type: 'get',
                     url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout',
                     success: function (data) {
                     },
                     error: function (data) {
-                        // alert(data);
                     }
                 });
-            })
+                return true;
+            };
         </script>
     </ul>
     <script>

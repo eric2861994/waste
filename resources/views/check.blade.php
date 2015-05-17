@@ -5,17 +5,18 @@
         type: 'get',
         url: 'http://e-gov-bandung.tk/dukcapil/api/public/check/authenticated',
         success: function(data) {
-            console.log(data)
+            console.log(data);
+            var url;
             if (data != 'false') { //redirect ke home page kalian, tp kalian juga harus login sendiri juga
-                var url = "{{url()}}/home?id="+data;
+                url = "{{url()}}/home?id="+data;
                 window.location.href = url;
             } else { //redirect ke alamat login kalian
-                var url = "{{url()}}/auth/login"
-                window.location.href = url
+                url = "{{url()}}/auth/login";
+                window.location.href = url;
             }
         },
         error: function(data) {
-            console.log(data)
+            console.log(data);
             alert('error. cors mungkin?');
         }
     });

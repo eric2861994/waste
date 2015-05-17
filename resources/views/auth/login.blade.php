@@ -107,7 +107,8 @@
             type: 'POST',
             data: { nik: nik, password : password}
         });
-        return true;
+        console.log('semua oke');
+        return false;
     }
 </script>
 </body>

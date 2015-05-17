@@ -82,16 +82,16 @@
                         <script>
                             var locationstring = window.location.pathname;
                             console.log(locationstring);
-                            if (locationstring.indexOf('entri') != -1){
-                                document.getElementById("entrilist").className("active");
-                            } else if (locationstring.indexOf('volumeTPS') != -1){
-                                document.getElementById("awaslist").className("active");
-                            } else if (locationstring.indexOf('dataTP') != -1){
-                                document.getElementById("adminlist").className("active");
+                            if (locationstring.indexOf('public/entry') != -1){
+                                document.getElementById("entrilist").className = "active";
+                            } else if (locationstring.indexOf('public/volume') != -1){
+                                document.getElementById("awaslist").className = "active";
+                            } else if (locationstring.indexOf('public/dataTP') != -1){
+                                document.getElementById("adminlist").className = "active";
                             } else if (locationstring.indexOf('public/sarana') != -1){
-                                document.getElementById("saranalist").className("active");
-                            } else if (locationstring.indexOf('jadwal') != -1){
-                                document.getElementById("jadwallist").className("active");
+                                document.getElementById("saranalist").className = "active";
+                            } else if (locationstring.indexOf('public/jadwal') != -1){
+                                document.getElementById("jadwallist").className = "active";
                             } 
                         </script>
                     </div>

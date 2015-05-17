@@ -53,23 +53,7 @@
                         <ul class="menu nav navbar-nav "> <!-- NOTE: the active state changes depending on the page -->
                             <!-- BACKEND TODO: set class="active" depending on current page. -->
 
-                            <script>
-                                var locationstring = window.location.pathname;
-                                console.log(locationstring);
-                                if (locationstring.indexOf('entri-tps') != -1){
-                                    document.getElementbyId("entrilist").className("active");
-                                } else if (locationstring.indexOf('volumeTPS') != -1){
-                                    document.getElementbyId("awaslist").className("active");
-                                } else if (locationstring.indexOf('dataTP') != -1){
-                                    document.getElementbyId("adminlist").className("active");
-                                } else if (locationstring.indexOf('public/sarana') != -1){
-                                    document.getElementbyId("saranalist").className("active");
-                                } else if (locationstring.indexOf('jadwal') != -1){
-                                    document.getElementbyId("jadwallist").className("active");
-                                } else {
-                                    document.getElementbyId("homelist").className("active");
-                                }
-                            </script>
+                            
 
                             <li id="homelist"><a href="{{ url('/') }}">home</a></li>
                             <li id="entrilist"><a href="{{ route('entry.create_tps') }}">Entri</a></li>
@@ -95,6 +79,21 @@
                                 </script>
                             @endif
                         </ul>
+                        <script>
+                            var locationstring = window.location.pathname;
+                            console.log(locationstring);
+                            if (locationstring.indexOf('entri') != -1){
+                                document.getElementById("entrilist").className = "active";
+                            } else if (locationstring.indexOf('volumeTPS') != -1){
+                                document.getElementById("awaslist").className = "active";
+                            } else if (locationstring.indexOf('dataTP') != -1){
+                                document.getElementById("adminlist").className = "active";
+                            } else if (locationstring.indexOf('public/sarana') != -1){
+                                document.getElementById("saranalist").className = "active";
+                            } else if (locationstring.indexOf('jadwal') != -1){
+                                document.getElementById("jadwallist").className = "active";
+                            } 
+                        </script>
                     </div>
                     <!-- /.navbar-collapse -->
                 </div>

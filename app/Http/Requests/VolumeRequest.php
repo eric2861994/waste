@@ -11,7 +11,6 @@ class VolumeRequest extends Request {
 	 */
 	public function authorize()
 	{
-        // TODO add authorize
 		return true;
 	}
 

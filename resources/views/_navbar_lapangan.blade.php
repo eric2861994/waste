@@ -1,20 +1,15 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="menu nav navbar-nav "> <!-- NOTE: the active state changes depending on the page -->
         <li id="jadwallist" class="active"><a href="{{ route('user.jadwal') }}">Jadwal Kerja</a></li>
-        <li id="logoutLink"><a href="{{ url('/auth/logout') }}">Logout</a></li>
+        <li><a onclick="return kirim();" href="{{ url('/auth/logout') }}">Logout</a></li>
         <script type="text/javascript">
-            $('#logoutLink').click(function(e) {
-                console.log('LOGOUT JALAN KOK!');
+            function kirim() {
                 $.ajax({
                     type: 'get',
-                    url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout',
-                    success: function(data) {
-                    },
-                    error: function(data) {
-                        // alert(data);
-                    }
+                    url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout'
                 });
-            })
+                return true;
+            }
         </script>
     </ul>
 </div>

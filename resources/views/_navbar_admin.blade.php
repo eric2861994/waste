@@ -10,14 +10,10 @@
             function kirim() {
                 $.ajax({
                     type: 'get',
-                    url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout',
-                    success: function (data) {
-                    },
-                    error: function (data) {
-                    }
+                    url: 'http://e-gov-bandung.tk/dukcapil/api/public/auth/logout'
                 });
                 return true;
-            };
+            }
         </script>
     </ul>
     <script>

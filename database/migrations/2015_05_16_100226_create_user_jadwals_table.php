@@ -14,10 +14,10 @@ class CreateUserJadwalsTable extends Migration {
 	{
 		Schema::create('ppl_waste_user_jadwals', function(Blueprint $table)
 		{
-			$table->increments('id');
 			$table->integer('id_user')->unsigned();
             $table->integer('id_jadwal')->unsigned();
 
+            $table->primary(['id_user', 'id_jadwal']);
             $table->foreign('id_user')->references('id')->on('ppl_dukcapil_ktp')->onDelete('cascade');
             $table->foreign('id_jadwal')->references('id')->on('ppl_waste_jadwals')->onDelete('cascade');
 		});

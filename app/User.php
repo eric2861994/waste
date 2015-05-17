@@ -26,6 +26,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+    public function peran() {
+        if ($this->role == 'waste_pemantau')
+            return 'Pemantau Sampah';
+        else if ($this->role == 'waste_penyapu')
+            return 'Penyapu Jalan';
+        else if ($this->role == 'waste_pengangkut')
+            return 'Pengangkut Sampah';
+        else if ($this->role == 'waste_tps')
+            return 'Petugas TPS';
+        else
+            return $this->role;
+    }
+
     public function penghubung() {
+        return $this->hasOne('App\UserJadwal', 'id_user');
     }
 }

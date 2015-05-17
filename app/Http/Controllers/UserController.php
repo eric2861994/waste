@@ -15,9 +15,9 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-//		$users = User::where('role', 'waste_pemantau')->orWhere('role', 'waste_tps')->orWhere('role', 'waste_penyapu')
-//            ->orWhere('role', 'waste_pengangkut')->get();
-        $users = User::all();
+		$users = User::where('role', 'waste_pemantau')->orWhere('role', 'waste_tps')->orWhere('role', 'waste_penyapu')
+            ->orWhere('role', 'waste_pengangkut')->get();
+//        $users = User::all();
 
         return view('users.index', compact('users'));
 	}
@@ -81,7 +81,7 @@ class UserController extends Controller {
 	public function destroy(User $user)
 	{
         // TODO tambahkan validasi
-		$user->update(['role' => 'dukcapil_masyarakat']);
+		$user->update(['role' => 'masyarakat']);
 
         return redirect()->route('user.index');
 	}

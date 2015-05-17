@@ -10,6 +10,7 @@
                 <th>#</th>
                 <th>NIK</th>
                 <th>Peran</th>
+                <th>Jadwal</th>
             </tr>
             </thead>
 
@@ -18,7 +19,12 @@
                 <tr>
                     <td>{{ $idx+1 }}</td>
                     <td>{{ $user->nik }}</td>
-                    <td>{{ $user->role }}</td>
+                    <td>{{ $user->peran() }}</td>
+                    @if ($user->penghubung)
+                        <td><a href="{{ route('jadwal.show', $user->penghubung->jadwal->id) }}">lihat</a></td>
+                    @else
+                        <td>Tidak ada Jadwal</td>
+                    @endif
                 </tr>
             @endforeach
 

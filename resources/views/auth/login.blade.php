@@ -115,7 +115,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#loginForm').submit(function(e) {
+    $('#loginForma').submit(function(e) {
         console.log('MASUK');
         var nik = $('#nik').val();
         var password = $('#inputPassword').val()

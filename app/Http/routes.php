@@ -61,6 +61,8 @@ Route::get('jadwal', ['as' => 'jadwal.index', 'uses' => 'JadwalController@index'
 Route::get('jadwal/{modeljadwal}', ['as' => 'jadwal.show', 'uses' => 'JadwalController@show']);
 Route::get('jadwal/sarana/jadwalkan', ['as' => 'jadwal.jadwalSarana', 'uses' => 'JadwalController@jadwalSarana']);
 Route::get('jadwal/sarana/hitung', ['as' => 'jadwal.hitungSarana', 'uses' => 'JadwalController@hitungSarana']);
+Route::get('jadwal/petugas/hitung', ['as' => 'jadwal.hitungPetugas', 'uses' => 'JadwalController@hitungPetugas']);
+Route::get('jadwal/petugas/jadwalkan', ['as' => 'jadwal.jadwalPetugas', 'uses' => 'JadwalController@jadwalPetugas']);
 
 Route::get('/', 'HomeController@check');
 Route::get('home', 'Auth\AuthController@reLogin');

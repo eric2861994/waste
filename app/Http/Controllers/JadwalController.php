@@ -5,6 +5,8 @@ use App\Jadwal;
 use App\DetailJadwal;
 use App\Tpsampah;
 use App\Sarana;
+use App\User;
+use App\UserJadwal;
 use Carbon\Carbon;
 
 class JadwalController extends Controller
@@ -338,7 +340,75 @@ class JadwalController extends Controller
     }
 
     public function jadwalPetugas() {
+        $totalRecall = $this->totalRecallSarana();
+        $degree = $totalRecall['degree'];
+        $dSarana = $totalRecall['dSarana'];
+        $bTPS = $totalRecall['bTPS'];
 
+        $pengangkuts = User::where('role', 'waste_pengangkut')->get();
+        $idx = 0; $lPengangkuts = count($pengangkuts);
+        for ($i = 0; $i < 3; $i++)
+            foreach ($degree as $truckId => $numTrip) {
+                if ($numTrip > 2*$i && $idx < $lPengangkuts) { // bisa dijadwalkan
+                    $pengangkut = $pengangkuts[$idx];
+                    $idx++;
+                    $jadwal = Jadwal::create(['summary' => 'jadwal untuk petugas pengangkut sampah: '.$pengangkut->nama]);
+                    $truckIdx = $this->findIndex($truckId, $dSarana);
+                    $namaTPS = Tpsampah::find($dSarana[$truckIdx]['tps'])->name;
+
+                    $mulai = $i*8;
+                    $akhir = $mulai + 4;
+                    $akhir0 = $akhir + 4;
+
+                    if ($mulai < 10)
+                        $smulai = '0' . $mulai . '0000';
+                    else
+                        $smulai = $mulai . '0000';
+
+                    if ($akhir < 10)
+                        $sakhir = '0'. $akhir . '0000';
+                    else
+                        $sakhir = $akhir . '0000';
+
+                    if ($akhir0 < 10)
+                        $sakhir0 = '0' . $akhir0 . '0000';
+                    else
+                        $sakhir0 = $akhir0 . '0000';
+
+                    $description = 'Mengangkut sampah dari ' . $namaTPS . ' ke TPA';
+
+                    $jadwal->details()->save(new DetailJadwal(['start_time' => $smulai, 'end_time' => $sakhir, 'description' => $description]));
+                    $jadwal->details()->save(new DetailJadwal(['start_time' => $sakhir, 'end_time' => $sakhir0, 'description' => $description]));
+
+                    UserJadwal::create(['id_user' => $pengangkut->id, 'id_jadwal' => $jadwal->id]);
+                }
+            }
+
+        $penyapus = User::where('role', 'waste_penyapu')->get();
+        $idx = 0; $lPenyapu = count($penyapus);
+        $lTPS = count($bTPS);
+        $beres = 0;
+        while ($beres < $lTPS && $idx < $lPenyapu)
+            for ($i = 0; $i < $lTPS; $i++) {
+                $tps = $bTPS[$i];
+                $namaTPS = Tpsampah::find($tps['id'])->name;
+
+                if ($tps['v'] > $this->EPSILON && $idx < $lPenyapu) {
+                    $penyapu = $penyapus[$idx];
+                    $idx++;
+
+                    $jadwal = Jadwal::create(['summary' => 'jadwal untuk petugas penyapu jalan: '.$penyapu->nama]);
+
+                    $jadwal->details()->save(new DetailJadwal(['start_time' => '080000', 'end_time' => '160000',
+                        'description' => 'menyapu di sekitar '.$namaTPS]));
+
+                    UserJadwal::create(['id_user' => $penyapu->id, 'id_jadwal' => $jadwal->id]);
+
+                    $bTPS[$i]['v'] -= 10;
+                    if ($bTPS[$i]['v'] < $this->EPSILON)
+                        $beres++;
+                }
+            }
     }
 
     public function hitungPetugas() {
@@ -347,11 +417,10 @@ class JadwalController extends Controller
 
         $totalRecall = $this->totalRecallSarana();
         $bTPS = $totalRecall['bTPS'];
-        $totalVolume = 0.0;
+        $butuhPenyapu = 0;
         foreach ($bTPS as $vTPS) {
-            $totalVolume += $vTPS;
+            $butuhPenyapu += ceil($vTPS['v']/$MAX_PENYAPU);
         }
-        $butuhPenyapu = ceil($totalVolume/$MAX_PENYAPU);
 
         $degree = $totalRecall['degree'];
         $butuhSupir = 0;
@@ -362,7 +431,7 @@ class JadwalController extends Controller
                 $butuhSupir += ceil($num_trip/2);
         }
 
-        return view('jadwal.count_worker');
+        return view('jadwal.count_worker', compact('bTPS', 'butuhPenyapu', 'butuhSupir'));
     }
 
     /**

@@ -13,6 +13,11 @@ use Carbon\Carbon;
 class JadwalController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('three');
+    }
+
     private $EPSILON = 0.000001;
 
     /**

@@ -2,7 +2,7 @@
 
 @section('main-section')
 
-	<h1>Menambahkan Tempat Pembuangan Sampah Baru</h1>
+	<h1>Menambahkan Tempat Pembuangan Sementara Baru</h1>
 	
 	{!! Form::open(['route' => 'dataTP.store_tps']) !!}
 	<div class="form-group">

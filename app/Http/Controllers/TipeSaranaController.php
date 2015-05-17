@@ -8,6 +8,11 @@ use App\TipeSarana;
 
 class TipeSaranaController extends Controller {
 
+    public function __construct()
+    {
+        $this->middleware('three');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

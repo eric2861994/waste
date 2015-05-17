@@ -2,7 +2,7 @@
 
 @section('main-section')
     <!--<h1 class="page-header">Dashboard</h1>-->
-    <h2 class="sub-header">Volume di Tempat Pembuangan Sampah</h2>
+    <h2 class="sub-header">Volume di Tempat Pembuangan Sementara</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

@@ -8,6 +8,14 @@ use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller {
+
+    public function __construct()
+    {
+        $this->middleware('three', ['except' => ['notice', 'redirect', 'jadwal']]);
+        $this->middleware('zero', ['only' => 'notice']);
+        $this->middleware('one', ['only' => 'jadwal']);
+    }
+
     public $DEFAULT_ROLE = 'masyarakat';
 
     public function notice() {

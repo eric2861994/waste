@@ -10,6 +10,11 @@ use Illuminate\Queue\RedisQueue;
 
 class SaranaController extends Controller {
 
+    public function __construct()
+    {
+        $this->middleware('three');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

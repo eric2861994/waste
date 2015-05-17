@@ -13,6 +13,11 @@ use App\EntriTpakhir;
 
 class TpembuanganController extends Controller {
 
+    public function __construct()
+    {
+        $this->middleware('three');
+    }
+
     /* resource: index, create, store, show, edit, update, destroy */
     public function index() {
         $tpsampahs = Tpsampah::all();

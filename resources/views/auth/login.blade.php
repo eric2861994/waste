@@ -45,18 +45,7 @@
                         </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="menu nav navbar-nav ">
-                            <!-- BACKEND TODO: set class="active" depending on current page. -->
-                            <li><a href="{{ url('/') }}">home</a></li>
-                            <li><a href="{{ route('entry.create_tps') }}">Entri</a></li>
-                            <li><a href="{{ url('/volumeTPS') }}">Pengawasan</a></li>
-                            <li><a href="{{ route('dataTP.index') }}">Administrasi</a></li>
-                            <li><a href="{{ route('sarana.index') }}">Sarana</a></li>
-                            <li><a href="{{ route('jadwal.index') }}">Jadwal</a></li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
+
                 </div>
                 <!-- /.container-fluid -->
             </nav>
@@ -95,20 +84,13 @@
         </div>
     </div>
 </div>
+
 <div class="footer_btm"><!-- start footer_btm -->
     <div class="container">
         <div class="row  footer1">
-            <div class="col-md-5">
-                <div class="soc_icons">
-                    <ul class="list-unstyled">
-                        <li><a class="icon1" href="#"></a></li>
-                        <li><a class="icon2" href="#"></a></li>
-                        <li><a class="icon3" href="#"></a></li>
-                        <li><a class="icon4" href="#"></a></li>
-                        <li><a class="icon5" href="#"></a></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
+            <div class="col-md-5 copy">
+                <img src="{{ url('/images/bandung.svg') }}" width="170" height="150" alt="logo"/>
+                <p class="link">Dinas Kebersihan Kota Bandung<br/>Jalan Ganesa 10</p>
             </div>
             <div class="col-md-7 copy">
                 <p class="link text-right"><span>&#169; WASTE - All rights reserved</span></p>
